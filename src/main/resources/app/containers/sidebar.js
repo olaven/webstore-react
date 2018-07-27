@@ -32,7 +32,7 @@ class SideBar extends React.PureComponent {
         }
         return this.props.categories.map((category, index) => {
             if(category.visible){
-                return <Link to="/app/com.enonic.starter.react/storefront" key={index}>
+                return <Link to="/app/com.enonic.app.webstore.react/storefront" key={index}>
                     <ListItem className="SideBar-ListItem" onClick={() =>  this.categoryOnClick(category)}>
                         <ListItemIcon>
                             <CategoryIcon />
@@ -46,9 +46,9 @@ class SideBar extends React.PureComponent {
 
     renderAdminRoutes(){
         const adminOptions = [
-            { name: "Items", url: "/app/com.enonic.starter.react/admin" },
-            { name: "Categories", url: "/app/com.enonic.starter.react/admin/categories" },
-            { name: "Images", url: "/app/com.enonic.starter.react/admin/images" }
+            { name: "Items", url: "/app/com.enonic.app.webstore.react/admin" },
+            { name: "Categories", url: "/app/com.enonic.app.webstore.react/admin/categories" },
+            { name: "Images", url: "/app/com.enonic.app.webstore.react/admin/images" }
         ]; 
 
         return adminOptions.map((option, index) => 

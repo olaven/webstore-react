@@ -66,7 +66,7 @@ class AdminPage extends React.PureComponent {
     return <div className="AdminPage">
         <Typography varian="display4">ADMIN</Typography>    
         <Typography varian="display2">ALL ACCESS GRANTED</Typography>   
-        <Route exact path={`/app/com.enonic.starter.react/admin`} render={() => 
+        <Route exact path={`/app/com.enonic.app.webstore.react/admin`} render={() => 
           <ItemComponent 
             submit={this.itemSubmitClick}
             deleteItem={this.props.deleteItem}
@@ -84,7 +84,7 @@ class AdminPage extends React.PureComponent {
   
           />}  
         />
-        <Route path={`/app/com.enonic.starter.react/admin/categories`} render={() => 
+        <Route path={`/app/com.enonic.app.webstore.react/admin/categories`} render={() => 
           <CategoryComponent 
             submit={this.categorySubmitClick}
             editCategory={this.props.editCategory}
@@ -98,7 +98,7 @@ class AdminPage extends React.PureComponent {
           />}
         />
 
-        <Route path={`/app/com.enonic.starter.react/admin/images`} render={() => 
+        <Route path={`/app/com.enonic.app.webstore.react/admin/images`} render={() => 
           <ImageComponent 
             editImage={this.props.editImage}
             deleteImage={this.props.deleteImage} 

@@ -128,9 +128,9 @@ class App extends Component {
                         <Route path={/.+storefront/} component={StorefrontPage} />
                         <Route path={/.+cart/} component={CartPage} />
                         */}
-                        <Route path="/app/com.enonic.starter.react/admin" component={AdminPage} />
-                        <Route path="/app/com.enonic.starter.react/storefront" component={StorefrontPage} />
-                        <Route path="/app/com.enonic.starter.react/cart" component={CartPage} />
+                        <Route path="/app/com.enonic.app.webstore.react/admin" component={AdminPage} />
+                        <Route path="/app/com.enonic.app.webstore.react/storefront" component={StorefrontPage} />
+                        <Route path="/app/com.enonic.app.webstore.react/cart" component={CartPage} />
 
                         <Route component={NotFound} />
                     </Switch>

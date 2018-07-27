@@ -58,19 +58,19 @@ class TopBar extends React.PureComponent {
         const cart = this.props.location.pathname.includes("cart"); 
 
         const icons = (page === "store" ? <div>
-            <Link to="/app/com.enonic.starter.react/storefront">
+            <Link to="/app/com.enonic.app.webstore.react/storefront">
                 <IconButton>
                     <StoreIcon color={!cart ? "disabled" : "inherit"}/>
                 </IconButton>
             </Link>
-            <Link to="/app/com.enonic.starter.react/cart">
+            <Link to="/app/com.enonic.app.webstore.react/cart">
                 <IconButton>
                     <Badge badgeContent={this.props.cartItems.size} color="secondary">
                         <CartIcon color={cart ? "disabled" : "inherit"}/>
                     </Badge>
                 </IconButton>
             </Link> 
-        </div>: <Link to="/app/com.enonic.starter.react/storefront">
+        </div>: <Link to="/app/com.enonic.app.webstore.react/storefront">
             <IconButton>
                 <StoreIcon title="Back to store"/>
             </IconButton>
@@ -125,7 +125,7 @@ class TopBar extends React.PureComponent {
                             {this.getTitle(page)}
 
                             {page !== "admin" ?
-                                <Link className="TopBar-Col" to="/app/com.enonic.starter.react/admin" className="TopBar-AdminLink">
+                                <Link className="TopBar-Col" to="/app/com.enonic.app.webstore.react/admin" className="TopBar-AdminLink">
                                     <Typography variant="button">Admin</Typography>
                                 </Link> :
                                 <div className="TopBar-Col"></div>}
@@ -142,9 +142,9 @@ class TopBar extends React.PureComponent {
 }
 
 const urls = {
-    storefront: "/app/com.enonic.starter.react/storefront",
-    cart: "/app/com.enonic.starter.react/cart",
-    admin: "/app/com.enonic.starter.react/admin"
+    storefront: "/app/com.enonic.app.webstore.react/storefront",
+    cart: "/app/com.enonic.app.webstore.react/cart",
+    admin: "/app/com.enonic.app.webstore.react/admin"
 }
 
 
