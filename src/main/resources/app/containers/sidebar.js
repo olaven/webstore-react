@@ -11,6 +11,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import CategoryIcon from "@material-ui/icons/Store"; 
+import Typography from '@material-ui/core/Typography'
 // Stylesheets 
 import '../styles/sidebar.less'; 
 // Project URLS 
@@ -84,6 +85,9 @@ class SideBar extends React.PureComponent {
                     <IconButton color="inherit" aria-label="Menu" onClick={this.props.onToggleMenu}>
                         <CloseIcon />
                     </IconButton>
+                    <Typography variant="title" align="center">
+                        {this.props.location.pathname.includes("admin") ? "Admin" : "Categories"}
+                    </Typography>
                     <Divider />
                     <List>
                         {this.renderContent.bind(this)()}                    

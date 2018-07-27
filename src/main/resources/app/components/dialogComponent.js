@@ -10,7 +10,6 @@
     import CardMedia from '@material-ui/core/CardMedia'; 
 
     // Components 
-    import StorefrontItemComponent from './storefront/storefrontItemComponent';
     import CheckoutComponent from './checkoutComponent';
     import CreateItemComponent from './admin/createItemComponent';
     import CreateCategoryComponent from './admin/createCategoryComponent';
