@@ -1,8 +1,11 @@
-const itemRepoUrl = "/app/com.enonic.starter.react/_/service/com.enonic.starter.react/itemService";
+const itemRepoUrl =
+  "/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/itemService";
 
-const categoryRepoUrl = "/app/com.enonic.starter.react/_/service/com.enonic.starter.react/categoryService";
+const categoryRepoUrl =
+  "/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/categoryService";
     
-const imageRepoUrl = "/app/com.enonic.starter.react/_/service/com.enonic.starter.react/imageService";
+const imageRepoUrl =
+  "/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/imageService";
     
 
 
@@ -141,9 +144,13 @@ export function editImage(image){
 export function getImages(){
     return fetch(imageRepoUrl)
         .then(response => response.length == 0 ? response : response.json()
-            .then(data =>  console.log(data))
-                
-            /*data.nodes.filter(node => node.data ? node : null))
-            .then(nodes => nodes.map(node => node.data))*/
+            .then(data => data.nodes )
+            
         )
+
+                
+                /*data.nodes.filter(node => node.data ? node : null))
+            .then(nodes => nodes.map(node => node.data))
+        )
+        */
 }

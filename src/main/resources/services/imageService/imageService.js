@@ -12,7 +12,9 @@ exports.get = function(req) {
     var result = getImages(); 
     return {
         body: {nodes: result},
-        contentType: 'image/jpeg'
+        header: {
+            conetType: 'image.jpeg'
+        }
     }
     
 }
@@ -145,6 +147,7 @@ exports.put = function(req) {
         type: portalLib.getMultipartText('type')
     }
     
+    
     var source = portalLib.getMultipartText('source')
 
     var file = portalLib.getMultipartItem('file')
@@ -249,7 +252,7 @@ function getImages() {
             return image
         }
     });
-
+    log.info(images.length)
     return images[0];
     
 }

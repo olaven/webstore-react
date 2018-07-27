@@ -11,11 +11,8 @@ export default class Image {
         this.type = "image";
         this.edited = data.edited == undefined ? true: data.edited;
         this.file = data.file || null
-        if(this.file){
-            console.log(this.file)
-            
-        }
-        this.source = this.file ? URL.createObjectURL(this.file) : data.source;
+        this.source = URL.createObjectURL(this.data);
+        console.log(this.source)
     }
 
     update(data){
