@@ -141,7 +141,9 @@ export function editImage(image){
 export function getImages(){
     return fetch(imageRepoUrl)
         .then(response => response.length == 0 ? response : response.json()
-            .then(data =>  data.nodes.filter(node => node.data ? node : null))
-            .then(nodes => nodes.map(node => node.data))
+            .then(data =>  console.log(data))
+                
+            /*data.nodes.filter(node => node.data ? node : null))
+            .then(nodes => nodes.map(node => node.data))*/
         )
 }

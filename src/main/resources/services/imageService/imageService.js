@@ -12,7 +12,7 @@ exports.get = function(req) {
     var result = getImages(); 
     return {
         body: {nodes: result},
-
+        contentType: 'image/jpeg'
     }
     
 }
