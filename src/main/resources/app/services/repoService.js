@@ -1,8 +1,11 @@
-const itemRepoUrl = "/app/com.enonic.starter.react/_/service/com.enonic.starter.react/itemService";
+const itemRepoUrl =
+  "/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/itemService";
 
-const categoryRepoUrl = "/app/com.enonic.starter.react/_/service/com.enonic.starter.react/categoryService";
+const categoryRepoUrl =
+  "/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/categoryService";
     
-const imageRepoUrl = "/app/com.enonic.starter.react/_/service/com.enonic.starter.react/imageService";
+const imageRepoUrl =
+  "/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/imageService";
     
 
 

@@ -12,7 +12,9 @@ exports.get = function(req) {
     var result = getImages(); 
     return {
         body: {nodes: result},
-
+        headers: {
+            "Content-Type": "application/json"
+        }
     }
     
 }
@@ -238,20 +240,12 @@ function getImages() {
         return hits;
     }
 
-    var images = hits.filter(function (hit) {
-        var image = repoConn.get(hit.id);
-        if (image.data.file){
-            log.info("getting stream")
-            image.data.file = repoConn.getBinary({
-                key: hit.id,
-                binaryReference: "file"
-            });
-            log.info(image.data.file)
-            return image
-        }
+    var images = hits.map(function (hit) {
+        return repoConn.get(hit.id);
     });
 
-    return images[0];
+    log.info(images.length)
+    return images;
     
 }
 
