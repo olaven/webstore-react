@@ -1,6 +1,2 @@
-This fork is temporary, while working on a demo, showcasing React/Redux
-
-# React project starter for Enonic XP
-
-This Starter will help you build an Enonic application with React and Redux.
-
+# webstore-react
+A webstore built with React on Enonic platform

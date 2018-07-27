@@ -5,7 +5,7 @@ plugins {
 
 app {
     name = project.appName
-    displayName = 'React Starter Kit'
+    displayName = 'Webstore React'
     vendorName = 'Enonic AS'
     vendorUrl = 'http://enonic.com'
     systemVersion = "${xpVersion}"
