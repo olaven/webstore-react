@@ -29,7 +29,10 @@ import Typography from '@material-ui/core/Typography';
 
 
 // Stylesheet 
-import '../styles/adminPage.less'
+import '../styles/adminPage.less' // Dupliate? 
+
+// Project urls 
+import URLS from '../urls'; 
 
 
 import { connect } from 'react-redux';
@@ -66,7 +69,7 @@ class AdminPage extends React.PureComponent {
     return <div className="AdminPage">
         <Typography varian="display4">ADMIN</Typography>    
         <Typography varian="display2">ALL ACCESS GRANTED</Typography>   
-        <Route exact path={`/app/com.enonic.app.webstore.react/admin`} render={() => 
+        <Route exact path={URLS.admin.items} render={() => 
           <ItemComponent 
             submit={this.itemSubmitClick}
             deleteItem={this.props.deleteItem}
@@ -84,7 +87,7 @@ class AdminPage extends React.PureComponent {
   
           />}  
         />
-        <Route path={`/app/com.enonic.app.webstore.react/admin/categories`} render={() => 
+        <Route path={URLS.admin.categories} render={() => 
           <CategoryComponent 
             submit={this.categorySubmitClick}
             editCategory={this.props.editCategory}
@@ -98,7 +101,7 @@ class AdminPage extends React.PureComponent {
           />}
         />
 
-        <Route path={`/app/com.enonic.app.webstore.react/admin/images`} render={() => 
+        <Route path={URLS.admin.images} render={() => 
           <ImageComponent 
             editImage={this.props.editImage}
             deleteImage={this.props.deleteImage} 

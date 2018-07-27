@@ -24,6 +24,10 @@ import ToasterComponent from '../components/ToasterComponent';
 
 import * as mainActions from '../actions/mainActions'
 
+// Project URLS 
+import URLS from '../urls'; 
+
+
 class TopBar extends React.PureComponent {
 
     constructor(props) {
@@ -58,19 +62,19 @@ class TopBar extends React.PureComponent {
         const cart = this.props.location.pathname.includes("cart"); 
 
         const icons = (page === "store" ? <div>
-            <Link to="/app/com.enonic.app.webstore.react/storefront">
+            <Link to={URLS.storefront}>
                 <IconButton>
                     <StoreIcon color={!cart ? "disabled" : "inherit"}/>
                 </IconButton>
             </Link>
-            <Link to="/app/com.enonic.app.webstore.react/cart">
+            <Link to={URLS.cart}>
                 <IconButton>
                     <Badge badgeContent={this.props.cartItems.size} color="secondary">
                         <CartIcon color={cart ? "disabled" : "inherit"}/>
                     </Badge>
                 </IconButton>
             </Link> 
-        </div>: <Link to="/app/com.enonic.app.webstore.react/storefront">
+        </div>: <Link to={URLS.storefront}>
             <IconButton>
                 <StoreIcon title="Back to store"/>
             </IconButton>
@@ -94,7 +98,7 @@ class TopBar extends React.PureComponent {
             className="TopBar-FlexGrow"
             align="center"
             color={page === 'admin' ? 'textSecondary' : 'inherit'}>
-            <Link to={urls.storefront}>
+            <Link to={URLS.storefront}>
                 {page === 'admin' ? 'Back to store' : 'Enonic Webstore'}
             </Link>
         </Typography>
@@ -125,7 +129,7 @@ class TopBar extends React.PureComponent {
                             {this.getTitle(page)}
 
                             {page !== "admin" ?
-                                <Link className="TopBar-Col" to="/app/com.enonic.app.webstore.react/admin" className="TopBar-AdminLink">
+                                <Link className="TopBar-Col" to={URLS.admin.items} className="TopBar-AdminLink">
                                     <Typography variant="button">Admin</Typography>
                                 </Link> :
                                 <div className="TopBar-Col"></div>}
@@ -139,12 +143,6 @@ class TopBar extends React.PureComponent {
             </div>
         );
     }
-}
-
-const urls = {
-    storefront: "/app/com.enonic.app.webstore.react/storefront",
-    cart: "/app/com.enonic.app.webstore.react/cart",
-    admin: "/app/com.enonic.app.webstore.react/admin"
 }
 
 

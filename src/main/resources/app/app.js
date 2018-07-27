@@ -22,8 +22,10 @@ import Category from './interfaces/category';
 import Image from "./interfaces/image";
 // Material UI 
 import { MuiThemeProvider } from "@material-ui/core/styles";
-// Stylesheet 
+// Local modules
 import Theme from "./theme";
+import URLS from './urls'; 
+// Stylesheets
 import './styles/main.less'
 // Fonts
 import "typeface-roboto";
@@ -123,14 +125,9 @@ class App extends Component {
                         <SideBar {...props} open={this.state.menuVisible} onToggleMenu={this.toggleMenu.bind(this)} />}
                     /> 
                     <Switch className="App-Content">    
-                        {/*
-                        <Route path={/.+admin/} component={AdminPage} />
-                        <Route path={/.+storefront/} component={StorefrontPage} />
-                        <Route path={/.+cart/} component={CartPage} />
-                        */}
-                        <Route path="/app/com.enonic.app.webstore.react/admin" component={AdminPage} />
-                        <Route path="/app/com.enonic.app.webstore.react/storefront" component={StorefrontPage} />
-                        <Route path="/app/com.enonic.app.webstore.react/cart" component={CartPage} />
+                        <Route path={URLS.admin.items} component={AdminPage} />
+                        <Route path={URLS.storefront} component={StorefrontPage} />
+                        <Route path={URLS.cart} component={CartPage} />
 
                         <Route component={NotFound} />
                     </Switch>
