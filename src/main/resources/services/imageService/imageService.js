@@ -147,7 +147,6 @@ exports.put = function(req) {
         type: portalLib.getMultipartText('type')
     }
     
-    
     var source = portalLib.getMultipartText('source')
 
     var file = portalLib.getMultipartItem('file')
