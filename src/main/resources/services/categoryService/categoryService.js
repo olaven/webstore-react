@@ -204,7 +204,7 @@ var deleteNode = function (body) {
     var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
     
     var hits = repoConn.query({
-        query: "data.type = 'category' AND data.id = '" + body.id + "'"
+        query: "data.type = 'category' AND data.id = " + body.id
     }).hits;
 
     if (!hits || hits.length < 1) {

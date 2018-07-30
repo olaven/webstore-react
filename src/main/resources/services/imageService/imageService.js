@@ -293,7 +293,7 @@ var deleteNode = function (image) {
     var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
     
     var hits = repoConn.query({
-        query: "data.type = 'image' AND data.id = " + image.id 
+        query: "data.type = 'image' AND data.id = '" + image.id + "'"
     }).hits;
     log.info(hits.length)
     /*
