@@ -95,6 +95,16 @@ export default class UploadImageDialog extends React.PureComponent {
                 Upload
 			</Button>;
 	}
+
+	renderMedia(){
+		if (this.state.source != ""){
+			return <CardMedia
+				image={this.state.source}
+				className="Item-Card-Media"
+			/> 
+		}
+	}
+
 	render() {
 		return <Dialog
 			open={this.props.open}
@@ -121,10 +131,7 @@ export default class UploadImageDialog extends React.PureComponent {
 					className="UploadImageDialog-FileInput"
 					required
 				/>
-				<CardMedia
-					image={this.state.source}
-					className="Item-Card-Media"
-				/> 
+				{this.renderMedia()}
 				<label htmlFor="raised-button-file">
 					<Button
 						color={this.state.validationFailed ? "secondary" : "primary"}

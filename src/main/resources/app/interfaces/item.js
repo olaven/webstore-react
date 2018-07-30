@@ -6,7 +6,7 @@ export default class Item {
 		this.id = data.id || new Date().valueOf();
 		this.visible = data.visible == undefined ? true: data.visible;
 		this.category = data.category || "others"; 
-		this.edited = data.edited || false; 
+		this.edited = data.edited == undefined ? true : data.edited;
 		this.type = "item";
 	}
 

@@ -152,21 +152,22 @@ export function getImages(){
 				reject(response);
 			} else {
 				response.json()
-					.then(data => 
-						Promise.all(
-							data.nodes.map(node => {
-								if(node.data.file){
-									return getImageFile(node.data.id)
-										.then(image => {
-											node.data.file = image;
-											return node.data;
-										});
-								} else {
-									return Promise.resolve(node.data);
-								}
-							})
-						)
-					).then(images => resolve(images));
+				.then(data => 
+					Promise.all(
+						data.nodes.map(node => {
+							node.data.edited = false
+							if(node.data.file){
+								return getImageFile(node.data.id)
+									.then(image => {
+										node.data.file = image;
+										return node.data;
+									});
+							} else {
+								return Promise.resolve(node.data);
+							}
+						})
+					)
+				).then(images => resolve(images));
 			}
    
 		});

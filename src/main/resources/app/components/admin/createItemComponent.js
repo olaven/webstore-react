@@ -112,6 +112,8 @@ export default class CreateItemComponent extends React.PureComponent {
                         onChange={this.handleChange}
                         required
                         error={this.state.info === ""}
+                        multiline
+                        width="100%"
                     />
                     <FormControl>
                         {/*<InputLabel>Category</InputLabel>*/}
@@ -158,7 +160,8 @@ export default class CreateItemComponent extends React.PureComponent {
             <UploadImageDialog
                 open={this.state.uploadImageDialogVisible}
                 onClose={this.toggleUploadImageDialog.bind(this)}
-                onUpload={this.handleImageUpload.bind(this)}/>
+                onUpload={this.handleImageUpload.bind(this)}
+            />
         </div>
         )
     }
