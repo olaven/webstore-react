@@ -18,6 +18,7 @@
     // Styles 
     import '../styles/storefront/dialogComponent.less'; 
 
+    
 
     const styles = theme => ({
         container: {
@@ -78,6 +79,7 @@
                     <div className="DialogContent-InfoContainer"> 
                         <CardMedia
                             image={this.props.item.image}
+                            
                             className="DialogContent-Image"
                         />
                         <Typography>

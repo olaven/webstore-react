@@ -15,6 +15,9 @@ import Image from '../interfaces/image';
 // Stylesheets
 import "../styles/uploadImageDialog.less";
 
+import { canvasToBlob } from 'blob-util'
+
+
 export default class UploadImageDialog extends React.PureComponent {
     constructor(arg) {
         super(arg)
@@ -66,9 +69,10 @@ export default class UploadImageDialog extends React.PureComponent {
     }
 
     handleFileChange(event) {
-        const file = event.target.files[0];
+        const file = event.target.files[0]
+        const blob = new Blob([file], {type: file.type}) //converting to "Blob" since repo can't handle "File"
         this.setState({
-            file: file,
+            file: blob,
             name: file.name,
             source: URL.createObjectURL(file)
         })

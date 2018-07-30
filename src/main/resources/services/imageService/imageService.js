@@ -7,15 +7,42 @@ var valueLib = require('/lib/xp/value');
  * Get get images from Repo 
  */
 exports.get = function(req) {
+    var data = req.params.data
+    
+    
+    if (data != undefined) {
+        log.info("GET_IMAGE")
+        var result = getImageFile(data); 
 
-    log.info("GET_IMAGE")
-    var result = getImages(); 
-    return {
-        body: {nodes: result},
-        header: {
-            conetType: 'image.jpeg'
+        if(result === "NOT_FOUND") {
+            return {
+                status : 400, 
+                message : "Not found"
+            }
+        }
+        return {
+            body: result,
+            contentType: 'image/jpeg'
+        }
+
+    } else {
+        log.info("GET_ALL_IMAGES")
+        var result = getImages(); 
+
+        if(result === "NOT_FOUND") {
+            return {
+                status : 400, 
+                message : "Not found"
+            }
+        }
+
+        return {
+            body: {nodes: result},
+            contentType: 'application/json'
         }
     }
+
+    
     
 }
 
@@ -84,87 +111,28 @@ exports.delete = function (req){
 /**
  * Replace image
  */
-
-
-
-
-function createImage(albumId, publish, fileIndex) {
-    var part = portalLib.getMultipartItem("file", fileIndex);
-    if (part.fileName && part.size > 0) {
-
-        //Retrieves the album
-        var album = imageXpertLib.getContentByKey(albumId);
-        if (!album || album.type != (app.name + ":album" )) {
-            log.error('No album: %s', albumId);
-            return null;
-        }
-
-        //Creates the image
-        var content = contentLib.createMedia({
-            name: part.fileName,
-            parentPath: album._path,
-            mimeType: part.contentType,
-            branch: "draft",
-            focalX: 0.5,
-            focalY: 0.5,
-            data: portalLib.getMultipartStream("file", fileIndex)
-        });
-
-        //Updates the image with meta data
-        var caption = portalLib.getMultipartText("caption");
-        var artist = portalLib.getMultipartText("artist");
-        var tags = portalLib.getMultipartText("tags");
-        contentLib.modify({
-            key: content._id,
-            branch: "draft",
-            editor: function (media) {
-                media.data.caption = caption;
-                media.data.artist = artist;
-                media.data.tags = tags;
-                return media;
-            }
-        });
-
-        if (publish) {
-            contentLib.publish({
-                keys: [content._id],
-                sourceBranch: 'draft',
-                targetBranch: 'master'
-            });
-        }
-
-        return content;
-    }
-    return null;
-}
-
-
 exports.put = function(req) {
     
     var body = {
         name: portalLib.getMultipartText('name'),
         id: portalLib.getMultipartText('id'),
-        type: portalLib.getMultipartText('type')
-    }
-    
-    
-    var source = portalLib.getMultipartText('source')
-
-    var file = portalLib.getMultipartItem('file')
-    
-
-    if (file.fileName && file.size > 0) {
-        body['file'] = valueLib.binary('file' , portalLib.getMultipartStream('file'))
-        log.info(body.file)
-    } else if (source) {
-        body['source'] = source
+        type: portalLib.getMultipartText('type'),
+        source: portalLib.getMultipartText('source'),
+        file: portalLib.getMultipartItem('file')
     }
 
+    
+
+    if (body.file.fileName && body.file.size > 0) {
+        body.file = valueLib.binary('file' , portalLib.getMultipartStream('file'))
+        body.source = null
+    }
 
     var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
     var hits = repoConn.query({
         query: "data.type = 'image' AND data.id = '" + body.id + "'"
     }).hits;
+
     if (!hits || hits.length < 1) {
         log.info("Node was not found. Creating a new one")
         var wasSuccessful = createNode(body).success; 
@@ -189,9 +157,10 @@ exports.put = function(req) {
 
     var editor = function(node) {
         node.data.name = body.name
-        node.data.source = body.source
         if(body.file){
             node.data.file = body.file
+        } else {
+            node.data.source = body.source
         }
         return node; 
     }
@@ -225,36 +194,57 @@ exports.put = function(req) {
     }
 }
 
-/**
- * NOT DONE 
- * Returns all images in repo
- */
-function getImages() {
-    
+
+function getImageFile(id){
     var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
+    log.info("id: " + id)
+    var hits = repoConn.query({
+        count: 1000,
+        query: "data.type = 'image' AND data.id = " + "'" + id + "'"
+    }).hits;
+    log.info("hits:" + hits.length)
+
+    if(!hits || hits.length == 0){
+        return "NOT_FOUND"
+    }
+
+    var key = hits[0].id
+
+    var stream = repoConn.getBinary({
+        key: key,
+        binaryReference: "file"
+    });
+
+    if(!stream){
+        return "NOT_FOUND"
+    }
+
+    return stream
+
+}
+
+function getImages() {
+    var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
+    
     var hits = repoConn.query({
         count: 1000,
         query: "data.type = 'image'"
     }).hits;
-    if (!hits || hits.length < 1) {
-        return hits;
+    
+    if(!hits || hits.length == 0){
+        return "NOT_FOUND"
     }
 
-    var images = hits.filter(function (hit) {
-        var image = repoConn.get(hit.id);
-        if (image.data.file){
-            log.info("getting stream")
-            image.data.file = repoConn.getBinary({
-                key: hit.id,
-                binaryReference: "file"
-            });
-            log.info(image.data.file)
-            return image
-        }
-    });
-    log.info(images.length)
-    return images[0];
+    var images = hits.map(function (hit) {
+        return repoConn.get(hit.id);
+    })
     
+    if(!images || images.length == 0){
+        return "NOT_FOUND"
+    }
+
+    return images;
+
 }
 
 /**

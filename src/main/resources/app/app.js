@@ -77,18 +77,36 @@ class App extends Component {
                 }
             })
         ).then(() => {
+           
             repoService.getImages().then(images => {
-                if(images.length == 0){
+                images.forEach(image=> {
+                    this.props.addImage(new Image(image))
+                })
+
+                
+                
+                //console.log(URL.createObjectURL(images))
+                
+                //let file = new File([images], "filename", {type: "image/jpeg"})
+                /*
+                
+                
+            */
+                    
+                
+            })
+            .catch(response => {
+                if (response.status == 400){
+                    console.log("no objects was found in repo")
                     SampleData.images.map(data => {
                         
                         let image = new Image(data)
                         repoService.addImage(image)
                         this.props.addImage(image)
+    
                     })
                 } else {
-                    images.forEach(image =>{
-                        this.props.addImage(new Image(image))
-                    })
+                    console.error("Error fetching images from repo", response)
                 }
             })
         })

@@ -129,9 +129,9 @@ export function editImage(image){
     formdata.append('name', image.name)
     formdata.append('id', image.id)
     formdata.append('type', image.type)
+
     image.file ? formdata.append('file', image.file)
         :   formdata.append('source', image.name)
-
     return fetch(imageRepoUrl, {
         method: "PUT",
         body: formdata
@@ -142,15 +142,90 @@ export function editImage(image){
 
 
 export function getImages(){
+    return new Promise((resolve, reject) => {
+
+        fetch(imageRepoUrl, {
+            method: "GET"
+        }).then(response => {
+            if(response.status != 200){
+                reject(response)
+            } else {
+                response.json()
+                .then(data => 
+                    Promise.all(
+                        data.nodes.map(node => {
+                            if(node.data.file){
+                                return getImageFile(node.data.id)
+                                .then(image => {
+                                    node.data.file = image
+                                    return node.data
+                                })
+                            } else {
+                                return Promise.resolve(node.data)
+                            }
+                        })
+                    )
+                ).then(images => resolve(images))
+            }
+   
+        })
+    });
+}
+
+function getImageFile(key){
+    return new Promise((resolve, reject) => {
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', imageRepoUrl + "?data=" + key, true);
+        xhr.responseType = "blob";
+        xhr.send();
+
+        xhr.onload = (event) => {
+            resolve(xhr.response);
+        };
+
+    });
+
+    /*
     return fetch(imageRepoUrl)
+    .then(response => {
+        console.log("response: ", response)  /*
+        var file = new File([blob], 'file', {type: 'image/jpeg', lastModified: Date.now()});
+        console.log("after convertion:", file)
+        let url = URL.createObjectURL(file)
+        console.log(url)
+            })
+    
+    })
         .then(response => response.length == 0 ? response : response.json()
-            .then(data => data.nodes )
+            .then(data => console.log("response:", data))
             
         )
 
                 
-                /*data.nodes.filter(node => node.data ? node : null))
+                data.nodes.filter(node => node.data ? node : null))
             .then(nodes => nodes.map(node => node.data))
         )
         */
 }
+/*
+getAudio(storeName, value) {
+
+    return new Promise((resolve, reject) => {
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', appUrl + '/getAudio?key=' + value, true);
+        xhr.responseType = "blob";
+        xhr.send();
+
+        xhr.onload = (event) => {
+            resolve(xhr.response);
+        };
+
+    });
+
+
+}
+*/
