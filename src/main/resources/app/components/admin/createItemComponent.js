@@ -86,7 +86,7 @@ export default class CreateItemComponent extends React.PureComponent {
         <div className="CreateItemComponent">
             <form>
                 {this.state.image !="none"? 
-                    <Card className="Item-Card">
+                    <Card className="Item-Card-Edit">
                         <CardMedia
                             image={this.state.image}
                             className="Item-Card-Media"

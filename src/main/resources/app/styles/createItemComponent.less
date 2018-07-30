@@ -1,5 +1,5 @@
 @import 'main';
-.Item-Card {
+.Item-Card-Edit {
     .Standard-Item-Card;
 }
 
@@ -11,15 +11,13 @@
     width: 30vw;
 }
 
-// @media @mobile {
-//     .Item-Card-Media-Edit { // Removed class from .js!
-//         width: 100px !important; 
-//         height: 50px !important; 
-//     }
-//     .CreateItemComponent {
-//         width: 100vw !important;
-//     }
-//     .CreateItemComponent>* {
-//         max-width: 100vw !important;
-//     }
-// }
+@media @mobile {
+    .CreateItemComponent {
+        // min-width: 100vw !important;
+        // min-width: auto !important; 
+        min-width: 40vw !important; 
+    }
+    .Item-Card-Edit {
+        max-width: 50vw !important;
+    }
+}
