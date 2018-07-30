@@ -13,7 +13,6 @@ import DialogComponent from '../components/dialogComponent';
 
 // Material UI 
 import Grid from '@material-ui/core/Grid'; 
-import Paper from '@material-ui/core/Paper'
 
 // Stylesheets
 import '../styles/storefront/StorefrontPage.less'

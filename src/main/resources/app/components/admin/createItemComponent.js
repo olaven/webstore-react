@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from "prop-types";
 
 // Components 
 import UploadImageDialog from '../uploadImageDialog'; 
@@ -13,8 +12,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl'; 
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
-// Interfaces
-import Image from '../../interfaces/Image'; 
+
 
 
 // Stylesheets 

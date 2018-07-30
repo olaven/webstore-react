@@ -11,18 +11,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import StoreIcon from '@material-ui/icons/Store'; 
 import CartIcon from "@material-ui/icons/ShoppingCart"; 
 import Badge from '@material-ui/core/Badge'; 
-import Button from '@material-ui/core/Button'; 
-import Grid from "@material-ui/core/Grid"; 
-import Paper from "@material-ui/core/Paper"
 
 import '../styles/topbar.less'; 
 
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 
 import ToasterComponent from '../components/ToasterComponent';
-
-import * as mainActions from '../actions/mainActions'
 
 // Project URLS 
 import URLS from '../urls'; 
