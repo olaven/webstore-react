@@ -199,14 +199,11 @@ var createNode = function(item) {
 
 
 var deleteNode = function (item) {
-
-    log.info("DELETE ITEM " + new Date() + JSON.stringify(item, null, 4))
     var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-    
     var hits = repoConn.query({
-        query: "data.type = 'item' AND data.id = '" + item.id + "'"
+        query: "data.type = 'item' AND data.id = " + item.id
     }).hits;
-
+    
     if (!hits || hits.length < 1) {
         return "NOT_FOUND";
     }
@@ -214,7 +211,7 @@ var deleteNode = function (item) {
     hits.map(function(hit) {
         return repoConn.delete(hit.id)
     });
-    
+    // query: "subscription.auth = '" + subscription.auth + "' AND subscription.key = '" + subscription.key + "' AND subscription.endpoint = '" + subscription.endpoint + "'",
     repoConn.refresh();
 
     return { success: true };

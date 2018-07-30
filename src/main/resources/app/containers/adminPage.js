@@ -67,8 +67,8 @@ class AdminPage extends React.PureComponent {
   
   render() {
     return <div className="AdminPage">
-        <Typography varian="display4">ADMIN</Typography>    
-        <Typography varian="display2">ALL ACCESS GRANTED</Typography>   
+        <Typography varian="display4" align="right">ADMIN</Typography>    
+        <Typography varian="display2" align="right">ALL ACCESS GRANTED</Typography>   
         <Route exact path={URLS.admin.items} render={() => 
           <ItemComponent 
             submit={this.itemSubmitClick}

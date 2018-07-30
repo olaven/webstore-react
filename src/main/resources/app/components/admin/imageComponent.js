@@ -163,7 +163,7 @@ export default class ImageComponent extends React.PureComponent {
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                        {this.props.images.map(image => {
+                        {this.props.images.map((image, index) => {
                             if (image.name.toUpperCase()
                                 .includes(this.state.searchValue.toUpperCase()
                                 )) {
@@ -171,7 +171,7 @@ export default class ImageComponent extends React.PureComponent {
                                 toggleDialog={this.toggleUploadImageDialog.bind(this)}
                                 toggleDeleteDialog={this.toggleDeleteDialog.bind(this)}
                                 image={image} 
-                                key={image.id}                        
+                                key={index}                        
                                 edit={this.editimage.bind(this)}
                             />;
 

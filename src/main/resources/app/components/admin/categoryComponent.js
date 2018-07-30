@@ -140,14 +140,14 @@ export default class CategoryComponent extends React.PureComponent {
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                        {this.props.categories.map(category => {
+                        {this.props.categories.map((category, index) => {
                             if (category.title.toUpperCase()
                                 .includes(this.state.searchValue.toUpperCase()
                                 )) {
                             return <CategoryListComponent 
                                 toggleDialog={this.toggleDialog.bind(this)}
                                 category={category} 
-                                key={category.id} 
+                                key={index} 
                                 visible={category.visible} 
                                 toggleVisible={this.props.toggleVisible} 
                                 edit={this.editCategory.bind(this)}

@@ -102,7 +102,6 @@ function checkout(oldState, action){
   return state
 }
 
-
 function save(oldState, action){
   let state = oldState
   state = state.updateIn(["allItems"], function(items) {

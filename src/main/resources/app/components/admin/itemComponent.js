@@ -159,8 +159,9 @@ export default class ItemComponent extends React.PureComponent {
                             .includes(this.state.searchValue.toUpperCase()
                             )) {
                         return <ItemListComponent
+                            key={index}
                             toggleDialog={this.toggleDialog.bind(this)}
-                            item={item} key={item.id} 
+                            item={item} 
                             edit={this.editItem.bind(this)}
                             visible={item.visible} 
                             toggleVisible={this.props.toggleVisible} />;
