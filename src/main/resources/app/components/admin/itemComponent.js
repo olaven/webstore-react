@@ -56,6 +56,7 @@ export default class ItemComponent extends React.PureComponent {
         return this.props.edited ? [
         
             <Button 
+                key={1}
                 color="primary"
                 variant="outlined"
                 onClick={() => {
@@ -66,7 +67,7 @@ export default class ItemComponent extends React.PureComponent {
                 Save changes
             </Button>,
             <Button 
-                
+                key={2}
                 color="secondary"
                 variant="outlined"
                 onClick={() => {
@@ -78,6 +79,7 @@ export default class ItemComponent extends React.PureComponent {
             </Button> ]
         : [
             <Button 
+                key={1}
                 disabled
                 color="primary"
                 variant="outlined"
@@ -85,6 +87,7 @@ export default class ItemComponent extends React.PureComponent {
                 Save changes
             </Button>,
             <Button 
+                key={2}
                 disabled
                 color="secondary"
                 variant="outlined"
@@ -149,13 +152,13 @@ export default class ItemComponent extends React.PureComponent {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {this.props.items.map(item => {
+                    {this.props.items.map((item, index) => {
                         if (item.name.toUpperCase()
                             .includes(this.state.searchValue.toUpperCase()
                             ) || item.category.toUpperCase()
                             .includes(this.state.searchValue.toUpperCase()
                             )) {
-                        return <ItemListComponent 
+                        return <ItemListComponent
                             toggleDialog={this.toggleDialog.bind(this)}
                             item={item} key={item.id} 
                             edit={this.editItem.bind(this)}

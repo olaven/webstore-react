@@ -76,6 +76,7 @@ export default class ImageComponent extends React.PureComponent {
         return this.props.edited ? [
         
             <Button 
+                key={1}
                 color="primary"
                 variant="outlined"
                 onClick={() => {
@@ -86,7 +87,7 @@ export default class ImageComponent extends React.PureComponent {
                 Save changes
             </Button>,
             <Button 
-                
+                key={2}
                 color="secondary"
                 variant="outlined"
                 onClick={() => {
@@ -98,6 +99,7 @@ export default class ImageComponent extends React.PureComponent {
             </Button> ]
         : [
             <Button 
+                key={1}
                 disabled
                 color="primary"
                 variant="outlined"
@@ -105,6 +107,7 @@ export default class ImageComponent extends React.PureComponent {
                 Save changes
             </Button>,
             <Button 
+                key={2}
                 disabled
                 color="secondary"
                 variant="outlined"
