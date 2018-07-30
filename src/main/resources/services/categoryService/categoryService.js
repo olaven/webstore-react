@@ -18,7 +18,7 @@ exports.get = function(req) {
     
 }
 
-
+ 
 /** 
  * Add to repo 
  */
@@ -81,7 +81,7 @@ exports.put = function(req) {
     var body = JSON.parse(req.body);
     var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
     var hits = repoConn.query({
-        query: "data.type = 'category' AND data.id = '" + body.id + "'"
+        query: "data.type = 'category' AND data.id = " + body.id 
     }).hits;
 
     if (!hits || hits.length < 1) {
@@ -99,12 +99,12 @@ exports.put = function(req) {
 
     var ids = hits.map(function (hit) {
         return hit.id;
-    });
+    }); 
 
     var editor = function(node) {
         node.data.title = body.title
         node.data.filter = body.filter
-        node.data.visble = body.visible
+        node.data.visible = body.visible
         return node; 
     }
 

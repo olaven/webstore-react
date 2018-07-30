@@ -2,7 +2,7 @@ export default class Category {
     constructor(data){
         this.title = data.title; 
         this.id = data.id || new Date().valueOf(); 
-        this.visible = data.visible == undefined ? true: data.visible;
+        this.visible = data.visible || false; 
         this.filter = data.filter;
         this.edited = data.edited == undefined ? true: data.edited;
         this.type = "category"
