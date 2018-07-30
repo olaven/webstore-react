@@ -14,7 +14,7 @@ const imageRepoUrl =
  */
 
 export function addItem(item){
-
+    item.edited = null;
     return fetch(itemRepoUrl, {
         method: "POST",
         headers: {
@@ -36,6 +36,7 @@ export function removeItem(item){
 }
 
 export function editItem(item){
+    item.edited = null;
     return fetch(itemRepoUrl, {
         method: "PUT",
         headers: {

@@ -8,7 +8,7 @@ export default class Image {
         this.name = data.name || "unnamed";
         this.id = data.id || new Date().valueOf(); 
         this.type = "image";
-        this.edited = data.edited == undefined ? true: data.edited;
+        this.edited = data.edited || false;
         this.file = data.file || null
         this.source = data.file ? URL.createObjectURL(data.file) : data.source
     }

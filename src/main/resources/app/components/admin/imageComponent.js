@@ -164,6 +164,7 @@ export default class ImageComponent extends React.PureComponent {
                         </TableHead>
                         <TableBody>
                         {this.props.images.map((image, index) => {
+                            console.log("rendering: ", image); 
                             if (image.name.toUpperCase()
                                 .includes(this.state.searchValue.toUpperCase()
                                 )) {

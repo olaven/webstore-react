@@ -54,11 +54,11 @@ class App extends Component {
                     this.props.createItem(item)
                 });
             } else {
-                items.forEach(item =>
+                items.forEach(item => {
                     this.props.createItem(
                         new Item(item)
                     )
-                )
+                })
             }
         }).then(
             repoService.getCategories().then(categories => {

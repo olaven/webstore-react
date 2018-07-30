@@ -5,26 +5,22 @@
         {
             "name": "camera",
             "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Agfa_Click_BW_1.JPG/1920px-Agfa_Click_BW_1.JPG",
-            "id": 1,
-            "edited" : false
+            "id": 1
         },
         {
             "name": "chair",
             "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Dining_chair_1939.jpg/1024px-Dining_chair_1939.jpg",
-            "id": 2,
-            "edited" : false
+            "id": 2
         },
         {
             "name": "bed",
             "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Homewood_Suites_Hilton_San_Diego_Downtown_Bayside_03.jpg/1920px-Homewood_Suites_Hilton_San_Diego_Downtown_Bayside_03.jpg",
-            "id": 3,
-            "edited" : false
+            "id": 3
         },
         {
             "name": "fish",
             "source": "https://upload.wikimedia.org/wikipedia/commons/6/68/UrolophusPaucimaculatus.jpg",
-            "id": 4,
-            "edited" : false
+            "id": 4
             
         },
         {

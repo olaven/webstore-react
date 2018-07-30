@@ -123,7 +123,7 @@ exports.put = function(req) {
 
     
 
-    if (body.file.fileName && body.file.size > 0) {
+    if (body.file && body.file.fileName && body.file.size > 0) {
         body.file = valueLib.binary('file' , portalLib.getMultipartStream('file'))
         body.source = null
     }
