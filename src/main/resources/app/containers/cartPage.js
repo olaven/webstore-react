@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 // Stylesheets
 import '../styles/cartPage.less'
+// Project URLS 
+import URLS from '../urls'; 
 
 import { connect } from 'react-redux';
 
@@ -35,7 +37,7 @@ class CartPage extends React.PureComponent {
   onItemsBought = () => {
     this.props.checkout(); 
     this.toggleCheckoutMode(); 
-    this.props.history.push("/app/com.enonic.app.webstore.react/storefront"); 
+    this.props.history.push(URLS.storefront); 
     this.props.openToaster("Thank you for your purchase!"); 
   }
 

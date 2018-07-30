@@ -11,9 +11,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import CategoryIcon from "@material-ui/icons/Store"; 
+import Typography from '@material-ui/core/Typography'
 // Stylesheets 
 import '../styles/sidebar.less'; 
-
+// Project URLS 
+import URLS from '../urls'; 
 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
@@ -32,7 +34,7 @@ class SideBar extends React.PureComponent {
         }
         return this.props.categories.map((category, index) => {
             if(category.visible){
-                return <Link to="/app/com.enonic.app.webstore.react/storefront" key={index}>
+                return <Link to={URLS.storefront} key={index}>
                     <ListItem className="SideBar-ListItem" onClick={() =>  this.categoryOnClick(category)}>
                         <ListItemIcon>
                             <CategoryIcon />
@@ -46,9 +48,9 @@ class SideBar extends React.PureComponent {
 
     renderAdminRoutes(){
         const adminOptions = [
-            { name: "Items", url: "/app/com.enonic.app.webstore.react/admin" },
-            { name: "Categories", url: "/app/com.enonic.app.webstore.react/admin/categories" },
-            { name: "Images", url: "/app/com.enonic.app.webstore.react/admin/images" }
+            { name: "Items", url: URLS.admin.items },
+            { name: "Categories", url: URLS.admin.categories },
+            { name: "Images", url: URLS.admin.images }
         ]; 
 
         return adminOptions.map((option, index) => 
@@ -83,6 +85,9 @@ class SideBar extends React.PureComponent {
                     <IconButton color="inherit" aria-label="Menu" onClick={this.props.onToggleMenu}>
                         <CloseIcon />
                     </IconButton>
+                    <Typography variant="title" align="center">
+                        {this.props.location.pathname.includes("admin") ? "Admin" : "Categories"}
+                    </Typography>
                     <Divider />
                     <List>
                         {this.renderContent.bind(this)()}                    
