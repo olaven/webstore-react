@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 // Material UI 
 import Button from "@material-ui/core/Button";
@@ -15,7 +14,6 @@ import Image from "../interfaces/image";
 // Stylesheets
 import "../styles/uploadImageDialog.less";
 
-import { canvasToBlob } from "blob-util";
 
 
 export default class UploadImageDialog extends React.PureComponent {
