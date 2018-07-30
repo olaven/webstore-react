@@ -72,7 +72,6 @@ class App extends Component {
                     })
                 } else {
                     categories.forEach(category =>{
-                        console.log("Category from repo", category); 
                         this.props.createCategory(
                             new Category(category)
                         )
