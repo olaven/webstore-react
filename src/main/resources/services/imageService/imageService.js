@@ -11,7 +11,7 @@ exports.get = function(req) {
     
     
 	if (data != undefined) {
-		log.info("GET_IMAGE");
+		// log.info("GET_IMAGE");
 		var result = getImageFile(data); 
 
 		if(result === "NOT_FOUND") {
@@ -26,7 +26,7 @@ exports.get = function(req) {
 		};
 
 	} else {
-		log.info("GET_ALL_IMAGES");
+		// log.info("GET_ALL_IMAGES");
 		var result = getImages(); 
 
 		if(result === "NOT_FOUND") {
@@ -52,7 +52,7 @@ exports.get = function(req) {
  * Add to repo 
  */
 exports.post = function(req) {
-	log.info("post");
+	// log.info("post");
 	var body = JSON.parse(req.body); 
 	if(!body) {
 		var message = "Missing/invalid image";
@@ -62,12 +62,12 @@ exports.post = function(req) {
 	var wasSuccessful = createNode(body).success; 
     
 	if(wasSuccessful) {
-		log.info(body.file ? true : false);
+		// log.info(body.file ? true : false);
 		if(body.file){
-			log.info("Added image with file");
+			// log.info("Added image with file");
 
 		} else {
-			log.info("Added image:" + JSON.stringify(body, null, 4)); 
+			// log.info("Added image:" + JSON.stringify(body, null, 4)); 
 		}
 		return { 
 			status: 200, 
@@ -134,15 +134,15 @@ exports.put = function(req) {
 	}).hits;
 
 	if (!hits || hits.length < 1) {
-		log.info("Node was not found. Creating a new one");
+		// log.info("Node was not found. Creating a new one");
 		var wasSuccessful = createNode(body).success; 
     
 		if(wasSuccessful) {
 			if(body.file){
-				log.info("Added image ");
+				// log.info("Added image ");
                 
 			} else {
-				log.info("Added image:" + JSON.stringify(body, null, 4)); 
+				// log.info("Added image:" + JSON.stringify(body, null, 4)); 
 			}
 			return { 
 				status: 200, 
@@ -173,9 +173,9 @@ exports.put = function(req) {
 
 	if(result){
 		if(body.file){
-			log.info("PUT_IMAGE ");
+			// log.info("PUT_IMAGE ");
 		} else {
-			log.info("PUT_IMAGE "+ JSON.stringify(body, null, 4));
+			// log.info("PUT_IMAGE "+ JSON.stringify(body, null, 4));
 		}
 		return {
 			body: {
@@ -184,7 +184,7 @@ exports.put = function(req) {
 		};
 
 	} else {
-		log.info("PUT ERROR");
+		// log.info("PUT ERROR");
 		return {
 			body: {
 				status: 500,
@@ -197,12 +197,12 @@ exports.put = function(req) {
 
 function getImageFile(id){
 	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-	log.info("id: " + id);
+	// log.info("id: " + id);
 	var hits = repoConn.query({
 		count: 1000,
 		query: "data.type = 'image' AND data.id = " + "'" + id + "'"
 	}).hits;
-	log.info("hits:" + hits.length);
+	// log.info("hits:" + hits.length);
 
 	if(!hits || hits.length == 0){
 		return "NOT_FOUND";
@@ -289,13 +289,13 @@ var createNode = function(image) {
 
 var deleteNode = function (image) {
 
-	log.info("DELETE:" + new Date() + JSON.stringify(image, null, 4));
+	// log.info("DELETE:" + new Date() + JSON.stringify(image, null, 4));
 	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
     
 	var hits = repoConn.query({
 		query: "data.type = 'image' AND data.id = '" + image.id + "'"
 	}).hits;
-	log.info(hits.length);
+	// log.info(hits.length);
 	/*
     hits = hits.filter(function(hit) {
         var repoImage = repoConn.get(hit.id)

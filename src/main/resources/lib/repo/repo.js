@@ -43,7 +43,7 @@ var doInitialize = function (name, permissions, path, branch) {
  * @param permissions for repo 
  */
 var createRepo = function (name, permissions) {
-	log.info("Creating repository: " + name);
+	// log.info("Creating repository: " + name);
 	repo.create({
 		id: name,
 		rootPermissions: permissions
@@ -94,7 +94,7 @@ function createNode(path, permissions, name, branch) {
  * @param config configuration of repo 
  */
 exports.initialize = function(config) {
-	log.info("Initializing repository...");
+	// log.info("Initializing repository...");
 	exports.sudo(function() {
 		doInitialize(config.name, config.permissions, config.path, config.branch);
 	}, config.user, config.principal); 

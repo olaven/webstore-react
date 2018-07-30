@@ -5,7 +5,7 @@ var repoConfig = require("../../lib/config/repoConfig");
  * Get get categories from Repo 
  */
 exports.get = function(req) {
-	log.info("GET CATEGORY");
+	// log.info("GET CATEGORY");
 	var result = getCategories(); 
 
 	return {
@@ -32,7 +32,7 @@ exports.post = function(req) {
 	var wasSuccessful = createNode(body).success; 
     
 	if(wasSuccessful) {
-		log.info("Added Category:" + JSON.stringify(body, null, 4)); 
+		// log.info("Added Category:" + JSON.stringify(body, null, 4)); 
 		return { 
 			status: 200, 
 			message: "" 
@@ -45,7 +45,7 @@ exports.post = function(req) {
 
 exports.delete = function (req){
     
-	log.info(JSON.stringify(req, null, 2));
+	// log.info(JSON.stringify(req, null, 2));
 	var body = JSON.parse(req.body);
 	if (!body) {
 		var message = "Missing/invalid node data in request";
@@ -77,7 +77,7 @@ exports.delete = function (req){
  * Replace category
  */
 exports.put = function(req) {
-	log.info("PUT CATEGORY");
+	// log.info("PUT CATEGORY");
 	var body = JSON.parse(req.body);
 	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
 	var hits = repoConn.query({
@@ -85,11 +85,11 @@ exports.put = function(req) {
 	}).hits;
 
 	if (!hits || hits.length < 1) {
-		log.info("Node was not found. Creating a new one");
+		// log.info("Node was not found. Creating a new one");
 		var wasSuccessful = createNode(body).success; 
     
 		if(wasSuccessful) {
-			log.info("Added node:" + JSON.stringify(body, null, 4)); 
+			// log.info("Added node:" + JSON.stringify(body, null, 4)); 
 			return { 
 				status: 200, 
 				message: "" 
@@ -122,7 +122,7 @@ exports.put = function(req) {
 		};
 
 	} else {
-		log.info("PUT ERROR");
+		// log.info("PUT ERROR");
 		return {
 			body: {
 				status: 500,
@@ -200,7 +200,7 @@ var createNode = function(category) {
 
 var deleteNode = function (body) {
 
-	log.info("DELETE:" + new Date() + JSON.stringify(body, null, 4));
+	// log.info("DELETE:" + new Date() + JSON.stringify(body, null, 4));
 	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
     
 	var hits = repoConn.query({
