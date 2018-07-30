@@ -1,50 +1,50 @@
 var repoLib = require("../../lib/repo/repo"); 
 var repoConfig = require("../../lib/config/repoConfig"); 
-var portalLib = require('/lib/xp/portal');
-var valueLib = require('/lib/xp/value');
+var portalLib = require("/lib/xp/portal");
+var valueLib = require("/lib/xp/value");
 
 /**
  * Get get images from Repo 
  */
 exports.get = function(req) {
-    var data = req.params.data
+	var data = req.params.data;
     
     
-    if (data != undefined) {
-        log.info("GET_IMAGE")
-        var result = getImageFile(data); 
+	if (data != undefined) {
+		log.info("GET_IMAGE");
+		var result = getImageFile(data); 
 
-        if(result === "NOT_FOUND") {
-            return {
-                status : 400, 
-                message : "Not found"
-            }
-        }
-        return {
-            body: result,
-            contentType: 'image/jpeg'
-        }
+		if(result === "NOT_FOUND") {
+			return {
+				status : 400, 
+				message : "Not found"
+			};
+		}
+		return {
+			body: result,
+			contentType: "image/jpeg"
+		};
 
-    } else {
-        log.info("GET_ALL_IMAGES")
-        var result = getImages(); 
+	} else {
+		log.info("GET_ALL_IMAGES");
+		var result = getImages(); 
 
-        if(result === "NOT_FOUND") {
-            return {
-                status : 400, 
-                message : "Not found"
-            }
-        }
+		if(result === "NOT_FOUND") {
+			return {
+				status : 400, 
+				message : "Not found"
+			};
+		}
 
-        return {
-            body: {nodes: result},
-            contentType: 'application/json'
-        }
-    }
+		return {
+			body: {nodes: result},
+			contentType: "application/json"
+		};
+	}
 
     
     
-}
+};
 
 
 
@@ -52,198 +52,198 @@ exports.get = function(req) {
  * Add to repo 
  */
 exports.post = function(req) {
-    log.info("post")
-    var body = JSON.parse(req.body); 
-    if(!body) {
-        var message = "Missing/invalid image";
-        return { status: 400, message: message };
-    }
+	log.info("post");
+	var body = JSON.parse(req.body); 
+	if(!body) {
+		var message = "Missing/invalid image";
+		return { status: 400, message: message };
+	}
 
-    var wasSuccessful = createNode(body).success; 
+	var wasSuccessful = createNode(body).success; 
     
-    if(wasSuccessful) {
-        log.info(body.file ? true : false)
-        if(body.file){
-            log.info("Added image with file")
+	if(wasSuccessful) {
+		log.info(body.file ? true : false);
+		if(body.file){
+			log.info("Added image with file");
 
-        } else {
-            log.info("Added image:" + JSON.stringify(body, null, 4)); 
-        }
-        return { 
-            status: 200, 
-            message: "" 
-        }
-    }
-}
+		} else {
+			log.info("Added image:" + JSON.stringify(body, null, 4)); 
+		}
+		return { 
+			status: 200, 
+			message: "" 
+		};
+	}
+};
 
 
 
 
 exports.delete = function (req){
     
-    var body = JSON.parse(req.body);
-    if (!body) {
-        var message = "Missing/invalid image data in request";
-        log.warning(message);
-        return { 
-            status: 400,
-            message: message 
-        };
-    }
+	var body = JSON.parse(req.body);
+	if (!body) {
+		var message = "Missing/invalid image data in request";
+		log.warning(message);
+		return { 
+			status: 400,
+			message: message 
+		};
+	}
 
-    var result = deleteNode(body);
+	var result = deleteNode(body);
 
-    if(result === "NOT_FOUND") {
-        return {
-            status : 400, 
-            message : "Not found"
-        }
-    } else {
-        return {
-            body: {result: result},
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-    }
-}
+	if(result === "NOT_FOUND") {
+		return {
+			status : 400, 
+			message : "Not found"
+		};
+	} else {
+		return {
+			body: {result: result},
+			headers: {
+				"Content-Type": "application/json"
+			}
+		};
+	}
+};
 
 /**
  * Replace image
  */
 exports.put = function(req) {
     
-    var body = {
-        name: portalLib.getMultipartText('name'),
-        id: portalLib.getMultipartText('id'),
-        type: portalLib.getMultipartText('type'),
-        source: portalLib.getMultipartText('source'),
-        file: portalLib.getMultipartItem('file')
-    }
+	var body = {
+		name: portalLib.getMultipartText("name"),
+		id: portalLib.getMultipartText("id"),
+		type: portalLib.getMultipartText("type"),
+		source: portalLib.getMultipartText("source"),
+		file: portalLib.getMultipartItem("file")
+	};
 
     
 
-    if (body.file && body.file.fileName && body.file.size > 0) {
-        body.file = valueLib.binary('file' , portalLib.getMultipartStream('file'))
-        body.source = null
-    }
+	if (body.file && body.file.fileName && body.file.size > 0) {
+		body.file = valueLib.binary("file" , portalLib.getMultipartStream("file"));
+		body.source = null;
+	}
 
-    var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-    var hits = repoConn.query({
-        query: "data.type = 'image' AND data.id = '" + body.id + "'"
-    }).hits;
+	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
+	var hits = repoConn.query({
+		query: "data.type = 'image' AND data.id = '" + body.id + "'"
+	}).hits;
 
-    if (!hits || hits.length < 1) {
-        log.info("Node was not found. Creating a new one")
-        var wasSuccessful = createNode(body).success; 
+	if (!hits || hits.length < 1) {
+		log.info("Node was not found. Creating a new one");
+		var wasSuccessful = createNode(body).success; 
     
-        if(wasSuccessful) {
-            if(body.file){
-                log.info("Added image ")
+		if(wasSuccessful) {
+			if(body.file){
+				log.info("Added image ");
                 
-            } else {
-                log.info("Added image:" + JSON.stringify(body, null, 4)); 
-            }
-            return { 
-                status: 200, 
-                message: "" 
-            }
-        }
-    }
+			} else {
+				log.info("Added image:" + JSON.stringify(body, null, 4)); 
+			}
+			return { 
+				status: 200, 
+				message: "" 
+			};
+		}
+	}
 
-    var ids = hits.map(function (hit) {
-        return hit.id;
-    });
+	var ids = hits.map(function (hit) {
+		return hit.id;
+	});
 
-    var editor = function(node) {
-        node.data.name = body.name
-        if(body.file){
-            node.data.file = body.file
-        } else {
-            node.data.source = body.source
-        }
-        return node; 
-    }
+	var editor = function(node) {
+		node.data.name = body.name;
+		if(body.file){
+			node.data.file = body.file;
+		} else {
+			node.data.source = body.source;
+		}
+		return node; 
+	};
 
-    var result = repoConn.modify({
-        key: ids[0], 
-        editor : editor
-    });
-    repoConn.refresh();
+	var result = repoConn.modify({
+		key: ids[0], 
+		editor : editor
+	});
+	repoConn.refresh();
 
-    if(result){
-        if(body.file){
-            log.info("PUT_IMAGE ")
-        } else {
-            log.info("PUT_IMAGE "+ JSON.stringify(body, null, 4))
-        }
-        return {
-            body: {
-                status: 200
-            }
-        }
+	if(result){
+		if(body.file){
+			log.info("PUT_IMAGE ");
+		} else {
+			log.info("PUT_IMAGE "+ JSON.stringify(body, null, 4));
+		}
+		return {
+			body: {
+				status: 200
+			}
+		};
 
-    } else {
-        log.info("PUT ERROR")
-        return {
-            body: {
-                status: 500,
-                message: "Something went wrong when editing and image"
-            }
-        }
-    }
-}
+	} else {
+		log.info("PUT ERROR");
+		return {
+			body: {
+				status: 500,
+				message: "Something went wrong when editing and image"
+			}
+		};
+	}
+};
 
 
 function getImageFile(id){
-    var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-    log.info("id: " + id)
-    var hits = repoConn.query({
-        count: 1000,
-        query: "data.type = 'image' AND data.id = " + "'" + id + "'"
-    }).hits;
-    log.info("hits:" + hits.length)
+	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
+	log.info("id: " + id);
+	var hits = repoConn.query({
+		count: 1000,
+		query: "data.type = 'image' AND data.id = " + "'" + id + "'"
+	}).hits;
+	log.info("hits:" + hits.length);
 
-    if(!hits || hits.length == 0){
-        return "NOT_FOUND"
-    }
+	if(!hits || hits.length == 0){
+		return "NOT_FOUND";
+	}
 
-    var key = hits[0].id
+	var key = hits[0].id;
 
-    var stream = repoConn.getBinary({
-        key: key,
-        binaryReference: "file"
-    });
+	var stream = repoConn.getBinary({
+		key: key,
+		binaryReference: "file"
+	});
 
-    if(!stream){
-        return "NOT_FOUND"
-    }
+	if(!stream){
+		return "NOT_FOUND";
+	}
 
-    return stream
+	return stream;
 
 }
 
 function getImages() {
-    var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
+	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
     
-    var hits = repoConn.query({
-        count: 1000,
-        query: "data.type = 'image'"
-    }).hits;
+	var hits = repoConn.query({
+		count: 1000,
+		query: "data.type = 'image'"
+	}).hits;
     
-    if(!hits || hits.length == 0){
-        return "NOT_FOUND"
-    }
+	if(!hits || hits.length == 0){
+		return "NOT_FOUND";
+	}
 
-    var images = hits.map(function (hit) {
-        return repoConn.get(hit.id);
-    })
+	var images = hits.map(function (hit) {
+		return repoConn.get(hit.id);
+	});
     
-    if(!images || images.length == 0){
-        return "NOT_FOUND"
-    }
+	if(!images || images.length == 0){
+		return "NOT_FOUND";
+	}
 
-    return images;
+	return images;
 
 }
 
@@ -252,51 +252,51 @@ function getImages() {
  * @param image 
  */
 var createNode = function(image) {
-    try {
-        var node = repoLib.storeImageAndCreateNode(
-            image, 
-            repoConfig
-        ); 
-        if (!node) {
-            log.error(
-                "Tried creating node, but something seems wrong: " +
+	try {
+		var node = repoLib.storeImageAndCreateNode(
+			image, 
+			repoConfig
+		); 
+		if (!node) {
+			log.error(
+				"Tried creating node, but something seems wrong: " +
                 JSON.stringify(
-                    {
-                        incoming: image,
-                        resulting_node: node
-                    },
-                    null,
-                    2
+                	{
+                		incoming: image,
+                		resulting_node: node
+                	},
+                	null,
+                	2
                 )
-            );
+			);
 
-            return {
-                status: 500,
-                message: "Could not create node"
-            };
-        } else {
-            return { success: true };
-        }
-    } catch (e) {
-        return {
-            status: 500,
-            message: "Couldn't create node"
-        };
-    }
+			return {
+				status: 500,
+				message: "Could not create node"
+			};
+		} else {
+			return { success: true };
+		}
+	} catch (e) {
+		return {
+			status: 500,
+			message: "Couldn't create node"
+		};
+	}
 };
 
 
 
 var deleteNode = function (image) {
 
-    log.info("DELETE:" + new Date() + JSON.stringify(image, null, 4))
-    var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
+	log.info("DELETE:" + new Date() + JSON.stringify(image, null, 4));
+	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
     
-    var hits = repoConn.query({
-        query: "data.type = 'image' AND data.id = '" + image.id + "'"
-    }).hits;
-    log.info(hits.length)
-    /*
+	var hits = repoConn.query({
+		query: "data.type = 'image' AND data.id = '" + image.id + "'"
+	}).hits;
+	log.info(hits.length);
+	/*
     hits = hits.filter(function(hit) {
         var repoImage = repoConn.get(hit.id)
         if(repoImage.data.id == image.id){
@@ -305,15 +305,15 @@ var deleteNode = function (image) {
     })
     */
 
-    if (!hits || hits.length < 1) {
-        return "NOT_FOUND";
-    }
+	if (!hits || hits.length < 1) {
+		return "NOT_FOUND";
+	}
 
-    hits.map(function(hit) {
-        return repoConn.delete(hit.id)
-    });
+	hits.map(function(hit) {
+		return repoConn.delete(hit.id);
+	});
     
-    repoConn.refresh();
+	repoConn.refresh();
 
-    return { success: true };
+	return { success: true };
 };

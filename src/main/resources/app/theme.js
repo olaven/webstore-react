@@ -10,12 +10,12 @@ import green from "@material-ui/core/colors/green";
 import red from "@material-ui/core/colors/red";
 
 export default createMuiTheme({
-    palette: {
-        primary: {
-            main: green[500],
-        },
-        secondary: {
-            main: red[500],
-        },
-    }
+	palette: {
+		primary: {
+			main: green[500],
+		},
+		secondary: {
+			main: red[500],
+		},
+	}
 }); 

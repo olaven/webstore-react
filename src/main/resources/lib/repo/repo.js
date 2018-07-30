@@ -10,11 +10,11 @@ var contextLib = require("/lib/xp/context");
  * @param branch in the repo 
  */
 var getRepoConnection = exports.getRepoConnection = function(name, branch) { 
-    return nodeLib.connect({
-        repoId: name,
-        branch: branch,
-    });
-}
+	return nodeLib.connect({
+		repoId: name,
+		branch: branch,
+	});
+};
 
 /** 
  * Initialize a repository 
@@ -24,17 +24,17 @@ var getRepoConnection = exports.getRepoConnection = function(name, branch) {
  * @param branch in repository
  */
 var doInitialize = function (name, permissions, path, branch) {
-    var result = repo.get(name);
-    if (!result) {
-        createRepo(name, permissions);
-    }
+	var result = repo.get(name);
+	if (!result) {
+		createRepo(name, permissions);
+	}
 
-    if (!repo.get(name)) {
-        throw Error('Something went wrong when creating (and/or getting) repo:' + name);
-    }
+	if (!repo.get(name)) {
+		throw Error("Something went wrong when creating (and/or getting) repo:" + name);
+	}
 
-    //Creates repositories
-    createNode(path, permissions, name, branch); 
+	//Creates repositories
+	createNode(path, permissions, name, branch); 
 };
 
 /**
@@ -43,11 +43,11 @@ var doInitialize = function (name, permissions, path, branch) {
  * @param permissions for repo 
  */
 var createRepo = function (name, permissions) {
-    log.info('Creating repository: ' + name);
-    repo.create({
-        id: name,
-        rootPermissions: permissions
-    });
+	log.info("Creating repository: " + name);
+	repo.create({
+		id: name,
+		rootPermissions: permissions
+	});
 };
 
 /**
@@ -56,12 +56,12 @@ var createRepo = function (name, permissions) {
  * @param path 
  */
 var nodeWithPathExists = function(repoConnection, path) {
-    var result = repoConnection.query({
-        start: 0,
-        count: 0,
-        query: "_path = '" + path + "'"
-    });
-    return result.total > 0;
+	var result = repoConnection.query({
+		start: 0,
+		count: 0,
+		query: "_path = '" + path + "'"
+	});
+	return result.total > 0;
 };
 
 /**
@@ -72,20 +72,20 @@ var nodeWithPathExists = function(repoConnection, path) {
  * @param branch in repo 
  */
 function createNode(path, permissions, name, branch) {
-    var repoConn = getRepoConnection(name, branch);
+	var repoConn = getRepoConnection(name, branch);
 
-    var node = nodeWithPathExists(repoConn, path);
+	var node = nodeWithPathExists(repoConn, path);
 
-    if (node) {
-        // Node exists
-        return;
-    }
+	if (node) {
+		// Node exists
+		return;
+	}
 
-    repoConn.create({
-        _name: path.slice(1),
-        _parentPath: '/',
-        _permissions: permissions
-    });
+	repoConn.create({
+		_name: path.slice(1),
+		_parentPath: "/",
+		_permissions: permissions
+	});
 }
 
 
@@ -94,10 +94,10 @@ function createNode(path, permissions, name, branch) {
  * @param config configuration of repo 
  */
 exports.initialize = function(config) {
-    log.info("Initializing repository...");
-    exports.sudo(function() {
-        doInitialize(config.name, config.permissions, config.path, config.branch);
-    }, config.user, config.principal); 
+	log.info("Initializing repository...");
+	exports.sudo(function() {
+		doInitialize(config.name, config.permissions, config.path, config.branch);
+	}, config.user, config.principal); 
 };
 
 /**
@@ -106,10 +106,10 @@ exports.initialize = function(config) {
  * @param principal principal of repo 
  */
 exports.sudo = function (func, user, principal) {
-    return contextLib.run({
-        user: user,
-        principals: principal,
-    }, func);
+	return contextLib.run({
+		user: user,
+		principals: principal,
+	}, func);
 };
 
 // Very similar to createNode above. Refactor. 
@@ -122,36 +122,36 @@ exports.sudo = function (func, user, principal) {
  * @param branch in repository 
  */
 exports.storeItemAndCreateNode = function(data, config) {
-    var repoConn = getRepoConnection(config.name, config.branch);
-    var node = repoConn.create({
-        _parentPath: config.path,
-        _permissions: config.permissions,
-        data: data
-    })
-    repoConn.refresh();
-    return node;
-}
+	var repoConn = getRepoConnection(config.name, config.branch);
+	var node = repoConn.create({
+		_parentPath: config.path,
+		_permissions: config.permissions,
+		data: data
+	});
+	repoConn.refresh();
+	return node;
+};
 
 exports.storeCategoryAndCreateNode = function(data, config) {
-    var repoConn = getRepoConnection(config.name, config.branch);
-    var node = repoConn.create({
-        _parentPath: config.path,
-        _permissions: config.permissions,
-        data: data
-    })
+	var repoConn = getRepoConnection(config.name, config.branch);
+	var node = repoConn.create({
+		_parentPath: config.path,
+		_permissions: config.permissions,
+		data: data
+	});
 
-    repoConn.refresh();
-    return node;
-}
+	repoConn.refresh();
+	return node;
+};
 
 exports.storeImageAndCreateNode = function(data, config) {
-    var repoConn = getRepoConnection(config.name, config.branch);
-    var node = repoConn.create({
-        _parentPath: config.path,
-        _permissions: config.permissions,
-        data: data
-    })
+	var repoConn = getRepoConnection(config.name, config.branch);
+	var node = repoConn.create({
+		_parentPath: config.path,
+		_permissions: config.permissions,
+		data: data
+	});
 
-    repoConn.refresh();
-    return node;
-}
+	repoConn.refresh();
+	return node;
+};
