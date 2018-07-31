@@ -78,7 +78,7 @@ exports.put = function(req) {
 	var body = JSON.parse(req.body);
 	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
 	var hits = repoConn.query({
-		query: "data.type = 'item' AND data.id = '" + body.id + "'"
+		query: "data.type = 'item' AND data.id = " + body.id 
 	}).hits;
 	if (!hits || hits.length < 1) {
 		log.info("Node was not found. Creating a new one");

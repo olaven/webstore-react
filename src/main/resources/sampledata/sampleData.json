@@ -1,0 +1,121 @@
+
+
+{
+    "images": [ 
+        {
+            "name": "Blue suit",
+            "source": "https://commons.wikimedia.org/wiki/Category:Blue_suits#/media/File:Kaysha._RR.jpg",
+            "id": 1,
+            "edited" : false
+        },
+        {
+            "name": "Race Car",
+            "source": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Formel3_racing_car_2_amk.jpg",
+            "id": 2,
+            "edited" : false
+        },
+        {
+            "name": "Cykel",
+            "source": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cykel.JPG",
+            "id": 3,
+            "edited" : false
+        },
+        {
+            "name": "Shoes",
+            "source": "https://upload.wikimedia.org/wikipedia/commons/4/43/Chuck_Taylors.jpg",
+            "id": 4,
+            "edited" : false
+            
+        },
+        {
+            "name": "Sushi",
+            "source": "https://commons.wikimedia.org/wiki/Sushi#/media/File:California_Rolls.JPG",
+            "id": 5,
+            "edited" : false
+        },
+        {
+            "name": "train",
+            "source": "https://commons.wikimedia.org/wiki/Category:Express_trains#/media/File:Dec_1990_Gold_Runx_(40409700532).jpg",
+            "id": 6,
+            "edited" : false
+        }
+    ], 
+
+    "items": [
+        {
+            "name" : "Blues Suit", 
+            "info" : "This suit is blue and it suits you perfectly!",
+            "image": 0,
+            "visible": true,
+            "category": 0,
+            "id" : 1,
+            "edited" : false
+        },
+        {
+            "name": "Race Car",
+            "info": "This car is fast and up for sale! BUY IT NOW!",
+            "image": 1, 
+            "visible": true,
+            "category": 3,
+            "id" : 2,
+            "edited" : false
+        },
+        {
+            "name": "Cykel",
+            "info": "Old Japanese cykel used by old people and a cat. (The cat does not come with the cykle)",
+            "image": 2,
+            "visible": true,
+            "category": 3,
+            "id" : 3,
+            "edited" : false
+        },
+        {
+            "name": "Sushi",
+            "info": "Sushi for sale! Made by exclusive chefs around the world only to end it's journey on your tastebuds",
+            "image": 3,
+            "visible": true,
+            "category": 2,
+            "id" : 4,
+            "edited" : false
+        },
+        {
+            "name": "Train",
+            "info": "YES! This train is for sale! Made by craftmen in the late 1960's and is now up for sale!",
+            "image": 4,
+            "visible": true,
+            "category": 3,
+            "id" : 5,
+            "edited" : false
+        }
+    ], 
+    "categories": [
+        {
+            "title": "Clothes", 
+            "filter": "clothes", 
+            "id": 1,
+            "edited" : false
+        },
+        {
+            "title": "Food",
+            "filter": "food",
+            "id": 2,
+            "edited" : false
+        },
+        {
+            "title": "Furniture",
+            "filter": "furniture",
+            "id": 3,
+            "edited" : false
+        },
+        {
+            "title": "Vehicle",
+            "filter": "vehicle",
+            "id": 3,
+            "edited" : false
+        }
+    ],
+    "cardImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/d/d7/Credit-card-front.svg",
+        "https://upload.wikimedia.org/wikipedia/commons/f/f4/Hsbc-card.jpg"
+    ]
+}

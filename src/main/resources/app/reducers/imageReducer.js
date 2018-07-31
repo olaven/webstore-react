@@ -20,6 +20,16 @@ function addImage(oldState, action) {
 	return state;
 }
 
+function addImages(oldState, action) {
+	let state = oldState;
+	state = state.updateIn(["images"], function(images) {
+		images = images.concat(action.data);
+		return images;
+	});
+	console.log(state)
+	return state;
+}
+
 function deleteImage(oldState, action) {
 	let state = oldState;
 	state = state.updateIn(["images"], function(images) {
@@ -83,8 +93,12 @@ function cancelSave(oldState, action) {
 	return state;
 }
 
+
+
 export function imageReducer(state = initialState, action) {
 	switch (action.type) {
+	case imageActions.actions.addImages:
+		return addImages(state, action);	
 	case imageActions.actions.cancelSave:
 		return cancelSave(state, action);
 	case imageActions.actions.save:

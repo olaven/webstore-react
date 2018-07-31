@@ -30,8 +30,7 @@ import "./styles/main.less";
 // Fonts
 import "typeface-roboto";
 
-// Sample data 
-import SampleData from "./sampleData.json"; 
+
 
 
 
@@ -46,61 +45,7 @@ class App extends Component {
 
 	// STATE HOLDS TEST ITEMS 
 	componentDidMount() {
-		repoService.getItems().then(items => {
-			if(items.length == 0){
-				SampleData.items.map(data => {
-					let item = new Item(data);
-					repoService.addItem(item);
-					this.props.createItem(item);
-				});
-			} else {
-				items.forEach(item => {
-					item.edited = false
-					this.props.createItem(
-						new Item(item)
-					);
-				});
-			}
-		}).then(
-			repoService.getCategories().then(categories => {
-				if(categories.length == 0){
-					SampleData.categories.map(data => {
-                        
-						let category = new Category(data);
-						repoService.addCategory(category);
-						this.props.createCategory(category);
-    
-					});
-				} else {
-					categories.forEach(category =>{
-						this.props.createCategory(
-							new Category(category)
-						);
-					});
-				}
-			})
-		).then(() => {
-           
-			repoService.getImages().then(images => {
-				images.forEach(image=> {
-					this.props.addImage(new Image(image));
-				}); 
-                
-			})
-            .catch(response => {
-                if (response.status == 400){
-                    SampleData.images.map(data => {
-                    
-                        let image = new Image(data);
-                        repoService.addImage(image);
-                        this.props.addImage(image);
-
-                    });
-                } else {
-                    console.error("Error fetching images from repo", response);
-                }
-            });
-		});
+		this.props.onLoad()
 	}
 
     
@@ -156,6 +101,7 @@ function mapDispatchToProps(dispatch) {
 		createItem: (arg) => { mainActions.createItem(dispatch, arg); },
 		createCategory: (arg) => { categoryActions.createCategory(dispatch, arg); },
 		addImage: (arg) => { imageActions.addImage(dispatch, arg); },
+		onLoad:() => {mainActions.onLoad(dispatch)}
 	};
 }
 

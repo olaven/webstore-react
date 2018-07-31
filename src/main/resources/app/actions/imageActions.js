@@ -3,7 +3,8 @@ export const actions = {
 	deleteImage: "DELETE_IMAGE",
 	changeImage: "CHANGE_IMAGE",
 	save: "SAVE_IMAGES",
-	cancelSave: "CANCEL_SAVE_IMAGES"
+	cancelSave: "CANCEL_SAVE_IMAGES",
+	addImages: "ADD_IMAGES"
 };
 
 function addImageAction(arg, edit) {
@@ -37,6 +38,14 @@ function saveAction() {
 function cancelSaveAction() {
 	return {
 		type: actions.cancelSave
+	};
+}
+
+
+export function addImagesAction(images) {
+	return {
+		type: actions.addImages,
+		data: images
 	};
 }
 

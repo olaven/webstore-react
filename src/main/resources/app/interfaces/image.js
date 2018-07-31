@@ -5,7 +5,6 @@
  */
 export default class Image {
 	constructor(data) {
-		console.log(data)
 		this.name = data.name || "unnamed";
 		this.id = data.id || new Date().valueOf(); 
 		this.type = "image";
@@ -17,11 +16,6 @@ export default class Image {
 	update(data){
 		if(data.name){
 			this.name = data.name;
-			this.edited = true;
-		}
-		if(data.source){
-			this.source = data.source;
-			this.file = null;
 			this.edited = true;
 		}
 		if(data.file){
