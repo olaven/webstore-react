@@ -1,13 +1,14 @@
 var repoLib = require("../../lib/repo/repo"); 
 var repoConfig = require("../../lib/config/repoConfig"); 
 
+var servicesLib = require('../servicesLib');
 /**
  * Get get items from Repo 
  */
 exports.get = function(req) {
 
 	// log.info("GET");
-	var result = getItems(); 
+	var result = servicesLib.getNodes("data.type = 'item'"); 
 	return {
 		body: {nodes : result},
 		headers: {
@@ -28,7 +29,7 @@ exports.post = function(req) {
 		return { status: 400, message: message };
 	}
 
-	var wasSuccessful = createNode(body).success; 
+	var wasSuccessful = servicesLib.createNode(body).success; 
     
 	if(wasSuccessful) {
 		// log.info("Added Item " + JSON.stringify(body, null, 4)); 
@@ -54,7 +55,7 @@ exports.delete = function (req){
 		};
 	}
 
-	var result = deleteNode(body);
+	var result = servicesLib.deleteNode("data.type = 'item' AND data.id = " + body.id);
 
 	if(result === "NOT_FOUND") {
 		return {
@@ -78,11 +79,11 @@ exports.put = function(req) {
 	var body = JSON.parse(req.body);
 	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
 	var hits = repoConn.query({
-		query: "data.type = 'item' AND data.id = '" + body.id + "'"
+		query: "data.type = 'item' AND data.id = " + body.id 
 	}).hits;
 	if (!hits || hits.length < 1) {
 		// log.info("Node was not found. Creating a new one");
-		var wasSuccessful = createNode(body).success; 
+		var wasSuccessful = servicesLib.createNode(body).success; 
     
 		if(wasSuccessful) {
 			// log.info("Added Item:" + JSON.stringify(body, null, 4)); 
@@ -129,90 +130,4 @@ exports.put = function(req) {
 			}
 		};
 	}
-};
-
-/**
- * NOT DONE 
- * Returns all items in repo
- */
-function getItems() {
-    
-	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-	var hits = repoConn.query({
-		count: 1000,
-		query: "data.type = 'item'"
-	}).hits;
-
-	if (!hits || hits.length < 1) {
-		return hits;
-	}
-
-	var items = hits.map(function (hit) {
-		return repoConn.get(hit.id);
-	});
-
-	if (items) {
-		return items;
-	} else {
-		return "NOT_FOUND";
-	} 
-}
-
-/**
- * Adds an item to repo 
- * @param item 
- */
-var createNode = function(item) {
-	try {
-		var node = repoLib.storeItemAndCreateNode(
-			item, 
-			repoConfig
-		); 
-		if (!node) {
-			log.error(
-				"Tried creating node, but something seems wrong: " +
-                JSON.stringify(
-                	{
-                		incoming_item: item,
-                		resulting_node: node
-                	},
-                	null,
-                	2
-                )
-			);
-
-			return {
-				status: 500,
-				message: "Could not create node"
-			};
-		} else {
-			return { success: true };
-		}
-	} catch (e) {
-		return {
-			status: 500,
-			message: "Couldn't create node"
-		};
-	}
-};
-
-
-
-var deleteNode = function (item) {
-	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-	var hits = repoConn.query({
-		query: "data.type = 'item' AND data.id = " + item.id
-	}).hits;
-    
-	if (!hits || hits.length < 1) {
-		return "NOT_FOUND";
-	}
-
-	hits.map(function(hit) {
-		return repoConn.delete(hit.id);
-	});
-	// query: "subscription.auth = '" + subscription.auth + "' AND subscription.key = '" + subscription.key + "' AND subscription.endpoint = '" + subscription.endpoint + "'",
-	repoConn.refresh();
-
-	return { success: true };
 };

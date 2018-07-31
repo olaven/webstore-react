@@ -1,12 +1,13 @@
 var repoLib = require("../../lib/repo/repo"); 
 var repoConfig = require("../../lib/config/repoConfig"); 
 
+var servicesLib = require("../servicesLib"); 
 /**
  * Get get categories from Repo 
  */
 exports.get = function(req) {
 	// log.info("GET CATEGORY");
-	var result = getCategories(); 
+	var result = servicesLib.getNodes("data.type = 'category'"); 
 
 	return {
 		body: {nodes : result},
@@ -29,7 +30,7 @@ exports.post = function(req) {
 		return { status: 400, message: message };
 	}
 
-	var wasSuccessful = createNode(body).success; 
+	var wasSuccessful = servicesLib.createNode(body).success; 
     
 	if(wasSuccessful) {
 		// log.info("Added Category:" + JSON.stringify(body, null, 4)); 
@@ -56,7 +57,7 @@ exports.delete = function (req){
 		};
 	}
 
-	var result = deleteNode(body);
+	var result = servicesLib.deleteNode("data.type = 'category' AND data.id = " + body.id);
 
 	if(result === "NOT_FOUND") {
 		return {
@@ -86,7 +87,7 @@ exports.put = function(req) {
 
 	if (!hits || hits.length < 1) {
 		// log.info("Node was not found. Creating a new one");
-		var wasSuccessful = createNode(body).success; 
+		var wasSuccessful = servicesLib.createNode(body).success; 
     
 		if(wasSuccessful) {
 			// log.info("Added node:" + JSON.stringify(body, null, 4)); 
@@ -130,92 +131,4 @@ exports.put = function(req) {
 			}
 		};
 	}
-};
-
-/**
- * NOT DONE 
- * Returns all categories in repo
- */
-function getCategories() {
-    
-	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-	var hits = repoConn.query({
-		count: 1000,
-		query: "data.type = 'category'"
-	}).hits;
-	if (!hits || hits.length < 1) {
-		return hits;
-	}
-
-	var categories = hits.map(function (hit) {
-		return repoConn.get(hit.id);
-	});
-
-	if (categories) {
-		return categories;
-	} else {
-		return "NOT_FOUND";
-	} 
-}
-
-/**
- * Adds an category to repo 
- * @param category 
- */
-var createNode = function(category) {
-	try {
-		var node =  repoLib.storeCategoryAndCreateNode(
-			category, 
-			repoConfig
-		); 
-		if (!node) {
-			log.error(
-				"Tried creating node, but something seems wrong: " +
-                JSON.stringify(
-                	{
-                		incoming: category,
-                		resulting_node: node
-                	},
-                	null,
-                	2
-                )
-			);
-
-			return {
-				status: 500,
-				message: "Could not create node"
-			};
-		} else {
-			return { success: true };
-		}
-	} catch (e) {
-		return {
-			status: 500,
-			message: "Couldn't create node"
-		};
-	}
-};
-
-
-
-var deleteNode = function (body) {
-
-	// log.info("DELETE:" + new Date() + JSON.stringify(body, null, 4));
-	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-    
-	var hits = repoConn.query({
-		query: "data.type = 'category' AND data.id = " + body.id
-	}).hits;
-
-	if (!hits || hits.length < 1) {
-		return "NOT_FOUND";
-	}
-
-	hits.map(function(hit) {
-		return repoConn.delete(hit.id);
-	});
-    
-	repoConn.refresh();
-
-	return { success: true };
 };

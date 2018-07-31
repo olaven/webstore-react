@@ -3,6 +3,8 @@ var repoConfig = require("../../lib/config/repoConfig");
 var portalLib = require("/lib/xp/portal");
 var valueLib = require("/lib/xp/value");
 
+var servicesLib = require("../servicesLib"); 
+
 /**
  * Get get images from Repo 
  */
@@ -11,12 +13,11 @@ exports.get = function(req) {
     
     
 	if (data != undefined) {
-		// log.info("GET_IMAGE");
 		var result = getImageFile(data); 
 
 		if(result === "NOT_FOUND") {
 			return {
-				status : 400, 
+				status : 404, 
 				message : "Not found"
 			};
 		}
@@ -26,12 +27,11 @@ exports.get = function(req) {
 		};
 
 	} else {
-		// log.info("GET_ALL_IMAGES");
-		var result = getImages(); 
+		var result = servicesLib.getNodes("data.type = 'image'"); 
 
 		if(result === "NOT_FOUND") {
 			return {
-				status : 400, 
+				status : 404, 
 				message : "Not found"
 			};
 		}
@@ -56,10 +56,10 @@ exports.post = function(req) {
 	var body = JSON.parse(req.body); 
 	if(!body) {
 		var message = "Missing/invalid image";
-		return { status: 400, message: message };
+		return { status: 404, message: message };
 	}
 
-	var wasSuccessful = createNode(body).success; 
+	var wasSuccessful = servicesLib.createNode(body).success; 
     
 	if(wasSuccessful) {
 		// log.info(body.file ? true : false);
@@ -86,16 +86,16 @@ exports.delete = function (req){
 		var message = "Missing/invalid image data in request";
 		log.warning(message);
 		return { 
-			status: 400,
+			status: 404,
 			message: message 
 		};
 	}
 
-	var result = deleteNode(body);
+	var result = servicesLib.deleteNode("data.type = 'image' AND data.id = '" + body.id + "'");
 
 	if(result === "NOT_FOUND") {
 		return {
-			status : 400, 
+			status : 404, 
 			message : "Not found"
 		};
 	} else {
@@ -135,7 +135,7 @@ exports.put = function(req) {
 
 	if (!hits || hits.length < 1) {
 		// log.info("Node was not found. Creating a new one");
-		var wasSuccessful = createNode(body).success; 
+		var wasSuccessful = servicesLib.createNode(body).success; 
     
 		if(wasSuccessful) {
 			if(body.file){
@@ -222,98 +222,3 @@ function getImageFile(id){
 	return stream;
 
 }
-
-function getImages() {
-	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-    
-	var hits = repoConn.query({
-		count: 1000,
-		query: "data.type = 'image'"
-	}).hits;
-    
-	if(!hits || hits.length == 0){
-		return "NOT_FOUND";
-	}
-
-	var images = hits.map(function (hit) {
-		return repoConn.get(hit.id);
-	});
-    
-	if(!images || images.length == 0){
-		return "NOT_FOUND";
-	}
-
-	return images;
-
-}
-
-/**
- * Adds an image to repo 
- * @param image 
- */
-var createNode = function(image) {
-	try {
-		var node = repoLib.storeImageAndCreateNode(
-			image, 
-			repoConfig
-		); 
-		if (!node) {
-			log.error(
-				"Tried creating node, but something seems wrong: " +
-                JSON.stringify(
-                	{
-                		incoming: image,
-                		resulting_node: node
-                	},
-                	null,
-                	2
-                )
-			);
-
-			return {
-				status: 500,
-				message: "Could not create node"
-			};
-		} else {
-			return { success: true };
-		}
-	} catch (e) {
-		return {
-			status: 500,
-			message: "Couldn't create node"
-		};
-	}
-};
-
-
-
-var deleteNode = function (image) {
-
-	// log.info("DELETE:" + new Date() + JSON.stringify(image, null, 4));
-	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-    
-	var hits = repoConn.query({
-		query: "data.type = 'image' AND data.id = '" + image.id + "'"
-	}).hits;
-	// log.info(hits.length);
-	/*
-    hits = hits.filter(function(hit) {
-        var repoImage = repoConn.get(hit.id)
-        if(repoImage.data.id == image.id){
-            return repoImage
-        }
-    })
-    */
-
-	if (!hits || hits.length < 1) {
-		return "NOT_FOUND";
-	}
-
-	hits.map(function(hit) {
-		return repoConn.delete(hit.id);
-	});
-    
-	repoConn.refresh();
-
-	return { success: true };
-};
