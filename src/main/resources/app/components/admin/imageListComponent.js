@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 // Material UI 
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 
 export default class ImageListComponent extends React.PureComponent {
@@ -22,7 +22,7 @@ export default class ImageListComponent extends React.PureComponent {
 	}
 
 	render(){ 
-		let styleClass = this.props.image.edited ? "adminListComponent-edit" : "adminListComponent";
+		let styleClass = this.props.image.edited ? 'adminListComponent-edit' : 'adminListComponent';
 		return <TableRow className={styleClass}>
 			<TableCell component="th" scope="row">
 				{this.props.image.name}
@@ -32,7 +32,7 @@ export default class ImageListComponent extends React.PureComponent {
 
         
 			<TableCell>
-				<IconButton onClick={() => this.props.toggleDeleteDialog("DELETE", this.props.image)}>
+				<IconButton onClick={() => this.props.toggleDeleteDialog('DELETE', this.props.image)}>
 					<DeleteIcon />
 				</IconButton>
 			</TableCell>

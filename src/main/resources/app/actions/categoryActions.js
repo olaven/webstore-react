@@ -1,14 +1,14 @@
-import * as repoService from "../services/repoService";
-import Category from "../interfaces/category";
+import * as repoService from '../services/repoService';
+import Category from '../interfaces/category';
 
 // fetch api
 export const actions = {
-	createCategory: "ADD_CATEGORY",
-	deleteCategory: "DELETE_CATEGORY",
-	toggleCategoryVisible: "HIDE_CATEGORY",
-	changeCategory: "CHANGE_CATEGORY",
-	save: "SAVE_CATEGORIES",
-	cancelSave: "CANCEL_SAVE_CATEGORIES"
+	createCategory: 'ADD_CATEGORY',
+	deleteCategory: 'DELETE_CATEGORY',
+	toggleCategoryVisible: 'HIDE_CATEGORY',
+	changeCategory: 'CHANGE_CATEGORY',
+	save: 'SAVE_CATEGORIES',
+	cancelSave: 'CANCEL_SAVE_CATEGORIES'
     
 };
   

@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 // Material UI 
-import ListItem from "@material-ui/core/ListItem"; 
-import ListItemText from "@material-ui/core/ListItemText"; 
-import IconButton from "@material-ui/core/IconButton"; 
-import DeleteIcon from "@material-ui/icons/Delete"; 
-import Avatar from "@material-ui/core/Avatar"; 
+import ListItem from '@material-ui/core/ListItem'; 
+import ListItemText from '@material-ui/core/ListItemText'; 
+import IconButton from '@material-ui/core/IconButton'; 
+import DeleteIcon from '@material-ui/icons/Delete'; 
+import Avatar from '@material-ui/core/Avatar'; 
 
 export default class CartItem extends React.PureComponent {
 	constructor(arg){

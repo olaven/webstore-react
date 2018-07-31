@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 //Material UI 
-import Snackbar from "@material-ui/core/Snackbar";
+import Snackbar from '@material-ui/core/Snackbar';
 
 export default class ToasterComponent extends React.PureComponent {
 	constructor(arg){
@@ -21,13 +21,13 @@ export default class ToasterComponent extends React.PureComponent {
 		return (
 			<Snackbar
 				anchorOrigin={{
-					vertical: "bottom",
-					horizontal: "left",
+					vertical: 'bottom',
+					horizontal: 'left',
 				}}
 				open={visible}
 				autoHideDuration={1500}
 				ContentProps={{
-					"aria-describedby": "message-id",
+					'aria-describedby': 'message-id',
 				}}
 				message={<span id="message-id">{message}</span>}
 			/>

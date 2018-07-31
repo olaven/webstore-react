@@ -1,20 +1,20 @@
 
-import React from "react";
+import React from 'react';
 
-import CategoryListComponent from "./categoryListComponent";
-import SearchComponent from "../searchComponent";
-import DialogComponent from "../dialogComponent";
-
+// Components
+import CategoryListComponent from './categoryListComponent';
+import SearchComponent from '../searchComponent';
+import DialogComponent from '../dialogComponent';
 
 // Material UI
-import Paper from "@material-ui/core/Paper"; 
-import Table from "@material-ui/core/Table"; 
-import TableBody from "@material-ui/core/TableBody"; 
-import TableHead from "@material-ui/core/TableHead"; 
-import TableRow from "@material-ui/core/TableRow"; 
-import TableCell from "@material-ui/core/TableCell"; 
-import Typography from "@material-ui/core/Typography"; 
-import Button from "@material-ui/core/Button"; 
+import Paper from '@material-ui/core/Paper'; 
+import Table from '@material-ui/core/Table'; 
+import TableBody from '@material-ui/core/TableBody'; 
+import TableHead from '@material-ui/core/TableHead'; 
+import TableRow from '@material-ui/core/TableRow'; 
+import TableCell from '@material-ui/core/TableCell'; 
+import Typography from '@material-ui/core/Typography'; 
+import Button from '@material-ui/core/Button'; 
 
 
 
@@ -23,10 +23,10 @@ export default class CategoryComponent extends React.PureComponent {
 		super(arg);
 		this.state = {
 			open : false,
-			searchValue: "",
-			dialogType: "",
-			message: "",
-			categoryToBeRemoved: "",
+			searchValue: '',
+			dialogType: '',
+			message: '',
+			categoryToBeRemoved: '',
 			categoryToBeEdited: null
 		};
 	}
@@ -41,13 +41,13 @@ export default class CategoryComponent extends React.PureComponent {
 		if(type){
 			this.setState({ dialogType: type, open: true, message: message, categoryToBeRemoved: category });
 		} else {
-			this.setState({ dialogType: "", open: false, message: "" });
+			this.setState({ dialogType: '', open: false, message: '' });
 		}
 	}
 
 	editCategory(category){
 		this.setState({categoryToBeEdited: category});
-		this.toggleDialog("CATEGORY");
+		this.toggleDialog('CATEGORY');
 	}
 
 	getButtons(){
@@ -120,7 +120,7 @@ export default class CategoryComponent extends React.PureComponent {
 
 				<SearchComponent value={this.state.searchValue} onChange={this.searchCategoryOnChange.bind(this)}/>
 				<Button 
-					onClick={() => this.toggleDialog("CATEGORY")}
+					onClick={() => this.toggleDialog('CATEGORY')}
 					color="primary"
 					variant="outlined">
                     add Category

@@ -1,6 +1,6 @@
 export const actions = {
-	hideToaster: "HIDE_TOASTER",
-	showToaster: "SHOW_TOASTER"
+	hideToaster: 'HIDE_TOASTER',
+	showToaster: 'SHOW_TOASTER'
 };
   
 var timeOut = null;

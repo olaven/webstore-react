@@ -1,35 +1,33 @@
-import React, {Component} from "react";
-import { Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
-import * as repoService from "./services/repoService";
+import React, {Component} from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // Containers
-import StorefrontPage from "./containers/storefrontPage";
-import AdminPage from "./containers/adminPage";
-import NotFound from "./containers/notFoundPage";
-import TopBar from "./containers/TopBar"; 
-import SideBar from "./containers/SideBar"; 
-import CartPage from "./containers/cartPage"; 
+import StorefrontPage from './containers/storefrontPage';
+import AdminPage from './containers/adminPage';
+import NotFound from './containers/notFoundPage';
+import TopBar from './containers/TopBar'; 
+import SideBar from './containers/SideBar'; 
+import CartPage from './containers/cartPage'; 
 
 // Redux Actions 
-import * as mainActions from "./actions/mainActions";
-import * as categoryActions from "./actions/categoryActions";
-import * as imageActions from "./actions/imageActions"; 
+import * as mainActions from './actions/mainActions';
+import * as categoryActions from './actions/categoryActions';
+import * as imageActions from './actions/imageActions'; 
 
-// Interfaces 
-import Item from "./interfaces/item"; 
-import Category from "./interfaces/category";
-import Image from "./interfaces/image";
+
 // Material UI 
-import { MuiThemeProvider } from "@material-ui/core/styles";
-// Local modules
-import Theme from "./theme";
-import URLS from "./urls"; 
-// Stylesheets
-import "./styles/main.less";
-// Fonts
-import "typeface-roboto";
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
+// Local modules
+import Theme from './theme';
+import URLS from './urls'; 
+
+// Stylesheets
+import './styles/main.less';
+
+// Fonts
+import 'typeface-roboto';
 
 
 
@@ -60,17 +58,13 @@ class App extends Component {
 	render () {
 		return (
 			<div className="App">
-				{/*
-                <TopBar onToggleMenu={this.toggleMenu.bind(this)} />
-                <SideBar open={this.state.menuVisible} onToggleMenu={this.toggleMenu.bind(this)} />
-            */}
 				<MuiThemeProvider theme={Theme}>
 					<Route path="/" 
 						render={(props) =>
 							<TopBar 
 								{...props} 
 								onToggleMenu={this.toggleMenu.bind(this)} 
-								style={{position: "fixed", top: 0}} 
+								style={{position: 'fixed', top: 0}} 
 							/>}                    
 					/> 
 					<Route path="/" render={(props) => 
@@ -92,7 +86,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
 	return {
-		items: state.get("app").get("allItems")
+		items: state.get('app').get('allItems')
 	};
 }
 
