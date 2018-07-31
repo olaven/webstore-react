@@ -20,13 +20,17 @@ import * as imageActions from "./actions/imageActions";
 import Item from "./interfaces/item"; 
 import Category from "./interfaces/category";
 import Image from "./interfaces/image";
+
 // Material UI 
 import { MuiThemeProvider } from "@material-ui/core/styles";
+
 // Local modules
 import Theme from "./theme";
 import URLS from "./urls"; 
+
 // Stylesheets
 import "./styles/main.less";
+
 // Fonts
 import "typeface-roboto";
 
@@ -84,17 +88,6 @@ class App extends Component {
 				images.forEach(image=> {
 					this.props.addImage(new Image(image));
 				});
-
-                
-                
-				//console.log(URL.createObjectURL(images))
-                
-				//let file = new File([images], "filename", {type: "image/jpeg"})
-				/*
-                
-                
-            */
-                    
                 
 			})
 				.catch(response => {
@@ -126,10 +119,6 @@ class App extends Component {
 	render () {
 		return (
 			<div className="App">
-				{/*
-                <TopBar onToggleMenu={this.toggleMenu.bind(this)} />
-                <SideBar open={this.state.menuVisible} onToggleMenu={this.toggleMenu.bind(this)} />
-            */}
 				<MuiThemeProvider theme={Theme}>
 					<Route path="/" 
 						render={(props) =>

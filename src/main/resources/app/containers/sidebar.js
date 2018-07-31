@@ -104,10 +104,6 @@ SideBar.propTypes = {
 	categories: PropTypes.object
 };
 
-SideBar.defaultProps = {
-
-};
-
 
 function mapStateToProps(state) {
 	return {

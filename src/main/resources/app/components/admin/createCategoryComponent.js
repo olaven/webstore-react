@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
+
 // Stylesheet
 import '../../styles/createCategoryComponent.less'
 

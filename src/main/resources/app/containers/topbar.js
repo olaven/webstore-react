@@ -33,14 +33,14 @@ class TopBar extends React.PureComponent {
     }
 
     componentDidMount() {
-        window.addEventListener('resize', this.updateScreenWidth)
+        window.addEventListener('resize', this.updateScreenWidth.bind(this))
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this.updateScreenWidth); 
+        window.removeEventListener('resize', this.updateScreenWidth.bind(this)); 
     }
 
-    updateScreenWidth = () => {
+    updateScreenWidth() {
         this.setState({
             screenWidth: window.innerWidth
         }); 
@@ -148,7 +148,7 @@ TopBar.propTypes = {
 
 TopBar.defaultProps = {
     onToggleMenu : PropTypes.func,
-    buttons : PropTypes.object // {name : string, action: REDUX-action}
+    buttons : PropTypes.object 
 }
 
 

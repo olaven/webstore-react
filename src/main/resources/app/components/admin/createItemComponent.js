@@ -2,6 +2,7 @@ import React from 'react';
 
 // Components 
 import UploadImageDialog from '../uploadImageDialog'; 
+
 // Material UI 
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -114,7 +115,6 @@ export default class CreateItemComponent extends React.PureComponent {
                         error={this.state.info === ""}
                     />
                     <FormControl>
-                        {/*<InputLabel>Category</InputLabel>*/}
                         <InputLabel>Category</InputLabel>
                         <Select
                             value={this.state.category}
@@ -128,7 +128,6 @@ export default class CreateItemComponent extends React.PureComponent {
                         </Select>
                     </FormControl>
                     <FormControl>
-                        {/*<InputLabel>Category</InputLabel>*/}
                         <InputLabel>Image</InputLabel>
                         <Select
                             value={this.state.image}

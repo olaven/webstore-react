@@ -9,8 +9,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography"; 
 import CardMedia from "@material-ui/core/CardMedia";
+
 // Interfaces 
 import Image from "../interfaces/image"; 
+
 // Stylesheets
 import "../styles/uploadImageDialog.less";
 

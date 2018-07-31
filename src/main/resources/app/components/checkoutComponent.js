@@ -1,9 +1,4 @@
-/**
- * Made for testing 
- * Represents an item in the store 
- */
 import React, {Component} from "react"; 
-
 
 // Material UI 
 import CardMedia from "@material-ui/core/CardMedia";

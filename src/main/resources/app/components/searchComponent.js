@@ -1,9 +1,6 @@
-/**
- * Searchbar. 
- * Has its current input value as state. 
- */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
 // Material UI 
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";

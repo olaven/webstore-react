@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 // Components
 import CartItemComp from '../components/cartItemComponent';
 import DialogComponent from '../components/dialogComponent';
+
 // Material UI
 import Paper from '@material-ui/core/Paper'; 
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+
 // Stylesheets
 import '../styles/cartPage.less'
+
 // Project URLS 
 import URLS from '../urls'; 
 

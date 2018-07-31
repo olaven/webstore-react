@@ -1,10 +1,10 @@
 
 import React from "react";
 
+// Components
 import CategoryListComponent from "./categoryListComponent";
 import SearchComponent from "../searchComponent";
 import DialogComponent from "../dialogComponent";
-
 
 // Material UI
 import Paper from "@material-ui/core/Paper"; 

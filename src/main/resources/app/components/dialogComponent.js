@@ -71,7 +71,6 @@
                 <DialogContent 
                         className="DialogContent"
                 >
-                {/*<StorefrontItemComponent item={this.props.item}/>*/}
                     <Typography align="center" variant="display2"> 
                         {this.props.item.name}
                     </Typography>
