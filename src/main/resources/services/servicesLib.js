@@ -76,25 +76,25 @@ var createNode = function (data) {
  */
 var getNodes = function (query) {
 
-    var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-    var hits = repoConn.query({
-        count: 1000,
-        query: query
-    }).hits;
-    if (!hits || hits.length < 1) {
-        return "NOT_FOUND";
-    }
+	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
+	var hits = repoConn.query({
+		count: 1000,
+		query: query
+	}).hits;
+	if (!hits || hits.length < 1) {
+		return 'NOT_FOUND';
+	}
 
-    var nodes = hits.map(function (hit) {
-        return repoConn.get(hit.id);
-    });
+	var nodes = hits.map(function (hit) {
+		return repoConn.get(hit.id);
+	});
 
-    if (nodes) {
-        return nodes;
-    } else {
-        return "NOT_FOUND";
-    }
-}
+	if (nodes) {
+		return nodes;
+	} else {
+		return 'NOT_FOUND';
+	}
+};
 
 
 module.exports = {

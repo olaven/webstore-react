@@ -6,12 +6,12 @@ var servicesLib = require('../servicesLib');
  * Get get items from Repo 
  */
 exports.get = function(req) {
-	var result = servicesLib.getNodes("data.type = 'item'"); 
+	var result = servicesLib.getNodes('data.type = \'item\''); 
 
-	if(result === "NOT_FOUND") {
+	if(result === 'NOT_FOUND') {
 		return {
 			status : 404, 
-			message : "Not found"
+			message : 'Not found'
 		};
 	} 
 	return {

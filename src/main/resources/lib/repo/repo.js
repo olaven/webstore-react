@@ -1,6 +1,6 @@
-var repo = require("/lib/xp/repo");
-var nodeLib = require("/lib/xp/node");
-var contextLib = require("/lib/xp/context");
+var repo = require('/lib/xp/repo');
+var nodeLib = require('/lib/xp/node');
+var contextLib = require('/lib/xp/context');
 
 
 /**
@@ -30,7 +30,7 @@ var doInitialize = function (name, permissions, path, branch) {
 	}
 
 	if (!repo.get(name)) {
-		throw Error("Something went wrong when creating (and/or getting) repo:" + name);
+		throw Error('Something went wrong when creating (and/or getting) repo:' + name);
 	}
 
 	//Creates repositories
@@ -59,7 +59,7 @@ var nodeWithPathExists = function(repoConnection, path) {
 	var result = repoConnection.query({
 		start: 0,
 		count: 0,
-		query: "_path = '" + path + "'"
+		query: '_path = \'' + path + '\''
 	});
 	return result.total > 0;
 };
@@ -83,7 +83,7 @@ function createNode(path, permissions, name, branch) {
 
 	repoConn.create({
 		_name: path.slice(1),
-		_parentPath: "/",
+		_parentPath: '/',
 		_permissions: permissions
 	});
 }

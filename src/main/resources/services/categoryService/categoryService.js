@@ -9,10 +9,10 @@ exports.get = function(req) {
 	// log.info("GET CATEGORY");
 	var result = servicesLib.getNodes('data.type = \'category\''); 
 
-	if(result === "NOT_FOUND") {
+	if(result === 'NOT_FOUND') {
 		return {
 			status : 404, 
-			message : "Not found"
+			message : 'Not found'
 		};
 	} 
 		

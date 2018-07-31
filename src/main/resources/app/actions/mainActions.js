@@ -1,16 +1,16 @@
-import * as toasterActions from "./toasterActions";
-import * as imageActions from "./imageActions";
-import * as categoryActions from "./categoryActions";
-import * as itemActions from "./imageActions";
+import * as toasterActions from './toasterActions';
+import * as imageActions from './imageActions';
+import * as categoryActions from './categoryActions';
+import * as itemActions from './imageActions';
 
 import * as repoService from '../services/repoService';
 
 // Sample data 
-import SampleData from "../../sampledata/sampleData.json"; 
+import SampleData from '../../sampledata/sampleData.json'; 
 
-import Item from "../interfaces/item";
-import Image from "../interfaces/image";
-import Category from "../interfaces/category";
+import Item from '../interfaces/item';
+import Image from '../interfaces/image';
+import Category from '../interfaces/category';
 
 // fetch api
 export const actions = {
@@ -107,34 +107,34 @@ function addItemsAction(items){
 	return {
 		type: actions.addItems,
 		items: items
-	}
+	};
 }
 
 
 function createSampleImages(){
-	let images = SampleData.images
+	let images = SampleData.images;
 	return Promise.all(images.map(image => 
 		Promise.resolve(new Image(image))
-	))
+	));
 }
 
 function createSampleCategories(){
-	let categories = SampleData.categories
+	let categories = SampleData.categories;
 	return Promise.all(categories.map(category => 
 		Promise.resolve(new Category(category))
-	))
+	));
 }
 
 function createSampleItems(categories, images){
-	let items = SampleData.items
+	let items = SampleData.items;
 	items.map(item => {
-		item.image = images[item.image]
-		item.category = categories[item.category]
-		return item
-	})
+		item.image = images[item.image];
+		item.category = categories[item.category];
+		return item;
+	});
 	return Promise.all(items.map(item => 
 		Promise.resolve(new Item(item))
-	))
+	));
 }
 
 
@@ -152,165 +152,165 @@ export function onLoad(dispatch){
 	Promise.all([
 
 		repoService.getImages()
-		.then(
+			.then(
 			//success fetching images
-			images => { 
-				return Promise.all(images.map(image => {
-					return Promise.resolve(new Image(image))
-				}))
+				images => { 
+					return Promise.all(images.map(image => {
+						return Promise.resolve(new Image(image));
+					}));
 					
 			
-			}
-		)
-		.catch(
+				}
+			)
+			.catch(
 			//error on fetching images
 			
-			response => {
-				if(response.status == 404){
+				response => {
+					if(response.status == 404){
 
 					// create images
-					return new Promise((resolve, reject) => {	
+						return new Promise((resolve, reject) => {	
 
-						createSampleImages().then(images=> {
-							if(images.length == SampleData.images.length){
-								Promise.all(images.map(image => 
-									repoService.addImage(image)
-									.catch(e => {
-										console.error("Something went wrong adding images to repo", e)
-										reject(images)
-									})
-								))
+							createSampleImages().then(images=> {
+								if(images.length == SampleData.images.length){
+									Promise.all(images.map(image => 
+										repoService.addImage(image)
+											.catch(e => {
+												console.error('Something went wrong adding images to repo', e);
+												reject(images);
+											})
+									))
 								
-								.then(() => {
-									resolve(images)
-								})
-							} 
+										.then(() => {
+											resolve(images);
+										});
+								} 
 							
-							else {
-								console.error("something went wrong creating sampleImages")
-								reject(images)
-							}
-						})
-					})
-				} else {
-					console.error("something went wrong fetching images from repo", response)
+								else {
+									console.error('something went wrong creating sampleImages');
+									reject(images);
+								}
+							});
+						});
+					} else {
+						console.error('something went wrong fetching images from repo', response);
+					}
 				}
-			}
-		),
+			),
 
 		repoService.getCategories()
-		.then(
+			.then(
 			//success on fetching categories
-			categories => {
-				return Promise.all(categories.map(category => {
-					return Promise.resolve(new Category(category))
-				}))
-			}
-		)
-		.catch(
+				categories => {
+					return Promise.all(categories.map(category => {
+						return Promise.resolve(new Category(category));
+					}));
+				}
+			)
+			.catch(
 
 			//error on fetching categories
-			response => {
-				if(response.status == 404){
+				response => {
+					if(response.status == 404){
 					// create categories
-					return new Promise((resolve, reject) => {	
+						return new Promise((resolve, reject) => {	
 
-						createSampleCategories().then(categories => {
-							if(categories.length == SampleData.categories.length){
-								Promise.all(categories.map(category => 
-									repoService.addCategory(category)
-									.catch(e => {
+							createSampleCategories().then(categories => {
+								if(categories.length == SampleData.categories.length){
+									Promise.all(categories.map(category => 
+										repoService.addCategory(category)
+											.catch(e => {
 
-										console.error("Something went wrong adding category to repo", e)
-										reject(categories)
-									})
-								))
+												console.error('Something went wrong adding category to repo', e);
+												reject(categories);
+											})
+									))
 								
-								.then(() => {
-									resolve(categories)
-								})
-							} 
+										.then(() => {
+											resolve(categories);
+										});
+								} 
 							
-							else {
-								console.error("something went wrong creating sampleCategories")
-								reject(categories)
-							}
-						})
-					})
-				} else {
-					console.error("something went wrong fetching categories from repo", response)
+								else {
+									console.error('something went wrong creating sampleCategories');
+									reject(categories);
+								}
+							});
+						});
+					} else {
+						console.error('something went wrong fetching categories from repo', response);
+					}
 				}
-			}
-		)
+			)
 	])
 		
 	//create items
-	.then(objects => {
-		let images = objects[0]
-		let categories = objects[1]
-		dispatch(imageActions.addImagesAction(images))
-		dispatch(categoryActions.addCategoriesAction(categories))
+		.then(objects => {
+			let images = objects[0];
+			let categories = objects[1];
+			dispatch(imageActions.addImagesAction(images));
+			dispatch(categoryActions.addCategoriesAction(categories));
 		
-		return repoService.getItems()
-		.then(
-			//success on fetching Items
-			items => {
+			return repoService.getItems()
+				.then(
+					//success on fetching Items
+					items => {
 
-				items.map(item => {
+						items.map(item => {
 
-					item.image = images.filter(image => image.id == item.image.id)[0]
-					item.category = categories.filter(category => category.id == item.category.id)[0]
-					return item
-				})
-				return Promise.all(items.map(item => {
+							item.image = images.filter(image => image.id == item.image.id)[0];
+							item.category = categories.filter(category => category.id == item.category.id)[0];
+							return item;
+						});
+						return Promise.all(items.map(item => {
 
-					return Promise.resolve(new Item(item))
-				}))
-			}
-		)
-		.catch(
-			//error on fetching items
-			response => {
-				if(response.status == 404){
+							return Promise.resolve(new Item(item));
+						}));
+					}
+				)
+				.catch(
+					//error on fetching items
+					response => {
+						if(response.status == 404){
 
-					// create items
-					return new Promise((resolve, reject) => {	
+							// create items
+							return new Promise((resolve, reject) => {	
 
-						createSampleItems(categories, images).then(items => {
+								createSampleItems(categories, images).then(items => {
 
-							if(items.length == SampleData.items.length){
+									if(items.length == SampleData.items.length){
 								
-								Promise.all(items.map(item => 
-									repoService.addItem(item)
-									.catch(e => {
+										Promise.all(items.map(item => 
+											repoService.addItem(item)
+												.catch(e => {
 
-										console.error("Something went wrong adding item to repo", e)
-										reject(items)
-									})
-								))
+													console.error('Something went wrong adding item to repo', e);
+													reject(items);
+												})
+										))
 								
-								.then(() => {
-									resolve(items)
-								})
-							} 
+											.then(() => {
+												resolve(items);
+											});
+									} 
 							
-							else {
-								console.error("something went wrong creating sampleItems")
-								reject(items)
-							}
-						})
-					})
-				} else {
-					console.error("something went wrong fetching items from repo", response)
-				}
-			}
-		)
+									else {
+										console.error('something went wrong creating sampleItems');
+										reject(items);
+									}
+								});
+							});
+						} else {
+							console.error('something went wrong fetching items from repo', response);
+						}
+					}
+				);
 
 
-	})
-	.then(items => 
-		dispatch(addItemsAction(items))
-	)
+		})
+		.then(items => 
+			dispatch(addItemsAction(items))
+		);
 	
 
 

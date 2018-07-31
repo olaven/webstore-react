@@ -1,10 +1,10 @@
 export const actions = {
-	addImage: "ADD_IMAGE",
-	deleteImage: "DELETE_IMAGE",
-	changeImage: "CHANGE_IMAGE",
-	save: "SAVE_IMAGES",
-	cancelSave: "CANCEL_SAVE_IMAGES",
-	addImages: "ADD_IMAGES",
+	addImage: 'ADD_IMAGE',
+	deleteImage: 'DELETE_IMAGE',
+	changeImage: 'CHANGE_IMAGE',
+	save: 'SAVE_IMAGES',
+	cancelSave: 'CANCEL_SAVE_IMAGES',
+	addImages: 'ADD_IMAGES',
 };
 
 function addImageAction(arg, edit) {

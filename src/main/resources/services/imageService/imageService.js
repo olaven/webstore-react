@@ -28,9 +28,9 @@ exports.get = function(req) {
 
 	} else {
 		
-		var result = servicesLib.getNodes("data.type = 'image'"); 
+		var result = servicesLib.getNodes('data.type = \'image\''); 
 		
-		if(result === "NOT_FOUND") {
+		if(result === 'NOT_FOUND') {
 			return {
 				status : 404, 
 				message : 'Not found'

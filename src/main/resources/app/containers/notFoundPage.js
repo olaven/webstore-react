@@ -7,9 +7,6 @@ import '../styles/notFoundPage.less';
 import urls from '../urls'; 
 
 export default class NotFound extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-	componentDidMount() {
-		console.log("error page loaded"); 
-	}
 	render() {
 		return (
 			<h1 className="NotFoundPage">

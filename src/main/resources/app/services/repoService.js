@@ -50,13 +50,13 @@ export function getItems(){
 	return new Promise((resolve,reject) => {
 		fetch(itemRepoUrl)
 			.then(response => response.status != 200 ? reject(response) : response.json()
-			.then(data =>  data.nodes.filter(node => node.data ? node : null))
-			.then(nodes => nodes.map(node => node.data))
-			.then(data => resolve(data))
-		)
-		.catch(e => reject(e))
+				.then(data =>  data.nodes.filter(node => node.data ? node : null))
+				.then(nodes => nodes.map(node => node.data))
+				.then(data => resolve(data))
+			)
+			.catch(e => reject(e));
 
-	})
+	});
 }
 
 
@@ -103,9 +103,9 @@ export function getCategories(){
 				.then(nodes => nodes.map(node => node.data))
 				.then(data => resolve(data))
 			)
-			.catch(e => reject(e))
+			.catch(e => reject(e));
 
-	})
+	});
 	
 }
 

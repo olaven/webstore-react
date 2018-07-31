@@ -43,7 +43,7 @@ class App extends Component {
 
 	// STATE HOLDS TEST ITEMS 
 	componentDidMount() {
-		this.props.onLoad()
+		this.props.onLoad();
 	}
 
     
@@ -95,7 +95,7 @@ function mapDispatchToProps(dispatch) {
 		createItem: (arg) => { mainActions.createItem(dispatch, arg); },
 		createCategory: (arg) => { categoryActions.createCategory(dispatch, arg); },
 		addImage: (arg) => { imageActions.addImage(dispatch, arg); },
-		onLoad:() => {mainActions.onLoad(dispatch)}
+		onLoad:() => {mainActions.onLoad(dispatch);}
 	};
 }
 

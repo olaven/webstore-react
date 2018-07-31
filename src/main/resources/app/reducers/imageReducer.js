@@ -22,11 +22,11 @@ function addImage(oldState, action) {
 
 function addImages(oldState, action) {
 	let state = oldState;
-	state = state.updateIn(["images"], function(images) {
+	state = state.updateIn(['images'], function(images) {
 		images = images.concat(action.data);
 		return images;
 	});
-	console.log("imageRed", state, action)
+	console.log('imageRed', state, action);
 	return state;
 }
 

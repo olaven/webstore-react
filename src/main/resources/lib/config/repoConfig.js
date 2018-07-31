@@ -3,24 +3,24 @@
  */
 module.exports = {
 	name : app.name, 
-	branch : "master",
-	path : "/repo",
+	branch : 'master',
+	path : '/repo',
 	user : {
-		login: "su",
-		userStore: "system"
+		login: 'su',
+		userStore: 'system'
 	}, 
-	principal : ["role:system.admin"],
+	principal : ['role:system.admin'],
 	permissions : [
 		{
-			principal: "role:system.everyone",
+			principal: 'role:system.everyone',
 			allow: [
-				"READ",
-				"CREATE",
-				"MODIFY",
-				"DELETE",
-				"PUBLISH",
-				"READ_PERMISSIONS",
-				"WRITE_PERMISSIONS"
+				'READ',
+				'CREATE',
+				'MODIFY',
+				'DELETE',
+				'PUBLISH',
+				'READ_PERMISSIONS',
+				'WRITE_PERMISSIONS'
 			],
 			deny: []
 		}

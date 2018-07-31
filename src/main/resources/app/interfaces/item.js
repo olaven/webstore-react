@@ -1,8 +1,8 @@
-import Updatable from "./updatable";
+import Updatable from './updatable';
 
 export default class Item extends Updatable{
 	constructor(data){
-        super();
+		super();
 		this.name = data.name; 
 		this.info = data.info;  
 		this.image = data.image; 
@@ -11,5 +11,5 @@ export default class Item extends Updatable{
 		this.category = data.category || 'others'; 
 		this.edited = data.edited == undefined ? true : data.edited;
 		this.type = 'item';
-    }
+	}
 } 

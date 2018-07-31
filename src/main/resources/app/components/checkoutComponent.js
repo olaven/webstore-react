@@ -7,7 +7,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 // Stylesheets
 import '../styles/cartPage.less';
 
-import SampleData from "../../sampledata/sampleData.json";
+import SampleData from '../../sampledata/sampleData.json';
 
 export default class CheckoutComponent extends Component {
     
