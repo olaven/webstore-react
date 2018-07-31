@@ -22,10 +22,21 @@ function createCategory(oldState, action){
 		categories = categories.push(action.category);
 		return categories;
 	});
+	state = sortCategories(state);
+	return state;
+}
+
+function addCategories(oldState, action){
+	let state = oldState;
+	state = state.updateIn(['categories'], function (categories) {
+		categories = categories.concat(action.categories);
+		return categories;
+	});
 	if(action.edit){
 		state = state.set('edited', true);
 	}
 	state = sortCategories(state);
+	console.log("catRed", state, action)
 	return state;
 }
 
@@ -108,6 +119,8 @@ function cancelSave(oldState, action){
 
 export function categoryReducer(state = initialState, action) {
 	switch (action.type) {
+	case categoryActions.actions.addCategories:
+		return addCategories(state,action);
 	case categoryActions.actions.cancelSave:
 		return cancelSave(state,action);
 	case categoryActions.actions.save:

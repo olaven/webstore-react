@@ -82,7 +82,7 @@ var getNodes = function (query) {
         query: query
     }).hits;
     if (!hits || hits.length < 1) {
-        return hits;
+        return "NOT_FOUND";
     }
 
     var nodes = hits.map(function (hit) {

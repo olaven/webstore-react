@@ -31,7 +31,7 @@ export default class StorefrontItemComponent extends Component {
 			<div onClick={()=> this.props.onClick(this.props.item)}>
 				<Card className="Item-Card">
 					<CardMedia
-						image={image}
+						image={image.source}
 						className="Item-Card-Media"
 					/>
 					<CardContent className="Item-Cart-Content">

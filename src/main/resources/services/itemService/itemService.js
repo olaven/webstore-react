@@ -7,13 +7,22 @@ var servicesLib = require('../servicesLib');
  */
 exports.get = function(req) {
 
-	// log.info("GET");
+
 	var result = servicesLib.getNodes("data.type = 'item'"); 
+
+	if(result === "NOT_FOUND") {
+		return {
+			status : 404, 
+			message : "Not found"
+		};
+	} 
+		
 	return {
 		body: {nodes : result},
 		headers: {
 			"Content-Type": "application/json"
 		}
+
 	};
 };
 

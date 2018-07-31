@@ -4,7 +4,7 @@
     "images": [ 
         {
             "name": "Blue suit",
-            "source": "https://commons.wikimedia.org/wiki/Category:Blue_suits#/media/File:Kaysha._RR.jpg",
+            "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Kaysha._RR.jpg/1920px-Kaysha._RR.jpg",
             "id": 1,
             "edited" : false
         },
@@ -29,13 +29,13 @@
         },
         {
             "name": "Sushi",
-            "source": "https://commons.wikimedia.org/wiki/Sushi#/media/File:California_Rolls.JPG",
+            "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/California_Rolls.JPG/800px-California_Rolls.JPG",
             "id": 5,
             "edited" : false
         },
         {
             "name": "train",
-            "source": "https://commons.wikimedia.org/wiki/Category:Express_trains#/media/File:Dec_1990_Gold_Runx_(40409700532).jpg",
+            "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Dec_1990_Gold_Runx_%2840409700532%29.jpg/1920px-Dec_1990_Gold_Runx_%2840409700532%29.jpg",
             "id": 6,
             "edited" : false
         }
@@ -43,7 +43,7 @@
 
     "items": [
         {
-            "name" : "Blues Suit", 
+            "name" : "Blue Suit", 
             "info" : "This suit is blue and it suits you perfectly!",
             "image": 0,
             "visible": true,

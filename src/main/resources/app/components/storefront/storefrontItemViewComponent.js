@@ -29,7 +29,7 @@ export default class StorefrontItemViewComponent extends Component {
 		return (
 			<div>
 				<CardMedia
-					image={image}
+					image={image.source}
 					className="Item-View-Media"
 				/>
 				<Typography variant="headline">

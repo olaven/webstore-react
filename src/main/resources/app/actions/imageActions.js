@@ -4,7 +4,7 @@ export const actions = {
 	changeImage: "CHANGE_IMAGE",
 	save: "SAVE_IMAGES",
 	cancelSave: "CANCEL_SAVE_IMAGES",
-	addImages: "ADD_IMAGES"
+	addImages: "ADD_IMAGES",
 };
 
 function addImageAction(arg, edit) {

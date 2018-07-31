@@ -9,6 +9,13 @@ exports.get = function(req) {
 	// log.info("GET CATEGORY");
 	var result = servicesLib.getNodes("data.type = 'category'"); 
 
+	if(result === "NOT_FOUND") {
+		return {
+			status : 404, 
+			message : "Not found"
+		};
+	} 
+		
 	return {
 		body: {nodes : result},
 		headers: {

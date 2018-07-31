@@ -77,7 +77,7 @@
                     <Card> 
                             <CardHeader title={this.props.item.name}/> 
                             <CardMedia
-                                image={this.props.item.image}
+                                image={this.props.item.image.source}
                                 className="DialogContent-Image"
                             />
                             <CardContent>

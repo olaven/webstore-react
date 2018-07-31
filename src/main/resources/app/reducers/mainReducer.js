@@ -32,6 +32,17 @@ function createItem(oldState, action){
 	return state;
 }
 
+function addItems(oldState, action){
+	let state = oldState;
+	state = state.updateIn(['allItems'], function (items) {
+		items = items.concat(action.items);
+		return items;
+	});
+	state = sortItems(state);
+	console.log("itemRed", state, action)
+	return state;
+}
+
 function deleteItem(oldState, action){
 	let state = oldState;
 	state = state.updateIn(['allItems'], function (items) {
@@ -170,7 +181,8 @@ export function mainReducer(state = initialState, action) {
 		return deleteItem(state, action);
 	case mainActions.actions.createItem:
 		return createItem(state, action);
-
+	case mainActions.actions.addItems:
+		return addItems(state, action);
 
 	default:
 		return state;

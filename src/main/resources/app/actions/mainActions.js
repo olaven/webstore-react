@@ -15,6 +15,7 @@ import Category from "../interfaces/category";
 // fetch api
 export const actions = {
 	createItem: 'CREATE_ITEM',
+	addItems: 'ADD_ITEMS',
 	deleteItem: 'DELETE_ITEM',
 	changeItem: 'CHANGE_ITEM',
 	save: 'SAVE_ITEM',
@@ -102,6 +103,13 @@ function cancelSaveAction(items){
 	};
 }
 
+function addItemsAction(items){
+	return {
+		type: actions.addItems,
+		items: items
+	}
+}
+
 
 function createSampleImages(){
 	let images = SampleData.images
@@ -121,8 +129,7 @@ function createSampleItems(categories, images){
 	let items = SampleData.items
 	items.map(item => {
 		item.image = images[item.image]
-		item.source = images[item.image].source
-		item.category = categories[item.categories]
+		item.category = categories[item.category]
 		return item
 	})
 	return Promise.all(items.map(item => 
@@ -130,14 +137,16 @@ function createSampleItems(categories, images){
 	))
 }
 
+
+
 export function onLoad(dispatch){
 	/*
 	1. load images
 	2. create image objects
 	3. store image objects in redux with one action
-	3. create items objects
-	4. store item objectsin redux with one action
 	4. create category...
+	
+	6. create items objects based on items and images
 
 	*/
 	Promise.all([
@@ -146,7 +155,6 @@ export function onLoad(dispatch){
 		.then(
 			//success fetching images
 			images => { 
-					
 				return Promise.all(images.map(image => {
 					return Promise.resolve(new Image(image))
 				}))
@@ -156,8 +164,9 @@ export function onLoad(dispatch){
 		)
 		.catch(
 			//error on fetching images
+			
 			response => {
-				if(response.status == 400){
+				if(response.status == 404){
 
 					// create images
 					return new Promise((resolve, reject) => {	
@@ -167,7 +176,6 @@ export function onLoad(dispatch){
 								Promise.all(images.map(image => 
 									repoService.addImage(image)
 									.catch(e => {
-
 										console.error("Something went wrong adding images to repo", e)
 										reject(images)
 									})
@@ -200,15 +208,14 @@ export function onLoad(dispatch){
 			}
 		)
 		.catch(
+
 			//error on fetching categories
 			response => {
-				if(response.status == 400){
-
+				if(response.status == 404){
 					// create categories
 					return new Promise((resolve, reject) => {	
 
 						createSampleCategories().then(categories => {
-							console.log(categories)
 							if(categories.length == SampleData.categories.length){
 								Promise.all(categories.map(category => 
 									repoService.addCategory(category)
@@ -242,18 +249,21 @@ export function onLoad(dispatch){
 		let images = objects[0]
 		let categories = objects[1]
 		dispatch(imageActions.addImagesAction(images))
-		dispatch(categoryActions.addCategories(categories))
+		dispatch(categoryActions.addCategoriesAction(categories))
 		
-		repoService.getItems()
+		return repoService.getItems()
 		.then(
 			//success on fetching Items
 			items => {
+
 				items.map(item => {
+
 					item.image = images.filter(image => image.id == item.image.id)[0]
-					item.category = categories[item.categories]
+					item.category = categories.filter(category => category.id == item.category.id)[0]
 					return item
 				})
 				return Promise.all(items.map(item => {
+
 					return Promise.resolve(new Item(item))
 				}))
 			}
@@ -261,16 +271,17 @@ export function onLoad(dispatch){
 		.catch(
 			//error on fetching items
 			response => {
-				if(response.status == 400){
+				if(response.status == 404){
 
 					// create items
 					return new Promise((resolve, reject) => {	
 
-						createSampleItems().then(items => {
-							console.log(items)
+						createSampleItems(categories, images).then(items => {
+
 							if(items.length == SampleData.items.length){
+								
 								Promise.all(items.map(item => 
-									repoService.addCategory(item)
+									repoService.addItem(item)
 									.catch(e => {
 
 										console.error("Something went wrong adding item to repo", e)
@@ -298,7 +309,7 @@ export function onLoad(dispatch){
 
 	})
 	.then(items => 
-		dispatch(itemActions.addItems(items))
+		dispatch(addItemsAction(items))
 	)
 	
 

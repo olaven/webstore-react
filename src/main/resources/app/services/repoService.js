@@ -47,12 +47,16 @@ export function editItem(item){
 }
 
 export function getItems(){
-	return fetch(itemRepoUrl)
-		.then(response => response.length == 0  ? response : response.json()
+	return new Promise((resolve,reject) => {
+		fetch(itemRepoUrl)
+			.then(response => response.status != 200 ? reject(response) : response.json()
 			.then(data =>  data.nodes.filter(node => node.data ? node : null))
 			.then(nodes => nodes.map(node => node.data))
+			.then(data => resolve(data))
+		)
+		.catch(e => reject(e))
 
-		);
+	})
 }
 
 
@@ -91,11 +95,18 @@ export function editCategory(item){
 }
 
 export function getCategories(){
-	return fetch(categoryRepoUrl)
-		.then(response => response.length == 0 ? response : response.json()
-			.then(data =>  data.nodes.filter(node => node.data ? node : null))
-			.then(nodes => nodes.map(node => node.data))
-		);
+	return new Promise((resolve, reject) => {
+		fetch(categoryRepoUrl)
+			
+			.then(response => response.status != 200 ? reject(response) : response.json()
+				.then(data =>  data.nodes.filter(node => node.data ? node : null))
+				.then(nodes => nodes.map(node => node.data))
+				.then(data => resolve(data))
+			)
+			.catch(e => reject(e))
+
+	})
+	
 }
 
 

@@ -8,7 +8,8 @@ export const actions = {
 	toggleCategoryVisible: 'HIDE_CATEGORY',
 	changeCategory: 'CHANGE_CATEGORY',
 	save: 'SAVE_CATEGORIES',
-	cancelSave: 'CANCEL_SAVE_CATEGORIES'
+	cancelSave: 'CANCEL_SAVE_CATEGORIES',
+	addCategories: 'ADD_CATEGORIES'
     
 };
   
@@ -51,6 +52,13 @@ function saveAction(){
 function cancelSaveAction(categories){
 	return {
 		type: actions.cancelSave,
+		categories: categories
+	};
+}
+  
+export function addCategoriesAction(categories){
+	return {
+		type: actions.addCategories,
 		categories: categories
 	};
 }
