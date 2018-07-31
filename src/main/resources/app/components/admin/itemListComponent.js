@@ -30,8 +30,8 @@ export default class ItemListComponent extends React.PureComponent {
 			</TableCell>
 			<TableCell>{this.props.item.name}</TableCell>
 			<TableCell>{this.props.item.info}</TableCell>
-			<TableCell>{this.props.item.image}</TableCell>
-			<TableCell>{this.props.item.category}</TableCell>
+			<TableCell>{this.props.item.image.source}</TableCell>
+			<TableCell>{this.props.item.category.title}</TableCell>
 			<TableCell>{this.props.item.id}</TableCell>
 
 			<TableCell>
