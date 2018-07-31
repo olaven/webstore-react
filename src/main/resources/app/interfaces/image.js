@@ -5,10 +5,11 @@
  */
 export default class Image {
 	constructor(data) {
+		console.log(data)
 		this.name = data.name || "unnamed";
 		this.id = data.id || new Date().valueOf(); 
 		this.type = "image";
-		this.edited = data.edited || false;
+		this.edited = data.edited == undefined ? true : data.edited;
 		this.file = data.file || null;
 		this.source = data.file ? URL.createObjectURL(data.file) : data.source;
 	}
