@@ -155,7 +155,7 @@ export default class ItemComponent extends React.PureComponent {
 							{this.props.items.map((item, index) => {
 								if (item.name.toUpperCase()
 									.includes(this.state.searchValue.toUpperCase()
-									) || item.category.toUpperCase()
+									) || item.category.filter.toUpperCase()
 									.includes(this.state.searchValue.toUpperCase()
 									)) {
 									return <ItemListComponent
