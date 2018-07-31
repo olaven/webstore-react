@@ -46,11 +46,11 @@ export default class CreateItemComponent extends React.PureComponent {
         )
     }
 
-    handleChange = event => {
+    handleChange(event) {
         this.setState({ [event.target.id]: event.target.value })
     }
 
-    handleImageChange = event => {
+    handleImageChange(event) {
         this.setState({
             image : event.target.value
         }); 
@@ -63,11 +63,11 @@ export default class CreateItemComponent extends React.PureComponent {
         this.props.addImage(image); 
     }
 
-    handleCategoryChange = event => {
+    handleCategoryChange(event) {
         this.setState({category: event.target.value})
     }
 
-    validateAndSubmit = () => {
+    validateAndSubmit() {
         if (this.state.name !== "" && this.state.info !== "") {
             this.props.submit(this.state);
             this.props.onClose()
@@ -100,7 +100,7 @@ export default class CreateItemComponent extends React.PureComponent {
                         id="name"
                         value={this.state.name}
                         margin="normal"
-                        onChange={this.handleChange}
+                        onChange={this.handleChange.bind(this)}
                         required
                         error={this.state.name === ""}
                     />
@@ -110,7 +110,7 @@ export default class CreateItemComponent extends React.PureComponent {
                         id="info"
                         value={this.state.info}
                         margin="normal"
-                        onChange={this.handleChange}
+                        onChange={this.handleChange.bind(this)}
                         required
                         error={this.state.info === ""}
                         multiline
@@ -121,7 +121,7 @@ export default class CreateItemComponent extends React.PureComponent {
                         <Select
                             value={this.state.category}
                             name="category"
-                            onChange={this.handleCategoryChange}
+                            onChange={this.handleCategoryChange.bind(this)}
                             autoWidth>
                             <MenuItem value="" disabled>
                                 <em>None</em>
@@ -134,7 +134,7 @@ export default class CreateItemComponent extends React.PureComponent {
                         <Select
                             value={this.state.image}
                             name="image"
-                            onChange={this.handleImageChange}
+                            onChange={this.handleImageChange.bind(this)}
                             autoWidth>
                             <MenuItem value="" disabled>
                                 <em>None</em>
@@ -148,7 +148,7 @@ export default class CreateItemComponent extends React.PureComponent {
             </form>
             <DialogActions>
                 
-                <Button onClick={this.validateAndSubmit} color="primary">
+                <Button onClick={this.validateAndSubmit.bind(this)} color="primary">
                     Submit
                 </Button>
                 <Button onClick={this.props.onClose.bind(this)} color="primary">

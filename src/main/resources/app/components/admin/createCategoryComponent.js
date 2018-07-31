@@ -21,7 +21,7 @@ export default class CreateItemComponent extends React.PureComponent {
         };
     }
 
-    handleChange = event => {
+    handleChange(event) {
         this.setState({ [event.target.id]: event.target.value })
     }
 
@@ -29,7 +29,7 @@ export default class CreateItemComponent extends React.PureComponent {
         this.setState({visible : !this.state.visible})
     }
 
-    validateAndSubmit = () => {
+    validateAndSubmit() {
         if(this.state.title !== "" && this.state.filter !== "") {
             this.props.submit(this.state);
             this.props.onClose()
@@ -46,7 +46,7 @@ export default class CreateItemComponent extends React.PureComponent {
                             id="title"
                             value={this.state.title}
                             margin="normal"
-                            onChange={this.handleChange}
+                            onChange={this.handleChange.bind(this)}
                             required
                             error={this.state.title === ""}
                         />
@@ -57,7 +57,7 @@ export default class CreateItemComponent extends React.PureComponent {
                             id="filter"
                             value={this.state.filter}
                             margin="normal"
-                            onChange={this.handleChange}
+                            onChange={this.handleChange.bind(this)}
                             required
                             error={this.state.filter === ""}
                         />
@@ -66,7 +66,7 @@ export default class CreateItemComponent extends React.PureComponent {
                 </form>
                 <DialogActions>
 
-                    <Button onClick={this.validateAndSubmit} color="primary">
+                    <Button onClick={this.validateAndSubmit.bind(this)} color="primary">
                         Submit
                 </Button>
                     <Button onClick={this.props.onClose.bind(this)} color="primary">
