@@ -113,16 +113,18 @@ function addItemsAction(items){
 
 function createSampleImages(){
 	let images = SampleData.images
-	return Promise.all(images.map(image => 
+	return Promise.all(images.map(image => {
+		image['edited'] = false
 		Promise.resolve(new Image(image))
-	))
+	}))
 }
 
 function createSampleCategories(){
 	let categories = SampleData.categories
-	return Promise.all(categories.map(category => 
+	return Promise.all(categories.map(category => {
+		category['edited'] = false
 		Promise.resolve(new Category(category))
-	))
+	}))
 }
 
 function createSampleItems(categories, images){
@@ -132,9 +134,10 @@ function createSampleItems(categories, images){
 		item.category = categories[item.category]
 		return item
 	})
-	return Promise.all(items.map(item => 
-		Promise.resolve(new Item(item))
-	))
+	return Promise.all(items.map(item => {
+		item['edited'] = false
+		return Promise.resolve(new Item(item))
+	}))
 }
 
 
@@ -156,6 +159,7 @@ export function onLoad(dispatch){
 			//success fetching images
 			images => { 
 				return Promise.all(images.map(image => {
+					image['edited'] = false
 					return Promise.resolve(new Image(image))
 				}))
 					
@@ -203,6 +207,7 @@ export function onLoad(dispatch){
 			//success on fetching categories
 			categories => {
 				return Promise.all(categories.map(category => {
+					category['edited'] = false
 					return Promise.resolve(new Category(category))
 				}))
 			}
@@ -263,7 +268,7 @@ export function onLoad(dispatch){
 					return item
 				})
 				return Promise.all(items.map(item => {
-
+					item['edited'] = false
 					return Promise.resolve(new Item(item))
 				}))
 			}
@@ -279,7 +284,7 @@ export function onLoad(dispatch){
 						createSampleItems(categories, images).then(items => {
 
 							if(items.length == SampleData.items.length){
-								
+
 								Promise.all(items.map(item => 
 									repoService.addItem(item)
 									.catch(e => {

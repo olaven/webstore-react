@@ -51,7 +51,7 @@ class StorefrontPage extends React.PureComponent {
   renderItems() {
     return this.props.items.map((item, index) => {
       if(item.name.toUpperCase().includes(this.state.searchValue.toUpperCase()) ||
-        item.category.toUpperCase().includes(this.state.searchValue.toUpperCase())
+        item.category.filter.toUpperCase().includes(this.state.searchValue.toUpperCase())
         ){ 
         if(item.visible){
           return <Grid key={index} item xs={12} lg={4} xl={3}>
