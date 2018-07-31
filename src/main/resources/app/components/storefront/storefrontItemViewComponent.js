@@ -2,15 +2,15 @@
  * Made for testing 
  * Represents an item in the store 
  */
-import React, {Component} from "react"; 
+import React, {Component} from 'react'; 
 
 
 // Material UI 
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 
 // Stylesheets
-import "../../styles/storefront/storefrontItemViewComponent.less";
+import '../../styles/storefront/storefrontItemViewComponent.less';
 
 export default class StorefrontItemViewComponent extends Component {
     

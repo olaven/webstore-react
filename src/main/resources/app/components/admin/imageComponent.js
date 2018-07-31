@@ -1,21 +1,21 @@
 
-import React from "react";
+import React from 'react';
 
 // Components
-import ImageListComponent from "./imageListComponent";
-import SearchComponent from "../searchComponent";
-import DialogComponent from "../dialogComponent";
-import UploadImageDialog from "../uploadImageDialog";
+import ImageListComponent from './imageListComponent';
+import SearchComponent from '../searchComponent';
+import DialogComponent from '../dialogComponent';
+import UploadImageDialog from '../uploadImageDialog';
 
 // Material UI
-import Paper from "@material-ui/core/Paper"; 
-import Table from "@material-ui/core/Table"; 
-import TableBody from "@material-ui/core/TableBody"; 
-import TableHead from "@material-ui/core/TableHead"; 
-import TableRow from "@material-ui/core/TableRow"; 
-import TableCell from "@material-ui/core/TableCell"; 
-import Typography from "@material-ui/core/Typography"; 
-import Button from "@material-ui/core/Button"; 
+import Paper from '@material-ui/core/Paper'; 
+import Table from '@material-ui/core/Table'; 
+import TableBody from '@material-ui/core/TableBody'; 
+import TableHead from '@material-ui/core/TableHead'; 
+import TableRow from '@material-ui/core/TableRow'; 
+import TableCell from '@material-ui/core/TableCell'; 
+import Typography from '@material-ui/core/Typography'; 
+import Button from '@material-ui/core/Button'; 
 
 
 
@@ -24,9 +24,9 @@ export default class ImageComponent extends React.PureComponent {
 		super(arg);
 		this.state = {
 			uploadImageDialogVisible : false, 
-			name:  "",
+			name:  '',
 			image: null,
-			searchValue: "",
+			searchValue: '',
 			imageToBeRemoved: null,
 			imageToBeEdited: null,
 			open: false
@@ -54,7 +54,7 @@ export default class ImageComponent extends React.PureComponent {
 			this.setState({ dialogType: type, open: true, imageToBeRemoved: image});
 		} else {
 
-			this.setState({ dialogType: "", open: false});
+			this.setState({ dialogType: '', open: false});
 		}
 	}
 
@@ -135,7 +135,7 @@ export default class ImageComponent extends React.PureComponent {
 					remove={this.props.deleteImage}
 					toBeRemoved={this.state.imageToBeRemoved}
 					openToaster={this.props.openToaster} 
-					message={this.state.imageToBeRemoved ? this.state.imageToBeRemoved.name :  ""}
+					message={this.state.imageToBeRemoved ? this.state.imageToBeRemoved.name :  ''}
 				/>
 
 				<Typography variant="display3" gutterBottom>

@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react';
 
 // Material UI 
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Typography from "@material-ui/core/Typography"; 
-import CardMedia from "@material-ui/core/CardMedia";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Typography from '@material-ui/core/Typography'; 
+import CardMedia from '@material-ui/core/CardMedia';
 
 // Interfaces 
-import Image from "../interfaces/image"; 
+import Image from '../interfaces/image'; 
 
 // Stylesheets
-import "../styles/uploadImageDialog.less";
+import '../styles/uploadImageDialog.less';
 
 
 
@@ -22,8 +22,8 @@ export default class UploadImageDialog extends React.PureComponent {
 	constructor(arg) {
 		super(arg);
 		this.state = {
-			name: this.props.image ? this.props.image.name : "", 
-			source: this.props.image ? this.props.image.source : "", 
+			name: this.props.image ? this.props.image.name : '', 
+			source: this.props.image ? this.props.image.source : '', 
 			file: null,
 			validationFailed: false 
 		};
@@ -33,7 +33,7 @@ export default class UploadImageDialog extends React.PureComponent {
 		if(props.image) {
 			this.setState({name: props.image.name, source: props.image.source});
 		} else {
-			this.setState({name: "", source: ""});
+			this.setState({name: '', source: ''});
 		}
 	}
 
@@ -90,7 +90,7 @@ export default class UploadImageDialog extends React.PureComponent {
 			</Button>
 			:
 			<Button 
-				disabled={this.state.source == "" || this.state.name == "" ? true : false}
+				disabled={this.state.source == '' || this.state.name == '' ? true : false}
 				onClick={this.handleUpload.bind(this)} 
 				variant="outlined"
 				color="primary">
@@ -99,11 +99,11 @@ export default class UploadImageDialog extends React.PureComponent {
 	}
 
 	renderMedia(){
-		if (this.state.source != ""){
+		if (this.state.source != ''){
 			return <CardMedia
 				image={this.state.source}
 				className="Item-Card-Media"
-			/> 
+			/>; 
 		}
 	}
 
@@ -136,7 +136,7 @@ export default class UploadImageDialog extends React.PureComponent {
 				{this.renderMedia()}
 				<label htmlFor="raised-button-file">
 					<Button
-						color={this.state.validationFailed ? "secondary" : "primary"}
+						color={this.state.validationFailed ? 'secondary' : 'primary'}
 						component="span"
 						variant="outlined" >
                         Select Image 

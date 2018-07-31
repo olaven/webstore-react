@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // Material UI 
-import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Search from "@material-ui/icons/Search";
-import { MDCChipSet } from "@material/chips";
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Search from '@material-ui/icons/Search';
+import { MDCChipSet } from '@material/chips';
 
 // Stylesheets
-import "../styles/searchComponent.less";
+import '../styles/searchComponent.less';
 
 
 export default class SearchComponent extends Component {

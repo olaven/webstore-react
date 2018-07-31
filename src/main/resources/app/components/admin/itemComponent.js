@@ -1,20 +1,20 @@
 
-import React from "react";
+import React from 'react';
 
 // Components
-import ItemListComponent from "./itemListComponent";
-import SearchComponent from "../searchComponent";
-import DialogComponent from "../dialogComponent";
+import ItemListComponent from './itemListComponent';
+import SearchComponent from '../searchComponent';
+import DialogComponent from '../dialogComponent';
 
 // Material UI
-import Paper from "@material-ui/core/Paper"; 
-import Table from "@material-ui/core/Table"; 
-import TableBody from "@material-ui/core/TableBody"; 
-import TableHead from "@material-ui/core/TableHead"; 
-import TableRow from "@material-ui/core/TableRow"; 
-import TableCell from "@material-ui/core/TableCell"; 
-import Typography from "@material-ui/core/Typography"; 
-import Button from "@material-ui/core/Button"; 
+import Paper from '@material-ui/core/Paper'; 
+import Table from '@material-ui/core/Table'; 
+import TableBody from '@material-ui/core/TableBody'; 
+import TableHead from '@material-ui/core/TableHead'; 
+import TableRow from '@material-ui/core/TableRow'; 
+import TableCell from '@material-ui/core/TableCell'; 
+import Typography from '@material-ui/core/Typography'; 
+import Button from '@material-ui/core/Button'; 
 
 
 export default class ItemComponent extends React.PureComponent {
@@ -22,9 +22,9 @@ export default class ItemComponent extends React.PureComponent {
 		super(arg);
 		this.state = {
 			open: false,
-			searchValue: "",
-			dialogType: "",
-			message: "",
+			searchValue: '',
+			dialogType: '',
+			message: '',
 			itemToBeRemoved: null,
 			itemToBeEdited: null
 		};
@@ -43,13 +43,13 @@ export default class ItemComponent extends React.PureComponent {
 		if(type){
 			this.setState({ dialogType: type, open: true, message: message , itemToBeRemoved: item});
 		} else {
-			this.setState({ dialogType: "", open: false, message: "" });
+			this.setState({ dialogType: '', open: false, message: '' });
 		}
 	}
 
 	editItem(item){
 		this.setState({itemToBeEdited: item});
-		this.toggleDialog("ITEM");
+		this.toggleDialog('ITEM');
 	}
 
 	getButtons(){
@@ -128,7 +128,7 @@ export default class ItemComponent extends React.PureComponent {
 				</Typography>
 				<SearchComponent value={this.state.searchValue} onChange={this.searchItemOnChange.bind(this)}/>
 				<Button 
-					onClick={()=> this.toggleDialog("ITEM")}
+					onClick={()=> this.toggleDialog('ITEM')}
 					color="primary"
 					variant="outlined">
                     

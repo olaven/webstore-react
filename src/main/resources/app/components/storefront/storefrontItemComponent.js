@@ -2,16 +2,16 @@
  * Made for testing 
  * Represents an item in the store 
  */
-import React, {Component} from "react"; 
-import PropTypes from "prop-types";
+import React, {Component} from 'react'; 
+import PropTypes from 'prop-types';
 // Material UI 
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 
 // Stylesheets
-import "../../styles/storefront/storefrontItemComponent.less"; 
+import '../../styles/storefront/storefrontItemComponent.less'; 
 
 export default class StorefrontItemComponent extends Component {
     

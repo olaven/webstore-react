@@ -1,13 +1,13 @@
-import React, {Component} from "react"; 
+import React, {Component} from 'react'; 
 
 // Material UI 
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-import ButtonBase from "@material-ui/core/ButtonBase";
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import ButtonBase from '@material-ui/core/ButtonBase';
 // Stylesheets
-import "../styles/cartPage.less";
+import '../styles/cartPage.less';
 
-import SampleData from "../sampleData.json";
+import SampleData from '../sampleData.json';
 
 export default class CheckoutComponent extends Component {
     

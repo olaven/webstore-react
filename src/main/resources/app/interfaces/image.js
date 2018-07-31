@@ -5,9 +5,9 @@
  */
 export default class Image {
 	constructor(data) {
-		this.name = data.name || "unnamed";
+		this.name = data.name || 'unnamed';
 		this.id = data.id || new Date().valueOf(); 
-		this.type = "image";
+		this.type = 'image';
 		this.edited = data.edited == undefined ? true : data.edited;
 		this.file = data.file || null;
 		this.source = data.file ? URL.createObjectURL(data.file) : data.source;

@@ -1,24 +1,24 @@
-import * as toasterActions from "./toasterActions";
+import * as toasterActions from './toasterActions';
 
-import * as repoService from "../services/repoService";
+import * as repoService from '../services/repoService';
 
-import Item from "../interfaces/item";
+import Item from '../interfaces/item';
 
 // fetch api
 export const actions = {
-	createItem: "CREATE_ITEM",
-	deleteItem: "DELETE_ITEM",
-	changeItem: "CHANGE_ITEM",
-	save: "SAVE_ITEM",
-	cancelSave: "CANCEL_SAVE",
-	toggleItemVisible: "TOGGLE_VISIBLE",
+	createItem: 'CREATE_ITEM',
+	deleteItem: 'DELETE_ITEM',
+	changeItem: 'CHANGE_ITEM',
+	save: 'SAVE_ITEM',
+	cancelSave: 'CANCEL_SAVE',
+	toggleItemVisible: 'TOGGLE_VISIBLE',
 
-	addItemToCart: "ADD_ITEM_TO_CART",
-	removeItemFromCart: "REMOVE_ITEM_FROM_CART",
+	addItemToCart: 'ADD_ITEM_TO_CART',
+	removeItemFromCart: 'REMOVE_ITEM_FROM_CART',
 
-	checkout: "CHECKOUT",
+	checkout: 'CHECKOUT',
 
-	searchCategory: "SEARCH_CATEGORY",
+	searchCategory: 'SEARCH_CATEGORY',
 };
 
 
@@ -103,7 +103,7 @@ export function cancelSave(dispatch){
 }
 
 export function save(dispatch){
-	toasterActions.showToaster(dispatch, "Saved");
+	toasterActions.showToaster(dispatch, 'Saved');
 	dispatch(saveAction());
 }
 
@@ -114,7 +114,7 @@ export function searchCategory(dispatch, arg){
 
 
 export function checkout(dispatch){
-	toasterActions.showToaster(dispatch, "Thank you for your purchase!");
+	toasterActions.showToaster(dispatch, 'Thank you for your purchase!');
 	dispatch(checkoutAction());
 }
 
@@ -141,7 +141,7 @@ export function changeItem(dispatch, arg){
 
 export function addItemToCart(dispatch, arg){ 
 	//promise 
-	toasterActions.showToaster(dispatch, "Item was added to cart");
+	toasterActions.showToaster(dispatch, 'Item was added to cart');
 	dispatch(addItemToCartAction(arg));
 }
 

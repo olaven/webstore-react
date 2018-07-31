@@ -5,9 +5,9 @@ export default class Item {
 		this.image = data.image; 
 		this.id = data.id || new Date().valueOf();
 		this.visible = data.visible == undefined ? true: data.visible;
-		this.category = data.category || "others"; 
+		this.category = data.category || 'others'; 
 		this.edited = data.edited == undefined ? true : data.edited;
-		this.type = "item";
+		this.type = 'item';
 	}
 
 	update(data){

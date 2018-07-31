@@ -1,11 +1,11 @@
 const itemRepoUrl =
-  "/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/itemService";
+  '/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/itemService';
 
 const categoryRepoUrl =
-  "/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/categoryService";
+  '/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/categoryService';
     
 const imageRepoUrl =
-  "/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/imageService";
+  '/app/com.enonic.app.webstore.react/_/service/com.enonic.app.webstore.react/imageService';
     
 
 
@@ -16,9 +16,9 @@ const imageRepoUrl =
 export function addItem(item){
 	item.edited = null;
 	return fetch(itemRepoUrl, {
-		method: "POST",
+		method: 'POST',
 		headers: {
-			"Content-Type": "application/json; charset=utf-8"
+			'Content-Type': 'application/json; charset=utf-8'
 		},
 		body: JSON.stringify(item)
 	});
@@ -27,9 +27,9 @@ export function addItem(item){
 
 export function removeItem(item){
 	return fetch(itemRepoUrl, {
-		method: "DELETE",
+		method: 'DELETE',
 		headers: {
-			"Content-Type": "application/json; charset=utf-8"
+			'Content-Type': 'application/json; charset=utf-8'
 		},
 		body: JSON.stringify(item)
 	});
@@ -38,9 +38,9 @@ export function removeItem(item){
 export function editItem(item){
 	item.edited = null;
 	return fetch(itemRepoUrl, {
-		method: "PUT",
+		method: 'PUT',
 		headers: {
-			"Content-Type": "application/json; charset=utf-8"
+			'Content-Type': 'application/json; charset=utf-8'
 		},
 		body: JSON.stringify(item)
 	});
@@ -64,7 +64,7 @@ export function getItems(){
 export function addCategory(item){
 
 	return fetch(categoryRepoUrl, {
-		method: "POST",
+		method: 'POST',
 		body: JSON.stringify(item)
 	});
     
@@ -72,9 +72,9 @@ export function addCategory(item){
 
 export function removeCategory(item){
 	return fetch(categoryRepoUrl, {
-		method: "DELETE",
+		method: 'DELETE',
 		headers: {
-			"Content-Type": "application/json; charset=utf-8"
+			'Content-Type': 'application/json; charset=utf-8'
 		},
 		body: JSON.stringify(item)
 	});
@@ -82,9 +82,9 @@ export function removeCategory(item){
 
 export function editCategory(item){
 	return fetch(categoryRepoUrl, {
-		method: "PUT",
+		method: 'PUT',
 		headers: {
-			"Content-Type": "application/json; charset=utf-8"
+			'Content-Type': 'application/json; charset=utf-8'
 		},
 		body: JSON.stringify(item)
 	});
@@ -106,9 +106,9 @@ export function getCategories(){
 
 export function addImage(image){
 	return fetch(imageRepoUrl, {
-		method: "POST",
+		method: 'POST',
 		headers: {
-			"Content-Type": "application/json; charset=utf-8"
+			'Content-Type': 'application/json; charset=utf-8'
 		},
 		body: JSON.stringify(image)
 	});
@@ -117,9 +117,9 @@ export function addImage(image){
 
 export function removeImage(image){
 	return fetch(imageRepoUrl, {
-		method: "DELETE",
+		method: 'DELETE',
 		headers: {
-			"Content-Type": "application/json; charset=utf-8"
+			'Content-Type': 'application/json; charset=utf-8'
 		},
 		body: JSON.stringify(image)
 	});
@@ -127,14 +127,14 @@ export function removeImage(image){
 
 export function editImage(image){
 	let formdata = new FormData();
-	formdata.append("name", image.name);
-	formdata.append("id", image.id);
-	formdata.append("type", image.type);
+	formdata.append('name', image.name);
+	formdata.append('id', image.id);
+	formdata.append('type', image.type);
 
-	image.file ? formdata.append("file", image.file)
-		:   formdata.append("source", image.name);
+	image.file ? formdata.append('file', image.file)
+		:   formdata.append('source', image.name);
 	return fetch(imageRepoUrl, {
-		method: "PUT",
+		method: 'PUT',
 		body: formdata
 	});
 
@@ -146,28 +146,28 @@ export function getImages(){
 	return new Promise((resolve, reject) => {
 
 		fetch(imageRepoUrl, {
-			method: "GET"
+			method: 'GET'
 		}).then(response => {
 			if(response.status != 200){
 				reject(response);
 			} else {
 				response.json()
-				.then(data => 
-					Promise.all(
-						data.nodes.map(node => {
-							node.data.edited = false
-							if(node.data.file){
-								return getImageFile(node.data.id)
-									.then(image => {
-										node.data.file = image;
-										return node.data;
-									});
-							} else {
-								return Promise.resolve(node.data);
-							}
-						})
-					)
-				).then(images => resolve(images));
+					.then(data => 
+						Promise.all(
+							data.nodes.map(node => {
+								node.data.edited = false;
+								if(node.data.file){
+									return getImageFile(node.data.id)
+										.then(image => {
+											node.data.file = image;
+											return node.data;
+										});
+								} else {
+									return Promise.resolve(node.data);
+								}
+							})
+						)
+					).then(images => resolve(images));
 			}
    
 		});
@@ -179,8 +179,8 @@ function getImageFile(key){
 
 		var xhr = new XMLHttpRequest();
 
-		xhr.open("GET", imageRepoUrl + "?data=" + key, true);
-		xhr.responseType = "blob";
+		xhr.open('GET', imageRepoUrl + '?data=' + key, true);
+		xhr.responseType = 'blob';
 		xhr.send();
 
 		xhr.onload = (event) => {

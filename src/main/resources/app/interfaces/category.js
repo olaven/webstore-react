@@ -5,7 +5,7 @@ export default class Category {
 		this.visible = data.visible || false; 
 		this.filter = data.filter;
 		this.edited = data.edited == undefined ? true: data.edited;
-		this.type = "category";
+		this.type = 'category';
 	}
 
 	update(data){

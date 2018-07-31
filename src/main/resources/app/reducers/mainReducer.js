@@ -1,18 +1,18 @@
-import { fromJS } from "immutable";
-import * as mainActions from "../actions/mainActions";
-import * as repoService from "../services/repoService";
+import { fromJS } from 'immutable';
+import * as mainActions from '../actions/mainActions';
+import * as repoService from '../services/repoService';
 
 
 const initialState = fromJS({
 	allItems: [],
 	cartItems: [],
 	deletedItems: [],
-	searchValue: "",
+	searchValue: '',
 	edited: false,
 });
 
 function sortItems(state){
-	state = state.updateIn(["allItems"], function (items) {
+	state = state.updateIn(['allItems'], function (items) {
 		return items.sort((a,b) => b.id - a.id);
 	});
 	return state;
@@ -21,12 +21,12 @@ function sortItems(state){
 
 function createItem(oldState, action){
 	let state = oldState;
-	state = state.updateIn(["allItems"], function (items) {
+	state = state.updateIn(['allItems'], function (items) {
 		items = items.push(action.item);
 		return items;
 	});
 	if(action.edit){
-		state = state.set("edited", true);
+		state = state.set('edited', true);
 	}
 	state = sortItems(state);
 	return state;
@@ -34,34 +34,34 @@ function createItem(oldState, action){
 
 function deleteItem(oldState, action){
 	let state = oldState;
-	state = state.updateIn(["allItems"], function (items) {
+	state = state.updateIn(['allItems'], function (items) {
 		items = items.splice(items.indexOf(action.item), 1);
 		return items;
 	});
-	state = state.updateIn(["deletedItems"], function (items) {
+	state = state.updateIn(['deletedItems'], function (items) {
 		items = items.push(action.item);
 		return items;
 	});
-	state = state.set("edited", true);
+	state = state.set('edited', true);
 	return state;
 }
 
 function changeItem(oldState, action){
 	let state = oldState;
-	state = state.updateIn(["allItems"], function (items) {
+	state = state.updateIn(['allItems'], function (items) {
 		let item = items.find(item => item.id == action.data.id);
 		let oldItem = item;
 		item.update(action.data);
 		items = items.splice(items.indexOf(oldItem), 1, item);
 		return items;
 	});
-	state = state.set("edited", true);
+	state = state.set('edited', true);
 	return state;
 }
 
 function addItemToCart(oldState, action){
 	let state = oldState;
-	state = state.updateIn(["cartItems"], function (items) {
+	state = state.updateIn(['cartItems'], function (items) {
 		items = items.push(action.item);
 		return items;
 	});
@@ -70,7 +70,7 @@ function addItemToCart(oldState, action){
 
 function removeItemFromCart(oldState, action){
 	let state = oldState;
-	state = state.updateIn(["cartItems"], function (items) {
+	state = state.updateIn(['cartItems'], function (items) {
 		items = items.splice(items.indexOf(action.item), 1);
 		return items;
 	});
@@ -79,20 +79,20 @@ function removeItemFromCart(oldState, action){
 
 function toggleItemVisible(oldState, action){
 	let state = oldState;
-	state = state.updateIn(["allItems"], function(items) {
+	state = state.updateIn(['allItems'], function(items) {
 		action.item.visible = action.item.visible ? false : true;
 		action.item.edited = true;
 		items = items.splice(items.indexOf(action.item), 1, action.item);
 		return items;
 	});
-	state = state.set("edited", true);
+	state = state.set('edited', true);
 	return state;
 }
 
 
 function checkout(oldState, action){
 	let state = oldState;
-	state = state.updateIn(["cartItems"], function(items) {
+	state = state.updateIn(['cartItems'], function(items) {
 		items.forEach(item => {
 			items = items.splice(items.indexOf(item), 1);
 		});
@@ -104,7 +104,7 @@ function checkout(oldState, action){
 
 function save(oldState, action){
 	let state = oldState;
-	state = state.updateIn(["allItems"], function(items) {
+	state = state.updateIn(['allItems'], function(items) {
 		items.forEach(item => {
 			if(item.edited){
 				item.edited = false;
@@ -113,26 +113,26 @@ function save(oldState, action){
 		});
 		return items;
 	});
-	state = state.updateIn(["deletedItems"], function(items) {
+	state = state.updateIn(['deletedItems'], function(items) {
 		items.forEach(item => {
 			repoService.removeItem(item);
 		});
 		return fromJS([]);
 	});
 
-	state = state.set("edited", false);
+	state = state.set('edited', false);
 	return state;
 }
 
 function cancelSave(oldState, action){
 	let state = oldState;
-	state = state.updateIn(["allItems"], function(items) {
+	state = state.updateIn(['allItems'], function(items) {
 		return fromJS(action.items);
 	});
-	state = state.updateIn(["deletedItems"], function() {
+	state = state.updateIn(['deletedItems'], function() {
 		return fromJS([]);
 	});
-	state = state.set("edited", false);  
+	state = state.set('edited', false);  
 	state = sortItems(state);
 	return state;
 }
@@ -140,7 +140,7 @@ function cancelSave(oldState, action){
 
 function searchCategory(oldState, action){
 	let state = oldState;
-	state  = state.set("searchValue", action.data);
+	state  = state.set('searchValue', action.data);
 	return state;
 }
 

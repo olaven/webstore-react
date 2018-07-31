@@ -1,41 +1,41 @@
-import React, {Component} from "react";
-import { Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
-import * as repoService from "./services/repoService";
+import React, {Component} from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as repoService from './services/repoService';
 
 // Containers
-import StorefrontPage from "./containers/storefrontPage";
-import AdminPage from "./containers/adminPage";
-import NotFound from "./containers/notFoundPage";
-import TopBar from "./containers/TopBar"; 
-import SideBar from "./containers/SideBar"; 
-import CartPage from "./containers/cartPage"; 
+import StorefrontPage from './containers/storefrontPage';
+import AdminPage from './containers/adminPage';
+import NotFound from './containers/notFoundPage';
+import TopBar from './containers/TopBar'; 
+import SideBar from './containers/SideBar'; 
+import CartPage from './containers/cartPage'; 
 
 // Redux Actions 
-import * as mainActions from "./actions/mainActions";
-import * as categoryActions from "./actions/categoryActions";
-import * as imageActions from "./actions/imageActions"; 
+import * as mainActions from './actions/mainActions';
+import * as categoryActions from './actions/categoryActions';
+import * as imageActions from './actions/imageActions'; 
 
 // Interfaces 
-import Item from "./interfaces/item"; 
-import Category from "./interfaces/category";
-import Image from "./interfaces/image";
+import Item from './interfaces/item'; 
+import Category from './interfaces/category';
+import Image from './interfaces/image';
 
 // Material UI 
-import { MuiThemeProvider } from "@material-ui/core/styles";
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
 // Local modules
-import Theme from "./theme";
-import URLS from "./urls"; 
+import Theme from './theme';
+import URLS from './urls'; 
 
 // Stylesheets
-import "./styles/main.less";
+import './styles/main.less';
 
 // Fonts
-import "typeface-roboto";
+import 'typeface-roboto';
 
 // Sample data 
-import SampleData from "./sampleData.json"; 
+import SampleData from './sampleData.json'; 
 
 
 
@@ -59,7 +59,7 @@ class App extends Component {
 				});
 			} else {
 				items.forEach(item => {
-					item.edited = false
+					item.edited = false;
 					this.props.createItem(
 						new Item(item)
 					);
@@ -91,19 +91,19 @@ class App extends Component {
 				}); 
                 
 			})
-            .catch(response => {
-                if (response.status == 400){
-                    SampleData.images.map(data => {
+				.catch(response => {
+					if (response.status == 400){
+						SampleData.images.map(data => {
                     
-                        let image = new Image(data);
-                        repoService.addImage(image);
-                        this.props.addImage(image);
+							let image = new Image(data);
+							repoService.addImage(image);
+							this.props.addImage(image);
 
-                    });
-                } else {
-                    console.error("Error fetching images from repo", response);
-                }
-            });
+						});
+					} else {
+						console.error('Error fetching images from repo', response);
+					}
+				});
 		});
 	}
 
@@ -125,7 +125,7 @@ class App extends Component {
 							<TopBar 
 								{...props} 
 								onToggleMenu={this.toggleMenu.bind(this)} 
-								style={{position: "fixed", top: 0}} 
+								style={{position: 'fixed', top: 0}} 
 							/>}                    
 					/> 
 					<Route path="/" render={(props) => 
@@ -147,7 +147,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
 	return {
-		items: state.get("app").get("allItems")
+		items: state.get('app').get('allItems')
 	};
 }
 
