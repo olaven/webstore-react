@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 
 // Components 
 import ItemComponent from '../components/admin/itemComponent';
@@ -26,8 +27,6 @@ import '../styles/adminPage.less' // Dupliate?
 // Project urls 
 import URLS from '../urls'; 
 
-
-import { connect } from 'react-redux';
 
 import * as mainActions from '../actions/mainActions' 
 import * as categoryActions from '../actions/categoryActions'

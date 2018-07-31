@@ -1,13 +1,13 @@
-var repoLib = require("../../lib/repo/repo"); 
-var repoConfig = require("../../lib/config/repoConfig"); 
+var repoLib = require('../../lib/repo/repo'); 
+var repoConfig = require('../../lib/config/repoConfig'); 
 
-var servicesLib = require("../servicesLib"); 
+var servicesLib = require('../servicesLib'); 
 /**
  * Get get categories from Repo 
  */
 exports.get = function(req) {
 	// log.info("GET CATEGORY");
-	var result = servicesLib.getNodes("data.type = 'category'"); 
+	var result = servicesLib.getNodes('data.type = \'category\''); 
 
 	if(result === "NOT_FOUND") {
 		return {
@@ -19,7 +19,7 @@ exports.get = function(req) {
 	return {
 		body: {nodes : result},
 		headers: {
-			"Content-Type": "application/json"
+			'Content-Type': 'application/json'
 		}
 
 	};
@@ -33,7 +33,7 @@ exports.get = function(req) {
 exports.post = function(req) {
 	var body = JSON.parse(req.body); 
 	if(!body) {
-		var message = "Missing/invalid body";
+		var message = 'Missing/invalid body';
 		return { status: 400, message: message };
 	}
 
@@ -43,7 +43,7 @@ exports.post = function(req) {
 		// log.info("Added Category:" + JSON.stringify(body, null, 4)); 
 		return { 
 			status: 200, 
-			message: "" 
+			message: '' 
 		};
 	}
 };
@@ -56,7 +56,7 @@ exports.delete = function (req){
 	// log.info(JSON.stringify(req, null, 2));
 	var body = JSON.parse(req.body);
 	if (!body) {
-		var message = "Missing/invalid node data in request";
+		var message = 'Missing/invalid node data in request';
 		log.warning(message);
 		return { 
 			status: 400,
@@ -64,18 +64,18 @@ exports.delete = function (req){
 		};
 	}
 
-	var result = servicesLib.deleteNode("data.type = 'category' AND data.id = " + body.id);
+	var result = servicesLib.deleteNode('data.type = \'category\' AND data.id = ' + body.id);
 
-	if(result === "NOT_FOUND") {
+	if(result === 'NOT_FOUND') {
 		return {
 			status : 400, 
-			message : "Not found"
+			message : 'Not found'
 		};
 	} else {
 		return {
 			body: {result: result},
 			headers: {
-				"Content-Type": "application/json"
+				'Content-Type': 'application/json'
 			}
 		};
 	}
@@ -89,7 +89,7 @@ exports.put = function(req) {
 	var body = JSON.parse(req.body);
 	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
 	var hits = repoConn.query({
-		query: "data.type = 'category' AND data.id = " + body.id 
+		query: 'data.type = \'category\' AND data.id = ' + body.id 
 	}).hits;
 
 	if (!hits || hits.length < 1) {
@@ -100,7 +100,7 @@ exports.put = function(req) {
 			// log.info("Added node:" + JSON.stringify(body, null, 4)); 
 			return { 
 				status: 200, 
-				message: "" 
+				message: '' 
 			};
 		}
 	}
@@ -134,7 +134,7 @@ exports.put = function(req) {
 		return {
 			body: {
 				status: 500,
-				message: "Something went wrong when editing node"
+				message: 'Something went wrong when editing node'
 			}
 		};
 	}
