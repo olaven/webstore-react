@@ -6,6 +6,7 @@ import Updatable from './updatable';
  */
 export default class Image extends Updatable{
 	constructor(data) {
+		
 		super(); 
 		this.name = data.name || 'unnamed';
 		this.id = data.id || new Date().valueOf(); 

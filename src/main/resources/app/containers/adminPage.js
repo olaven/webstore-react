@@ -46,6 +46,8 @@ class AdminPage extends React.PureComponent {
 
 	itemSubmitClick(data) {
 		this.setState({ dialogOpen: false }); 
+		data.image = this.props.images.filter(image => image.id = data.image).get(0);
+		data.category = this.props.categories.filter(category => (category.id = data.category)).get(0);
 		this.props.createItem(new Item({name: data.name, info: data.info, image: data.image, category: data.category}), true); 
 	}
 

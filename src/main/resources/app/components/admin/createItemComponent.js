@@ -30,19 +30,20 @@ export default class CreateItemComponent extends React.PureComponent {
 			info: itemToBeEdited ? itemToBeEdited.info : '',
 			image: itemToBeEdited ? itemToBeEdited.image : 'none',
 			category: itemToBeEdited ? itemToBeEdited.category : 'none',
-			id: itemToBeEdited ? itemToBeEdited.id : null
+            id: itemToBeEdited ? itemToBeEdited.id : null,
+            imageSource: itemToBeEdited ? itemToBeEdited.source : null,
 		};
 	}
     
 	getImageItems() {
 		return this.props.images.map((image, index) => {
-			return <MenuItem key={index} value={image.source}>{image.name}</MenuItem>;
+			return <MenuItem key={index} value={image.id}>{image.name}</MenuItem>;
 		}); 
 	}
 
 	getCategoryItems() {
 		return this.props.categories.map( (category, index) => 
-			<MenuItem key={index} value={category.title}>{category.title}</MenuItem>
+            <MenuItem key={index} value={category.id}>{category.title}</MenuItem>
 		);
 	}
 
@@ -52,13 +53,15 @@ export default class CreateItemComponent extends React.PureComponent {
 
 	handleImageChange(event) {
 		this.setState({
-			image : event.target.value
+            image : event.target.value,
+            imageSource: this.props.images.filter(image => image.id == event.target.value).get(0).source
 		}); 
 	}
 
 	handleImageUpload(image) {
 		this.setState({
-			image : image.source
+            image : image.id,
+            imageSource : image.source
 		}); 
 		this.props.addImage(image); 
 	}
@@ -87,7 +90,7 @@ export default class CreateItemComponent extends React.PureComponent {
 					{this.state.image !='none'? 
 						<Card className="Item-Card-Edit">
 							<CardMedia
-								image={this.state.image}
+                                image={this.state.imageSource}
 								className="Item-Card-Media"
 							/> 
 						</Card> : null}
