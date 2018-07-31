@@ -2,10 +2,10 @@
  * A common library for all the services in this folder 
  */
 
-var repoLib = require("../../lib/repo/repo");
-var repoConfig = require("../../lib/config/repoConfig");
-var portalLib = require("/lib/xp/portal");
-var valueLib = require("/lib/xp/value");
+var repoLib = require('../../lib/repo/repo');
+var repoConfig = require('../../lib/config/repoConfig');
+var portalLib = require('/lib/xp/portal');
+var valueLib = require('/lib/xp/value');
 
 /**
  * Delete the repo-nodes that return with the give query
@@ -13,23 +13,23 @@ var valueLib = require("/lib/xp/value");
  */
 var deleteNode = function (query) {
 
-    var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
+	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
 
-    var hits = repoConn.query({
-        query: query
-    }).hits;
+	var hits = repoConn.query({
+		query: query
+	}).hits;
 
-    if (!hits || hits.length < 1) {
-        return "NOT_FOUND";
-    }
+	if (!hits || hits.length < 1) {
+		return 'NOT_FOUND';
+	}
 
-    hits.map(function (hit) {
-        return repoConn.delete(hit.id);
-    });
+	hits.map(function (hit) {
+		return repoConn.delete(hit.id);
+	});
 
-    repoConn.refresh();
+	repoConn.refresh();
 
-    return { success: true };
+	return { success: true };
 };
 
 /**
@@ -37,37 +37,37 @@ var deleteNode = function (query) {
  * @param data the data to create node with
  */
 var createNode = function (data) {
-    try {
-        var node = repoLib.storeItemAndCreateNode(
-            data,
-            repoConfig
-        );
-        if (!node) {
-            log.error(
-                "Tried creating node, but something seems wrong: " +
+	try {
+		var node = repoLib.storeItemAndCreateNode(
+			data,
+			repoConfig
+		);
+		if (!node) {
+			log.error(
+				'Tried creating node, but something seems wrong: ' +
                 JSON.stringify(
-                    {
-                        incoming_item: data,
-                        resulting_node: node
-                    },
-                    null,
-                    2
+                	{
+                		incoming_item: data,
+                		resulting_node: node
+                	},
+                	null,
+                	2
                 )
-            );
+			);
 
-            return {
-                status: 500,
-                message: "Could not create node"
-            };
-        } else {
-            return { success: true };
-        }
-    } catch (e) {
-        return {
-            status: 500,
-            message: "Couldn't create node"
-        };
-    }
+			return {
+				status: 500,
+				message: 'Could not create node'
+			};
+		} else {
+			return { success: true };
+		}
+	} catch (e) {
+		return {
+			status: 500,
+			message: 'Couldn\'t create node'
+		};
+	}
 };
 
 /**
@@ -76,32 +76,32 @@ var createNode = function (data) {
  */
 var getNodes = function (query) {
 
-    var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
-    var hits = repoConn.query({
-        count: 1000,
-        query: query
-    }).hits;
-    if (!hits || hits.length < 1) {
-        return hits;
-    }
+	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
+	var hits = repoConn.query({
+		count: 1000,
+		query: query
+	}).hits;
+	if (!hits || hits.length < 1) {
+		return hits;
+	}
 
-    var nodes = hits.map(function (hit) {
-        return repoConn.get(hit.id);
-    });
+	var nodes = hits.map(function (hit) {
+		return repoConn.get(hit.id);
+	});
 
-    if (nodes) {
-        return nodes;
-    } else {
-        return "NOT_FOUND";
-    }
-}
+	if (nodes) {
+		return nodes;
+	} else {
+		return 'NOT_FOUND';
+	}
+};
 
 
 module.exports = {
-    deleteNode : deleteNode, 
-    createNode : createNode, 
-    getNodes : getNodes
-}
+	deleteNode : deleteNode, 
+	createNode : createNode, 
+	getNodes : getNodes
+};
 
 
 /**

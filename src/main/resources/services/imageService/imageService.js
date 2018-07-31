@@ -1,9 +1,9 @@
-var repoLib = require("../../lib/repo/repo"); 
-var repoConfig = require("../../lib/config/repoConfig"); 
-var portalLib = require("/lib/xp/portal");
-var valueLib = require("/lib/xp/value");
+var repoLib = require('../../lib/repo/repo'); 
+var repoConfig = require('../../lib/config/repoConfig'); 
+var portalLib = require('/lib/xp/portal');
+var valueLib = require('/lib/xp/value');
 
-var servicesLib = require("../servicesLib"); 
+var servicesLib = require('../servicesLib'); 
 
 /**
  * Get get images from Repo 
@@ -15,30 +15,30 @@ exports.get = function(req) {
 	if (data != undefined) {
 		var result = getImageFile(data); 
 
-		if(result === "NOT_FOUND") {
+		if(result === 'NOT_FOUND') {
 			return {
 				status : 404, 
-				message : "Not found"
+				message : 'Not found'
 			};
 		}
 		return {
 			body: result,
-			contentType: "image/jpeg"
+			contentType: 'image/jpeg'
 		};
 
 	} else {
-		var result = servicesLib.getNodes("data.type = 'image'"); 
+		var result = servicesLib.getNodes('data.type = \'image\''); 
 
-		if(result === "NOT_FOUND") {
+		if(result === 'NOT_FOUND') {
 			return {
 				status : 404, 
-				message : "Not found"
+				message : 'Not found'
 			};
 		}
 
 		return {
 			body: {nodes: result},
-			contentType: "application/json"
+			contentType: 'application/json'
 		};
 	}
 
@@ -55,7 +55,7 @@ exports.post = function(req) {
 	// log.info("post");
 	var body = JSON.parse(req.body); 
 	if(!body) {
-		var message = "Missing/invalid image";
+		var message = 'Missing/invalid image';
 		return { status: 404, message: message };
 	}
 
@@ -71,7 +71,7 @@ exports.post = function(req) {
 		}
 		return { 
 			status: 200, 
-			message: "" 
+			message: '' 
 		};
 	}
 };
@@ -83,7 +83,7 @@ exports.delete = function (req){
     
 	var body = JSON.parse(req.body);
 	if (!body) {
-		var message = "Missing/invalid image data in request";
+		var message = 'Missing/invalid image data in request';
 		log.warning(message);
 		return { 
 			status: 404,
@@ -91,18 +91,18 @@ exports.delete = function (req){
 		};
 	}
 
-	var result = servicesLib.deleteNode("data.type = 'image' AND data.id = '" + body.id + "'");
+	var result = servicesLib.deleteNode('data.type = \'image\' AND data.id = \'' + body.id + '\'');
 
-	if(result === "NOT_FOUND") {
+	if(result === 'NOT_FOUND') {
 		return {
 			status : 404, 
-			message : "Not found"
+			message : 'Not found'
 		};
 	} else {
 		return {
 			body: {result: result},
 			headers: {
-				"Content-Type": "application/json"
+				'Content-Type': 'application/json'
 			}
 		};
 	}
@@ -114,23 +114,23 @@ exports.delete = function (req){
 exports.put = function(req) {
     
 	var body = {
-		name: portalLib.getMultipartText("name"),
-		id: portalLib.getMultipartText("id"),
-		type: portalLib.getMultipartText("type"),
-		source: portalLib.getMultipartText("source"),
-		file: portalLib.getMultipartItem("file")
+		name: portalLib.getMultipartText('name'),
+		id: portalLib.getMultipartText('id'),
+		type: portalLib.getMultipartText('type'),
+		source: portalLib.getMultipartText('source'),
+		file: portalLib.getMultipartItem('file')
 	};
 
     
 
 	if (body.file && body.file.fileName && body.file.size > 0) {
-		body.file = valueLib.binary("file" , portalLib.getMultipartStream("file"));
+		body.file = valueLib.binary('file' , portalLib.getMultipartStream('file'));
 		body.source = null;
 	}
 
 	var repoConn = repoLib.getRepoConnection(repoConfig.name, repoConfig.branch);
 	var hits = repoConn.query({
-		query: "data.type = 'image' AND data.id = '" + body.id + "'"
+		query: 'data.type = \'image\' AND data.id = \'' + body.id + '\''
 	}).hits;
 
 	if (!hits || hits.length < 1) {
@@ -146,7 +146,7 @@ exports.put = function(req) {
 			}
 			return { 
 				status: 200, 
-				message: "" 
+				message: '' 
 			};
 		}
 	}
@@ -188,7 +188,7 @@ exports.put = function(req) {
 		return {
 			body: {
 				status: 500,
-				message: "Something went wrong when editing and image"
+				message: 'Something went wrong when editing and image'
 			}
 		};
 	}
@@ -200,23 +200,23 @@ function getImageFile(id){
 	// log.info("id: " + id);
 	var hits = repoConn.query({
 		count: 1000,
-		query: "data.type = 'image' AND data.id = " + "'" + id + "'"
+		query: 'data.type = \'image\' AND data.id = ' + '\'' + id + '\''
 	}).hits;
 	// log.info("hits:" + hits.length);
 
 	if(!hits || hits.length == 0){
-		return "NOT_FOUND";
+		return 'NOT_FOUND';
 	}
 
 	var key = hits[0].id;
 
 	var stream = repoConn.getBinary({
 		key: key,
-		binaryReference: "file"
+		binaryReference: 'file'
 	});
 
 	if(!stream){
-		return "NOT_FOUND";
+		return 'NOT_FOUND';
 	}
 
 	return stream;
