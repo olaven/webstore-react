@@ -5,7 +5,6 @@
  */
 export default class Image {
 	constructor(data) {
-		console.log(data)
 		this.name = data.name || "unnamed";
 		this.id = data.id || new Date().valueOf(); 
 		this.type = "image";

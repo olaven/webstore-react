@@ -7,8 +7,11 @@
     import DialogActions from '@material-ui/core/DialogActions';
     import Button from '@material-ui/core/Button';
     import Typography from '@material-ui/core/Typography'; 
+    import Card from '@material-ui/core/Card'; 
     import CardMedia from '@material-ui/core/CardMedia'; 
-
+    import CardHeader from '@material-ui/core/CardHeader';    
+    import CardContent from '@material-ui/core/CardContent'; 
+    
     // Components 
     import CheckoutComponent from './checkoutComponent';
     import CreateItemComponent from './admin/createItemComponent';
@@ -71,19 +74,19 @@
                 <DialogContent 
                         className="DialogContent"
                 >
-                    <Typography align="center" variant="display2"> 
-                        {this.props.item.name}
-                    </Typography>
-                    <div className="DialogContent-InfoContainer"> 
-                        <CardMedia
-                            image={this.props.item.image}
-                            
-                            className="DialogContent-Image"
-                        />
-                        <Typography>
-                            {this.props.item.info}
-                        </Typography>
-                    </div>
+                    <Card> 
+                            <CardHeader title={this.props.item.name}/> 
+                            <CardMedia
+                                image={this.props.item.image}
+
+                                className="DialogContent-Image"
+                            />
+                            <CardContent>
+                                <Typography paragraph variant="body1">
+                                    {this.props.item.info}
+                                </Typography>
+                            </CardContent>
+                    </Card>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.props.onClose} color="primary">

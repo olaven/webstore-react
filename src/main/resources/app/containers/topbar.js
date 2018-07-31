@@ -11,6 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import StoreIcon from '@material-ui/icons/Store'; 
 import CartIcon from "@material-ui/icons/ShoppingCart"; 
 import Badge from '@material-ui/core/Badge'; 
+import Tooltip from '@material-ui/core/Tooltip'; 
 
 import '../styles/topbar.less'; 
 
@@ -57,16 +58,20 @@ class TopBar extends React.PureComponent {
 
         const icons = (page === "store" ? <div>
             <Link to={URLS.storefront}>
-                <IconButton>
-                    <StoreIcon color={!cart ? "disabled" : "inherit"}/>
-                </IconButton>
+                <Tooltip title="To store">
+                    <IconButton>
+                        <StoreIcon color={!cart ? "disabled" : "inherit"} />
+                    </IconButton>
+                </Tooltip>
             </Link>
             <Link to={URLS.cart}>
-                <IconButton>
-                    <Badge badgeContent={this.props.cartItems.size} color="secondary">
-                        <CartIcon color={cart ? "disabled" : "inherit"}/>
-                    </Badge>
-                </IconButton>
+                <Tooltip title="To Cart">
+                    <IconButton>
+                        <Badge badgeContent={this.props.cartItems.size} color="secondary">
+                            <CartIcon color={cart ? "disabled" : "inherit"}/>
+                        </Badge>
+                    </IconButton>
+                </Tooltip>
             </Link> 
         </div>: <Link to={URLS.storefront}>
             <IconButton>
@@ -114,9 +119,11 @@ class TopBar extends React.PureComponent {
                         position="static"
                         color={page === 'store' ? 'primary' : 'secondary'}>
                         <Toolbar>
-                            <IconButton>
-                                <MenuIcon onClick={this.props.onToggleMenu}/> 
-                            </IconButton>
+                            <Tooltip title="Open menu">
+                                <IconButton>
+                                    <MenuIcon onClick={this.props.onToggleMenu} /> 
+                                </IconButton>
+                            </Tooltip>
 
                             {this.getCorrectIcons(page)}
 
@@ -124,7 +131,9 @@ class TopBar extends React.PureComponent {
 
                             {page !== "admin" ?
                                 <Link className="TopBar-Col" to={URLS.admin.items} className="TopBar-AdminLink">
-                                    <Typography variant="button">Admin</Typography>
+                                    <Tooltip title="Admin panel"> 
+                                        <Typography variant="button">Admin</Typography>
+                                    </Tooltip>
                                 </Link> :
                                 <div className="TopBar-Col"></div>}
                         </Toolbar>                        

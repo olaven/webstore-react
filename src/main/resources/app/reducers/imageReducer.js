@@ -52,7 +52,6 @@ function save(oldState, action) {
 	state = state.updateIn(["images"], function(images) {
 		images.forEach(image => {
 			if (image.edited) {
-				console.log("IMAGE WAS EDITED: ", image); 
 				image.edited = false; 
 				repoService.editImage(image);
 			}

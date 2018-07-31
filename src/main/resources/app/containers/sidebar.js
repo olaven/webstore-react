@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 // Material UI 
 import Drawer from "@material-ui/core/Drawer";
@@ -12,13 +14,14 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import CategoryIcon from "@material-ui/icons/Store"; 
 import Typography from "@material-ui/core/Typography";
+import Tooltip from "@material-ui/core/Tooltip"; 
+
 // Stylesheets 
 import "../styles/sidebar.less"; 
+
 // Project URLS 
 import URLS from "../urls"; 
 
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import * as mainActions from "../actions/mainActions";
 
@@ -83,7 +86,9 @@ class SideBar extends React.PureComponent {
 					onKeyDown={this.props.onToggleMenu}
 				>
 					<IconButton color="inherit" aria-label="Menu" onClick={this.props.onToggleMenu}>
-						<CloseIcon />
+						<Tooltip title="Close menu">
+							<CloseIcon />
+						</Tooltip>
 					</IconButton>
 					<Typography variant="title" align="center">
 						{this.props.location.pathname.includes("admin") ? "Admin" : "Categories"}
