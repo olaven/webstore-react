@@ -23,9 +23,13 @@ import * as mainActions from '../actions/mainActions';
 import * as toasterActions from '../actions/toasterActions'; 
 
 class CartPage extends React.PureComponent { 
-  
-	constructor(props){
-		super(props);
+
+	constructor(props) {
+		super(props); 
+		this.state = {}; 
+	}
+
+	componentDidMount() {
 		this.state = {
 			dialogOpen: false,
 			displayedItem: null,
