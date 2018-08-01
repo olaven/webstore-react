@@ -71,6 +71,7 @@ class SideBar extends React.PureComponent {
 	render() {
 		return (
 			<Drawer 
+				disableRestoreFocus={true}
 				anchor="left" 
 				open={this.props.open}
 				onClose={this.props.onToggleMenu}

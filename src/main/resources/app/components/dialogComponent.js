@@ -121,6 +121,7 @@
             <Dialog
                 open={this.state.open}
                 onClose={this.props.onClose}
+                disableRestoreFocus={true}
             >
             <DialogTitle>Do you want to delete this item?</DialogTitle>
                 <DialogContent>

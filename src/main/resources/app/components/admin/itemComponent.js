@@ -135,8 +135,8 @@ export default class ItemComponent extends React.PureComponent {
 						<TableHead>
 							<TableRow>
 								<TableCell>Items</TableCell>
-								<TableCell>Name</TableCell>
-								<TableCell>Info</TableCell>
+								<TableCell>Title</TableCell>
+								<TableCell>Description</TableCell>
 								<TableCell>Image</TableCell>
 								<TableCell>Category</TableCell>
 								<TableCell>Id</TableCell>
