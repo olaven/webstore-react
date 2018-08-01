@@ -106,10 +106,10 @@ export default class ItemComponent extends React.PureComponent {
 					onClose={this.toggleDialog.bind(this)}
                     
 					toBeEdited={this.state.itemToBeEdited}
-					submit = {this.state.itemToBeEdited ? ((item)=>{
+					submit = {this.state.itemToBeEdited ?  item => {
 						this.props.editItem(item); 
 						this.setState({itemToBeEdited: null});
-					}): this.props.submit}
+					} : this.props.submit}
 					open = {this.state.open} 
 					categories={this.props.categories}
                     

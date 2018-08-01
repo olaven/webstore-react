@@ -118,6 +118,7 @@ function save(oldState, action){
 	state = state.updateIn(['allItems'], function(items) {
 		items.forEach(item => {
 			if(item.edited){
+				console.log(item)
 				item.edited = false;
 				repoService.editItem(item);
 			}

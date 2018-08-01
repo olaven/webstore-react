@@ -57,6 +57,7 @@ export default class UploadImageDialog extends React.PureComponent {
 	handleEdit(){
 		this.props.edit({
 			name : this.state.name, 
+			file: this.state.file,
 			source : this.state.source,
 			id: this.props.image.id, 
 			edited : true
