@@ -39,7 +39,6 @@ function addItems(oldState, action){
 		return items;
 	});
 	state = sortItems(state);
-	console.log('itemRed', state, action);
 	return state;
 }
 

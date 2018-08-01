@@ -1,10 +1,26 @@
 @import 'main.less'; 
 
+.Sidebar-Headers {
+    padding-left: 20px !important; 
+    padding-right: 20px !important; 
+
+    min-height: @desktop-spacing; 
+}
+
 .SideBar-ListItem {
     cursor: pointer; 
-    padding-top: 10px; 
 }
 
 .SideBar-ListItem:hover {
     background-color: rgba(0, 0, 0, 0.200); 
+}
+
+.Sidebar-Link {
+    text-decoration: none; 
+}
+
+@media @mobile {
+    .Sidebar-Headers {
+        max-height: @mobile-spacing; 
+    }
 }

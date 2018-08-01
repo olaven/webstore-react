@@ -62,45 +62,42 @@ class TopBar extends React.PureComponent {
 			<Link to={URLS.cart}>
 				<Tooltip title="To Cart">
 					<IconButton>
-						<Badge badgeContent={this.props.cartItems.size} color="secondary">
+						{this.props.cartItems.size > 0 ? <Badge badgeContent={this.props.cartItems.size} color="secondary">
+							<CartIcon color={cart ? 'disabled' : 'inherit'} />
+						</Badge> : <CartIcon color={cart ? 'disabled' : 'inherit'} />}
+						{/* <Badge badgeContent={this.props.cartItems.size} color="secondary">
 							<CartIcon color={cart ? 'disabled' : 'inherit'}/>
-						</Badge>
+						</Badge> */}
 					</IconButton>
 				</Tooltip>
 			</Link> 
-		</div>: <Link to={URLS.storefront}>
-			<IconButton>
-				<StoreIcon title="Back to store"/>
-			</IconButton>
-		</Link>); 
+		</div>: null); 
 
 		return icons; 
 	}
 
-	getTitle(page) {
-		/**
-         * The title takes a lot of space on mobile. 
-         * The icon also makes its job redundant. Therefore, 
-         * it is not shown on mobile, on the material-design mobile breakpoint
-         */
-		if(this.state.screenWidth <= 960) {
-			// To fill the same amount of relative space 
-			return <Typography className="TopBar-FlexGrow"/>;
-		}
-		return <Typography
-			variant="headline"
-			className="TopBar-FlexGrow"
-			align="center"
-			color={page === 'admin' ? 'textSecondary' : 'inherit'}>
-			<Link to={URLS.storefront}>
-				{page === 'admin' ? 'Back to store' : 'Enonic Webstore'}
-			</Link>
-		</Typography>;
-	}
+	// getTitle(page) {
+	// 	/**
+    //      * The title takes a lot of space on mobile. 
+    //      * The icon also makes its job redundant. Therefore, 
+    //      * it is not shown on mobile, on the material-design mobile breakpoint
+    //      */
+	// 	if(this.state.screenWidth <= 960) {
+	// 		// To fill the same amount of relative space 
+	// 		return <Typography className="TopBar-FlexGrow"/>;
+	// 	}
+	// 	return <Typography
+	// 		variant="headline"
+	// 		className="TopBar-FlexGrow"
+	// 		align="center"
+	// 		color={page === 'admin' ? 'textSecondary' : 'inherit'}>
+	// 			{page === 'admin' ? 'Admin Page' : 'Enonic Webstore'}
+	// 	</Typography>;
+	// }
 
 	render() { 
 		const path = this.props.location.pathname; 
-		const page = (path.includes('store') || path.includes('cart')) ? 'store' : 'admin';
+		const page = (path.includes(URLS.storefront) || path.includes(URLS.cart)) ? 'store' : 'admin';
         
 		return (
 			<div className="TopBar-FlexGrow"> 
@@ -122,15 +119,13 @@ class TopBar extends React.PureComponent {
 
 							{this.getCorrectIcons.bind(this)(page)}
 
-							{this.getTitle.bind(this)(page)}
+							{/* {this.getTitle.bind(this)(page)} */}
 
-							{page !== 'admin' ?
-								<Link className="TopBar-Col" to={URLS.admin.items} className="TopBar-AdminLink">
-									<Tooltip title="Admin panel"> 
-										<Typography variant="button">Admin</Typography>
-									</Tooltip>
-								</Link> :
-								<div className="TopBar-Col"></div>}
+							<Link className="TopBar-AdminLink" to={page === 'store' ? URLS.admin.items : URLS.storefront}>
+								<Tooltip title={page === 'store' ? "Admin page" : "Back to store"}>
+									<Typography variant="button">{page === 'store' ? "ADMIN" : "BACK TO STORE"}</Typography>
+								</Tooltip>
+							</Link>
 						</Toolbar>                        
 					</AppBar>
 				</AppBar>

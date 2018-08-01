@@ -84,7 +84,6 @@ export default class UploadImageDialog extends React.PureComponent {
 		return this.props.image ? 
 			<Button 
 				onClick={this.handleEdit.bind(this)} 
-				variant="outlined"
 				color="primary">
                 Save
 			</Button>
@@ -92,7 +91,6 @@ export default class UploadImageDialog extends React.PureComponent {
 			<Button 
 				disabled={this.state.source == '' || this.state.name == '' ? true : false}
 				onClick={this.handleUpload.bind(this)} 
-				variant="outlined"
 				color="primary">
                 Upload
 			</Button>;
@@ -138,7 +136,7 @@ export default class UploadImageDialog extends React.PureComponent {
 					<Button
 						color={this.state.validationFailed ? 'secondary' : 'primary'}
 						component="span"
-						variant="outlined" >
+					>
                         Select Image 
 					</Button>
 				</label>
@@ -147,8 +145,8 @@ export default class UploadImageDialog extends React.PureComponent {
 			<DialogActions>
 				<Button 
 					onClick={this.props.onClose} 
-					variant="outlined"
-					color="primary">
+					className="Greyed-Button"
+				>
                     Cancel
 				</Button>
 				{this.renderButton()}

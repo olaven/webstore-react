@@ -88,8 +88,11 @@
                     </Card>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.props.onClose} color="primary">
-                        Cancel
+                    <Button 
+                        onClick={this.props.onClose} 
+                        className="Greyed-Button"
+                    >
+                        Close
                     </Button>
                     <Button onClick={() =>this.props.addToCart(this.props.item)} 
                         color="primary">
@@ -122,13 +125,18 @@
             <DialogTitle>Do you want to delete this item?</DialogTitle>
                 <DialogContent>
                 <Typography>{this.props.message}</Typography>
-                <Button onClick={this.props.onClose} color="primary">
+                <Button 
+                    onClick={this.props.onClose} 
+                    className="Greyed-Button"
+                >
                     Cancel
                 </Button>
                 <Button onClick={() => {
                     this.props.remove(this.props.toBeRemoved)
                     this.props.onClose()
-                    }} >
+                    }} 
+                    color="primary"
+                >
                     Delete
                 </Button>
                 </DialogContent>

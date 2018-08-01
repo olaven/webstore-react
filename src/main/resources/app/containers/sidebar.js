@@ -8,6 +8,7 @@ import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close'; 
 import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -37,11 +38,8 @@ class SideBar extends React.PureComponent {
 		}
 		return this.props.categories.map((category, index) => {
 			if(category.visible){
-				return <Link to={URLS.storefront} key={index}>
+				return <Link to={URLS.storefront} key={index} className="Sidebar-Link"> 
 					<ListItem className="SideBar-ListItem" onClick={() =>  this.categoryOnClick(category)}>
-						<ListItemIcon>
-							<CategoryIcon />
-						</ListItemIcon>
 						<ListItemText>{category.title}</ListItemText>
 					</ListItem>
 				</Link>;
@@ -57,11 +55,8 @@ class SideBar extends React.PureComponent {
 		]; 
 
 		return adminOptions.map((option, index) => 
-			<Link to={option.url} key={index}>
+			<Link to={option.url} key={index} className="Sidebar-Link">
 				<ListItem className="SideBar-ListItem">
-					<ListItemIcon>
-						<CategoryIcon />
-					</ListItemIcon>
 					<ListItemText>{option.name}</ListItemText>
 				</ListItem>
 			</Link>
@@ -75,7 +70,8 @@ class SideBar extends React.PureComponent {
 
 	render() {
 		return (
-			<Drawer anchor="left" 
+			<Drawer 
+				anchor="left" 
 				open={this.props.open}
 				onClose={this.props.onToggleMenu}
 			>
@@ -85,19 +81,32 @@ class SideBar extends React.PureComponent {
 					onClick={this.props.onToggleMenu}
 					onKeyDown={this.props.onToggleMenu}
 				>
-					<IconButton color="inherit" aria-label="Menu" onClick={this.props.onToggleMenu}>
-						<Tooltip title="Close menu">
-							<CloseIcon />
-						</Tooltip>
-					</IconButton>
-					<Typography variant="title" align="center">
-						{this.props.location.pathname.includes('admin') ? 'Admin' : 'Categories'}
-					</Typography>
+					
+					<div className="Sidebar-Headers">
+						<Typography variant="display1">
+							{this.props.location.pathname.includes('admin') ? "Admin Console" : "Enonic Webstore"}
+						</Typography>
+
+						<Typography variant="caption" className="Sidebar-Subheading">
+							{this.props.location.pathname.includes('admin') ? 'Admin' : 'Categories'}
+						</Typography>
+					</div>
 					<Divider />
 					<List>
 						{this.renderContent.bind(this)()}                    
 					</List>
-
+					<Divider />
+					<div>
+						<Link to={URLS.storefront} className="Sidebar-Link">
+							<Button>Storefront</Button>
+						</Link>
+						<Link to={URLS.cart} className="Sidebar-Link">
+							<Button>Shopping Cart</Button>
+						</Link>
+						<Link to={""} className="Sidebar-Link">
+							<Button>Profile</Button>
+						</Link>
+					</div>
 				</div>
 			</Drawer>
 		);

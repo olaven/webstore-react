@@ -36,7 +36,6 @@ function addCategories(oldState, action){
 		state = state.set('edited', true);
 	}
 	state = sortCategories(state);
-	console.log('catRed', state, action);
 	return state;
 }
 

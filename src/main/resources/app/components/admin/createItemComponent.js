@@ -145,17 +145,16 @@ export default class CreateItemComponent extends React.PureComponent {
 								{this.getImageItems()}
 							</Select>
 						</FormControl>  
-						<Button variant="outlined" onClick={this.toggleUploadImageDialog.bind(this)}>Custom Image</Button>
+						<Button onClick={this.toggleUploadImageDialog.bind(this)}>Custom Image</Button>
 					</FormControl>
                     
 				</form>
 				<DialogActions>
-                
-					<Button onClick={this.validateAndSubmit.bind(this)} color="primary">
-                    Submit
+					<Button onClick={this.props.onClose.bind(this)} className="Greyed-Button">
+						Cancel
 					</Button>
-					<Button onClick={this.props.onClose.bind(this)} color="primary">
-                    Cancel
+					<Button onClick={this.validateAndSubmit.bind(this)} color="primary">
+                    	Submit
 					</Button>
 				</DialogActions>
 				{/*Displayed when user wants to upload image*/}

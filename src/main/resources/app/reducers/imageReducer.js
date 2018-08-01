@@ -26,7 +26,6 @@ function addImages(oldState, action) {
 		images = images.concat(action.data);
 		return images;
 	});
-	console.log('imageRed', state, action);
 	return state;
 }
 

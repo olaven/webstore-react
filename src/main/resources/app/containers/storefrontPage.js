@@ -16,6 +16,7 @@ import Grid from '@material-ui/core/Grid';
 
 // Stylesheets
 import '../styles/storefront/StorefrontPage.less'
+import URLS from '../urls';
 
 class StorefrontPage extends React.PureComponent { 
   constructor(props) {
@@ -34,6 +35,10 @@ class StorefrontPage extends React.PureComponent {
     if(nextProps.searchValue !== this.props.searchValue) {
         this.setState({searchValue:nextProps.searchValue});
     }
+  }
+
+  componentWillMount() {
+    this.props.history.push(URLS.storefront)
   }
 
   searchOnChange(value){

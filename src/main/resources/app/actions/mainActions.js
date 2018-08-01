@@ -263,7 +263,6 @@ export function onLoad(dispatch){
 
 					item.image = images.filter(image => image.id == item.image.id)[0]
 					item.category = categories.filter(category => category.id == item.category.id)[0]
-					console.log("hello",item)
 					return item
 				})
 				return Promise.all(items.map(item => {

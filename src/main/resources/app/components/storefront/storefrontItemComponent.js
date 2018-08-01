@@ -26,9 +26,8 @@ export default class StorefrontItemComponent extends Component {
 			name,
 			info
 		} = this.props.item;
-
 		return (
-			<div onClick={()=> this.props.onClick(this.props.item)}>
+			<div onClick={()=> this.props.onClick(this.props.item)} style={{cursor : "pointer"}} >
 				<Card className="Item-Card">
 					<CardMedia
 						image={image.source}

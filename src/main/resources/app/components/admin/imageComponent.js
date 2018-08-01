@@ -79,7 +79,6 @@ export default class ImageComponent extends React.PureComponent {
 			<Button 
 				key={1}
 				color="primary"
-				variant="outlined"
 				onClick={() => {
 					this.props.save();
 					this.forceUpdate();
@@ -89,8 +88,7 @@ export default class ImageComponent extends React.PureComponent {
 			</Button>,
 			<Button 
 				key={2}
-				color="secondary"
-				variant="outlined"
+				className="Greyed-Button"
 				onClick={() => {
 					this.props.cancelSave();
 					this.forceUpdate();
@@ -101,17 +99,13 @@ export default class ImageComponent extends React.PureComponent {
 			: [
 				<Button 
 					key={1}
-					disabled
 					color="primary"
-					variant="outlined"
 				>
                 Save changes
 				</Button>,
 				<Button 
 					key={2}
-					disabled
-					color="secondary"
-					variant="outlined"
+					className="Greyed-Button"
 				>
                 cancel changes
 				</Button> ];
@@ -146,8 +140,8 @@ export default class ImageComponent extends React.PureComponent {
 				<Button 
 					onClick={() => this.toggleUploadImageDialog()}
 					color="primary"
-					variant="outlined">
-                    add image
+				>
+					add image
 				</Button>
 				{this.getButtons()}
                 

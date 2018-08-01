@@ -3,6 +3,7 @@
 const PREFIX = '/app/com.enonic.app.webstore.react'; 
 
 const URLS = {
+	empty : PREFIX + '/', 
 	storefront : PREFIX + '/storefront', 
 	cart : PREFIX + '/cart', 
 	admin : {

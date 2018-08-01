@@ -74,7 +74,7 @@ class App extends Component {
 						<Route path={URLS.admin.items} component={AdminPage} />
 						<Route path={URLS.storefront} component={StorefrontPage} />
 						<Route path={URLS.cart} component={CartPage} />
-
+						<Route path={URLS.empty} component={StorefrontPage} />
 						<Route component={NotFound} />
 					</Switch>
 				</MuiThemeProvider>
