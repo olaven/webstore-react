@@ -25,6 +25,7 @@ export default class CreateItemComponent extends React.PureComponent {
 	constructor(arg){
 		super(arg);
 		const {itemToBeEdited} = this.props;
+		console.log("props:", this.props)
 		this.state = {
 			uploadImageDialogVisible : false, 
 			name: itemToBeEdited ? itemToBeEdited.name : '',
@@ -36,10 +37,6 @@ export default class CreateItemComponent extends React.PureComponent {
 		};
 	}
 
-	componentWillUnmount() {
-		console.log("component did unmount. Empty state here?"); 
-		console.log(this.props.itemToBeEdited); 
-	}
     
 	getImageItems() {
 		return this.props.images.map((image, index) => {
@@ -156,7 +153,7 @@ export default class CreateItemComponent extends React.PureComponent {
                     
 				</form>
 				<DialogActions>
-					<Button onClick={this.props.onClose.bind(this)} className="Greyed-Button">
+					<Button onClick={() => this.props.onClose()} className="Greyed-Button">
 						Cancel
 					</Button>
 					<Button onClick={this.validateAndSubmit.bind(this)} color="primary">

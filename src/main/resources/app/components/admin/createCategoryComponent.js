@@ -65,7 +65,7 @@ export default class CreateItemComponent extends React.PureComponent {
 
                 </form>
                 <DialogActions>
-                    <Button onClick={this.props.onClose.bind(this)} className="Greyed-Button">
+                    <Button onClick={() =>this.props.onClose()} className="Greyed-Button">
                         Cancel
                     </Button>
                     <Button onClick={this.validateAndSubmit.bind(this)} color="primary">

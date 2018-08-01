@@ -199,46 +199,4 @@ function getImageFile(key){
 		};
 
 	});
-
-	/*
-    return fetch(imageRepoUrl)
-    .then(response => {
-        console.log("response: ", response)  /*
-        var file = new File([blob], 'file', {type: 'image/jpeg', lastModified: Date.now()});
-        console.log("after convertion:", file)
-        let url = URL.createObjectURL(file)
-        console.log(url)
-            })
-    
-    })
-        .then(response => response.length == 0 ? response : response.json()
-            .then(data => console.log("response:", data))
-            
-        )
-
-                
-                data.nodes.filter(node => node.data ? node : null))
-            .then(nodes => nodes.map(node => node.data))
-        )
-        */
 }
-/*
-getAudio(storeName, value) {
-
-    return new Promise((resolve, reject) => {
-
-        var xhr = new XMLHttpRequest();
-
-        xhr.open('GET', appUrl + '/getAudio?key=' + value, true);
-        xhr.responseType = "blob";
-        xhr.send();
-
-        xhr.onload = (event) => {
-            resolve(xhr.response);
-        };
-
-    });
-
-
-}
-*/

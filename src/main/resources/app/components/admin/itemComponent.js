@@ -41,9 +41,22 @@ export default class ItemComponent extends React.PureComponent {
 
 	toggleDialog(type, message, item){
 		if(type){
-			this.setState({ dialogType: type, open: true, message: message , itemToBeRemoved: item});
+			this.setState({ 
+				dialogType: type, 
+				open: true, 
+				message: message, 
+				itemToBeRemoved: item
+			});
 		} else {
-			this.setState({ dialogType: '', open: false, message: '' });
+			
+			this.setState({ 
+				dialogType: '', 
+				open: false, 
+				message: '',
+				itemToBeEdited: null,
+				itemToBeRemoved: null
+			 });
+			 console.log(this.state)
 		}
 	}
 
