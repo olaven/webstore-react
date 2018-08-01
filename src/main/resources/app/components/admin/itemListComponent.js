@@ -41,13 +41,20 @@ export default class ItemListComponent extends React.PureComponent {
 			<TableCell>
 				<Checkbox
 					checked={this.props.item.visible ? true : false}
-					onChange={this.toggleVisible.bind(this)}
+					// onChange={this.toggleVisible.bind(this)}
+					onClick={(event) => {
+						event.stopPropagation(); 
+						this.toggleVisible().bind(this); 
+					}}
 				/>
 			</TableCell>
 
 			
 			<TableCell>
-				<IconButton onClick={() => this.props.toggleDialog('DELETE', this.props.item.name, this.props.item)}>
+				<IconButton onClick={(event) => {
+					event.stopPropagation(); 
+					this.props.toggleDialog('DELETE', this.props.item.name, this.props.item); 
+				}}>
 					<DeleteIcon />
 				</IconButton>
 			</TableCell>
@@ -61,6 +68,6 @@ export default class ItemListComponent extends React.PureComponent {
 }
 
 const wrapping = {
-	maxWidth: "100px", 
+	maxWidth: "50px", 
 	wordWrap: "break-word"
 }

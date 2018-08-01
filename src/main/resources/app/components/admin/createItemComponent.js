@@ -20,6 +20,7 @@ import Button from '@material-ui/core/Button';
 import '../../styles/createItemComponent.less';
 
 
+
 export default class CreateItemComponent extends React.PureComponent {
 	constructor(arg){
 		super(arg);
@@ -33,6 +34,11 @@ export default class CreateItemComponent extends React.PureComponent {
 			category: itemToBeEdited ? itemToBeEdited.category.id : 'none',
             id: itemToBeEdited ? itemToBeEdited.id : null,
 		};
+	}
+
+	componentWillUnmount() {
+		console.log("component did unmount. Empty state here?"); 
+		console.log(this.props.itemToBeEdited); 
 	}
     
 	getImageItems() {
@@ -84,7 +90,6 @@ export default class CreateItemComponent extends React.PureComponent {
 	}
 
 	render(){
-		console.log(this.props.itemToBeEdited)
 		return (
 			<div className="CreateItemComponent">
 				<form>
