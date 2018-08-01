@@ -136,7 +136,7 @@ export default class ImageComponent extends React.PureComponent {
                     Images
 				</Typography>
 
-				<SearchComponent value={this.state.searchValue} onChange={this.searchimageOnChange.bind(this)}/>
+				<SearchComponent value={this.state.searchValue} onChange={this.searchimageOnChange.bind(this)} helperText="Filter images"/>
 				<Button 
 					onClick={() => this.toggleUploadImageDialog()}
 					color="primary"

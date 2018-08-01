@@ -88,7 +88,8 @@ class StorefrontPage extends React.PureComponent {
         <SearchComponent 
           value={this.state.searchValue} 
           onChange={this.searchOnChange.bind(this)} 
-          className="StorefrontPage-Search"/>
+          className="StorefrontPage-Search"
+          helperText="Search the store" />
         <Grid 
           container 
           item 

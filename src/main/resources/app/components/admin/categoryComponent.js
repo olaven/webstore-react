@@ -124,7 +124,7 @@ export default class CategoryComponent extends React.PureComponent {
                     Categories
 				</Typography>
 
-				<SearchComponent value={this.state.searchValue} onChange={this.searchCategoryOnChange.bind(this)}/>
+				<SearchComponent value={this.state.searchValue} onChange={this.searchCategoryOnChange.bind(this)} helperText="Filter categories"/>
 				<Button 
 					onClick={() => this.toggleDialog('CATEGORY')}
 					color="primary"
