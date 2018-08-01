@@ -142,7 +142,7 @@ export default class CategoryComponent extends React.PureComponent {
 								<TableCell>Filter</TableCell>
 								<TableCell>Visible</TableCell>
 								<TableCell>Delete</TableCell>
-								<TableCell>Edit</TableCell>
+								{/* <TableCell>Edit</TableCell> */}
 							</TableRow>
 						</TableHead>
 						<TableBody>

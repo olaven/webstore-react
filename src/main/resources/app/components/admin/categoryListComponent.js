@@ -26,7 +26,7 @@ export default class CategoryListComponent extends React.PureComponent {
 
 	render(){ 
 		let styleClass = this.props.category.edited ? 'adminListComponent-edit' : 'adminListComponent';
-		return <TableRow className={styleClass}>
+		return <TableRow className={styleClass} onClick={() => this.props.edit(this.props.category)}>
 			<TableCell component="th" scope="row">
 				{this.props.category.title}
 			</TableCell>
@@ -39,15 +39,18 @@ export default class CategoryListComponent extends React.PureComponent {
 					onChange={this.toggleVisible.bind(this)} />
 			</TableCell>
 			<TableCell>
-				<IconButton onClick={() => this.props.toggleDialog('DELETE', this.props.category.title, this.props.category)}>
+				<IconButton onClick={(event) => {
+					event.stopPropagation(); 
+					this.props.toggleDialog('DELETE', this.props.category.title, this.props.category)
+				}}>
 					<DeleteIcon />
 				</IconButton>
 			</TableCell>
-			<TableCell>
+			{/* <TableCell>
 				<IconButton onClick={() => this.props.edit(this.props.category)}>
 					<EditIcon />
 				</IconButton>
-			</TableCell>
+			</TableCell> */}
 		</TableRow>;
 	}
 }
