@@ -28,10 +28,10 @@ export default class CreateItemComponent extends React.PureComponent {
 			uploadImageDialogVisible : false, 
 			name: itemToBeEdited ? itemToBeEdited.name : '',
 			info: itemToBeEdited ? itemToBeEdited.info : '',
-			image: itemToBeEdited ? itemToBeEdited.image : 'none',
-			category: itemToBeEdited ? itemToBeEdited.category : 'none',
+			image: itemToBeEdited ? itemToBeEdited.image.id : 'none',
+            imageSource: itemToBeEdited ? itemToBeEdited.image.source : null,
+			category: itemToBeEdited ? itemToBeEdited.category.id : 'none',
             id: itemToBeEdited ? itemToBeEdited.id : null,
-            imageSource: itemToBeEdited ? itemToBeEdited.source : null,
 		};
 	}
     
@@ -42,7 +42,7 @@ export default class CreateItemComponent extends React.PureComponent {
 	}
 
 	getCategoryItems() {
-		return this.props.categories.map( (category, index) => 
+		return this.props.categories.map((category, index) => 
             <MenuItem key={index} value={category.id}>{category.title}</MenuItem>
 		);
 	}
@@ -84,6 +84,7 @@ export default class CreateItemComponent extends React.PureComponent {
 	}
 
 	render(){
+		console.log(this.props.itemToBeEdited)
 		return (
 			<div className="CreateItemComponent">
 				<form>

@@ -253,14 +253,14 @@ export function onLoad(dispatch){
 			let categories = objects[1];
 			dispatch(imageActions.addImagesAction(images));
 			dispatch(categoryActions.addCategoriesAction(categories));
-		
+			console.log(images)
 		return repoService.getItems()
 		.then(
 			//success on fetching Items
 			items => {
 
 				items.map(item => {
-
+					
 					item.image = images.filter(image => image.id == item.image.id)[0]
 					item.category = categories.filter(category => category.id == item.category.id)[0]
 					return item

@@ -41,17 +41,29 @@ class AdminPage extends React.PureComponent {
 	}
 
   
+	getImage = id =>{
+		return this.props.images.filter(image => image.id == id).get(0)
+	}
+	
+	getCategory = id => {
+		return this.props.categories.filter(category => (category.id == id)).get(0);
+	}
 
-  
-
-	itemSubmitClick(data) {
+	itemSubmitClick = data => {
 		this.setState({ dialogOpen: false }); 
-		data.image = this.props.images.filter(image => image.id = data.image).get(0);
-		data.category = this.props.categories.filter(category => (category.id = data.category)).get(0);
+		data.image = this.getImage(data.image);
+		data.category = this.getCategory(data.category)
 		this.props.createItem(new Item({name: data.name, info: data.info, image: data.image, category: data.category}), true); 
 	}
 
-	categorySubmitClick(data) {
+	itemEdit = data => {
+		data.image = this.getImage(data.image);
+		data.category = this.getCategory(data.category)
+		this.props.editItem(data)
+	}
+
+
+	categorySubmitClick = data => {
 		this.setState({ dialogOpen: false }); 
 		this.props.createCategory(new Category({title: data.title, filter: data.filter, visible: data.visible}), true); 
 	}
@@ -64,17 +76,17 @@ class AdminPage extends React.PureComponent {
 			<Typography varian="display2" align="right">ALL ACCESS GRANTED</Typography>   
 			<Route exact path={URLS.admin.items} render={() => 
 				<ItemComponent 
-					submit={this.itemSubmitClick.bind(this)}
+					submit={this.itemSubmitClick}
 					deleteItem={this.props.deleteItem}
-					editItem={this.props.editItem}
+					editItem={this.itemEdit}
 					toggleVisible={this.props.toggleItemVisible}
 					items={this.props.items}
 					categories={this.props.categories}
 					openToaster={this.props.openToaster}
 					images={this.props.images}
 					addImage={this.props.addImage}
-					save={this.props.saveItems}
-					cancelSave={this.props.cancelItemSave}
+					save={this.props.save}
+					cancelSave={this.props.cancelSave}
 					edited={this.props.itemEdited}
             
   
@@ -82,14 +94,14 @@ class AdminPage extends React.PureComponent {
 			/>
 			<Route path={URLS.admin.categories} render={() => 
 				<CategoryComponent 
-					submit={this.categorySubmitClick.bind(this)}
+					submit={this.categorySubmitClick}
 					editCategory={this.props.editCategory}
 					deleteCategory={this.props.deleteCategory} 
 					categories={this.props.categories}
 					toggleVisible={this.props.toggleCategoryVisible}  
 					openToaster={this.props.openToaster}
-					save={this.props.saveCategories}
-					cancelSave={this.props.cancelCategorySave}
+					save={this.props.save}
+					cancelSave={this.props.cancelSave}
 					edited={this.props.categoriesEdit}
 				/>}
 			/>
@@ -100,8 +112,8 @@ class AdminPage extends React.PureComponent {
 					deleteImage={this.props.deleteImage} 
 					images={this.props.images}
 					openToaster={this.props.openToaster}
-					save={this.props.saveImages}
-					cancelSave={this.props.cancelImage}
+					save={this.props.save}
+					cancelSave={this.props.cancelSave}
 					edited={this.props.imagesEdit}
 					addImage={this.props.addImage}
 				/>}
@@ -137,22 +149,27 @@ function mapDispatchToProps(dispatch) {
 		deleteItem : (arg) => {mainActions.deleteItem(dispatch,arg);},
 		editItem : (item) => {mainActions.changeItem(dispatch,item);},
 		toggleItemVisible: (arg) => {mainActions.toggleItemVisible(dispatch,arg);},  
-		saveItems: () => {mainActions.save(dispatch);},
-		cancelItemSave: () => {mainActions.cancelSave(dispatch);},
-
+		
 		createCategory : (arg, edit) => {categoryActions.createCategory(dispatch,arg, edit);},
 		deleteCategory : (arg) => {categoryActions.deleteCategory(dispatch,arg);},
 		editCategory : (category) => {categoryActions.changeCategory(dispatch,category);},
 		toggleCategoryVisible : (arg) => {categoryActions.toggleCategoryVisible(dispatch,arg);},
-		saveCategories: () => {categoryActions.save(dispatch);},
-		cancelCategorySave: () => {categoryActions.cancelSave(dispatch);},
-
+		
 		addImage: (arg, edit) => {imageActions.addImage(dispatch, arg, edit);},
 		deleteImage: (arg) => {imageActions.deleteImage(dispatch, arg);},
 		editImage: (arg) => {imageActions.editImage(dispatch, arg);},
-		saveImages: () => {imageActions.save(dispatch);},
-		cancelSaveImages: () => {imageActions.cancelSave(dispatch);},
-
+		
+		cancelSave: () => {
+			imageActions.cancelSave(dispatch)
+			mainActions.cancelSave(dispatch)
+			categoryActions.cancelSave(dispatch)
+		},
+		
+		save: () => {
+			imageActions.save(dispatch)
+			mainActions.save(dispatch)
+			categoryActions.save(dispatch)
+		},
 
 		openToaster: (message) => { toasterActions.showToaster(dispatch, message);}
 
