@@ -19,7 +19,6 @@ export default class StorefrontItemComponent extends Component {
     
 
 	addClick(){
-		console.log("Am in add")
 		this.props.add(this.props.item);
 	}
 

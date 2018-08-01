@@ -7,6 +7,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import Avatar from '@material-ui/core/Avatar';
 
 
 export default class ItemListComponent extends React.PureComponent {
@@ -26,33 +27,40 @@ export default class ItemListComponent extends React.PureComponent {
 
 	render(){ 
 		let styleClass = this.props.item.edited ? 'adminListComponent-edit' : 'adminListComponent';
-		return <TableRow className={styleClass}>
-			<TableCell component="th" scope="row">
-				{this.props.name}
+		return <TableRow 
+				className={styleClass}
+				onClick={() => 
+					{this.props.edit(this.props.item)}
+				}>
+			<TableCell>{this.props.item.category.title}</TableCell>
+			<TableCell>
+				<Avatar alt="Thumbnail" src={this.props.item.image.source} />
 			</TableCell>
 			<TableCell>{this.props.item.name}</TableCell>
-			<TableCell>{this.props.item.info}</TableCell>
-			<TableCell>{this.props.item.image.source}</TableCell>
-			<TableCell>{this.props.item.category.title}</TableCell>
-			<TableCell>{this.props.item.id}</TableCell>
-
+			<TableCell style={wrapping}>{this.props.item.info}</TableCell>
 			<TableCell>
-				<Checkbox 
+				<Checkbox
 					checked={this.props.item.visible ? true : false}
 					onChange={this.toggleVisible.bind(this)}
 				/>
 			</TableCell>
+
+			
 			<TableCell>
 				<IconButton onClick={() => this.props.toggleDialog('DELETE', this.props.item.name, this.props.item)}>
 					<DeleteIcon />
 				</IconButton>
 			</TableCell>
-			<TableCell>
+			{/* <TableCell>
 				<IconButton onClick={() => this.props.edit(this.props.item)}>
 					<EditIcon />
 				</IconButton>
-			</TableCell>
+			</TableCell> */}
 		</TableRow>;
 	}
 }
 
+const wrapping = {
+	maxWidth: "100px", 
+	wordWrap: "break-word"
+}

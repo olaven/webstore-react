@@ -133,16 +133,15 @@ export default class ItemComponent extends React.PureComponent {
 				<Paper>
 					<Table>
 						<TableHead>
-							<TableRow>
-								<TableCell>Items</TableCell>
+							<TableRow >
+								<TableCell>Category</TableCell>
+								<TableCell>Image</TableCell>
 								<TableCell>Title</TableCell>
 								<TableCell>Description</TableCell>
-								<TableCell>Image</TableCell>
-								<TableCell>Category</TableCell>
-								<TableCell>Id</TableCell>
-								<TableCell>Visible</TableCell>
+								<TableCell>Active</TableCell>
+
 								<TableCell>Delete</TableCell>
-								<TableCell>Edit</TableCell>
+								{/* <TableCell>Edit</TableCell> */}
 							</TableRow>
 						</TableHead>
 						<TableBody>

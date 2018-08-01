@@ -126,7 +126,7 @@ export default class CategoryComponent extends React.PureComponent {
 				<Paper>
 					<Table>
 						<TableHead>
-							<TableRow>
+							<TableRow >
 								<TableCell>Title</TableCell>
 								<TableCell>Filter</TableCell>
 								<TableCell>Visible</TableCell>
