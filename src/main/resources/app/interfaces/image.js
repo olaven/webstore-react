@@ -13,14 +13,11 @@ export default class Image extends Updatable{
 		this.type = 'image';
 		this.edited = data.edited == undefined ? true : data.edited;
 		this.file = data.file || null;
-
-		const source = (data.file ? URL.createObjectURL(data.file) : data.source);
-		console.log("SOURCE BEGIN", source); 
-		if(source) {
-			this.source = source; 
-		} else {
+		
+		if(!data.file && !data.source) {
 			this.source = "https://bayareawindowpros.com/themes/bawp/assets/img/styles/doors/archtop-inswing.png"; 
+		} else {
+			this.source = (data.file ? URL.createObjectURL(data.file) : data.source);
 		}
-		console.log("SOURCE AFTER", this.source);
 	}
 } 

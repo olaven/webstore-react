@@ -151,10 +151,10 @@ export default class ImageComponent extends React.PureComponent {
 						<TableHead>
 							<TableRow>
 								<TableCell>Title</TableCell>
-								<TableCell>URL</TableCell>
+								<TableCell>Thumbnail</TableCell>
 								<TableCell>id</TableCell>
 								<TableCell>Delete</TableCell>
-								<TableCell>Edit</TableCell>
+								{/* <TableCell>Edit</TableCell> */}
 							</TableRow>
 						</TableHead>
 						<TableBody>
