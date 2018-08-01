@@ -253,7 +253,6 @@ export function onLoad(dispatch){
 			let categories = objects[1];
 			dispatch(imageActions.addImagesAction(images));
 			dispatch(categoryActions.addCategoriesAction(categories));
-			console.log(images)
 		return repoService.getItems()
 		.then(
 			//success on fetching Items

@@ -39,9 +39,19 @@ export default class CategoryComponent extends React.PureComponent {
 
 	toggleDialog(type, message, category){
 		if(type){
-			this.setState({ dialogType: type, open: true, message: message, categoryToBeRemoved: category });
+			this.setState({ 
+				dialogType: type, 
+				open: true, 
+				message: message, 
+				categoryToBeRemoved: category });
 		} else {
-			this.setState({ dialogType: '', open: false, message: '' });
+			this.setState({ 
+				dialogType: '', 
+				open: false, 
+				message: '' ,
+				categoryToBeRemoved: null,
+				categoryToBeEdited: null
+			});
 		}
 	}
 
@@ -89,6 +99,7 @@ export default class CategoryComponent extends React.PureComponent {
 				</Button> ];
 
 	}
+
 
 	render(){ 
 		return (
