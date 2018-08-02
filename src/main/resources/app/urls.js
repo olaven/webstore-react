@@ -10,7 +10,8 @@ const URLS = {
 		items : PREFIX + '/admin', 
 		categories: PREFIX + '/admin/categories', 
 		images : PREFIX + '/admin/images'
-	}
+	},
+	headless : PREFIX + '/headless', 
 };
 
 export default URLS;

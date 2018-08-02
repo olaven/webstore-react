@@ -9,6 +9,8 @@ import NotFound from './containers/notFoundPage';
 import TopBar from './containers/TopBar'; 
 import SideBar from './containers/SideBar'; 
 import CartPage from './containers/cartPage'; 
+import HeadlessPage from './containers/headless';
+
 
 // Redux Actions 
 import * as mainActions from './actions/mainActions';
@@ -74,6 +76,7 @@ class App extends Component {
 						<Route path={URLS.admin.items} component={AdminPage} />
 						<Route path={URLS.storefront} component={StorefrontPage} />
 						<Route path={URLS.cart} component={CartPage} />
+						<Route path={URLS.headless} component={HeadlessPage} />
 						<Route path={URLS.empty} component={StorefrontPage} />
 						<Route component={NotFound} />
 					</Switch>
