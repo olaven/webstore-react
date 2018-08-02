@@ -87,7 +87,10 @@ export default class CategoryComponent extends React.PureComponent {
                     Categories
 				</Typography>
 
-				<SearchComponent value={this.state.searchValue} onChange={this.searchCategoryOnChange.bind(this)}/>
+				<SearchComponent 
+					value={this.state.searchValue} 
+					onChange={this.searchCategoryOnChange.bind(this)}
+					helperText="Filter categories"/>
 				<div className="admin-button-container">
 					<div className="admin-button-left">
 						<Button 

@@ -96,7 +96,10 @@ export default class ImageComponent extends React.PureComponent {
                     Images
 				</Typography>
 
-				<SearchComponent value={this.state.searchValue} onChange={this.searchimageOnChange.bind(this)}/>
+				<SearchComponent 
+					value={this.state.searchValue} 
+					onChange={this.searchimageOnChange.bind(this)}
+					helperText="Filter images"/>
 				<div className="admin-button-container">
 					<div className="admin-button-left">
 						<Button 
