@@ -76,24 +76,22 @@ class TopBar extends React.PureComponent {
 		return icons; 
 	}
 
-	// getTitle(page) {
-	// 	/**
-    //      * The title takes a lot of space on mobile. 
-    //      * The icon also makes its job redundant. Therefore, 
-    //      * it is not shown on mobile, on the material-design mobile breakpoint
-    //      */
-	// 	if(this.state.screenWidth <= 960) {
-	// 		// To fill the same amount of relative space 
-	// 		return <Typography className="TopBar-FlexGrow"/>;
-	// 	}
-	// 	return <Typography
-	// 		variant="headline"
-	// 		className="TopBar-FlexGrow"
-	// 		align="center"
-	// 		color={page === 'admin' ? 'textSecondary' : 'inherit'}>
-	// 			{page === 'admin' ? 'Admin Page' : 'Enonic Webstore'}
-	// 	</Typography>;
-	// }
+	getTitle(page) {
+		/**
+         * The title takes a lot of space on mobile. 
+         * The icon also makes its job redundant. Therefore, 
+         * it is not shown on mobile, on the material-design mobile breakpoint
+         */
+		if(this.state.screenWidth <= 960) {
+			// To fill the same amount of relative space 
+			return <Typography className="TopBar-FlexGrow"/>;
+		}
+		return <Typography
+			className="Topbar-Headline"
+			variant="headline">
+			{page === 'admin' ? "Enonic Webstore Admin Console" : "Enonic Webstore"}
+		</Typography>
+	}
 
 	render() { 
 		const path = this.props.location.pathname; 
@@ -119,13 +117,9 @@ class TopBar extends React.PureComponent {
 
 							{this.getCorrectIcons.bind(this)(page)}
 
-							{/* {this.getTitle.bind(this)(page)} */}
+							{this.getTitle.bind(this)(page)}
 
-							<Typography 
-								className="Topbar-Headline" 
-								variant="headline">
-								{page === 'admin' ? "Enonic Webstore Admin Console" : "Enonic Webstore"}
-							</Typography>
+							
 
 							<Link to={page === 'store' ? URLS.admin.items : URLS.storefront}>
 								<Tooltip title={page === 'store' ? "Admin page" : "Back to store"}>

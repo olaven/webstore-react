@@ -148,6 +148,7 @@ export default class CreateItemComponent extends React.PureComponent {
 								{this.getImageItems()}
 							</Select>
 						</FormControl>  
+
 						<Button onClick={this.toggleUploadImageDialog.bind(this)}>Custom Image</Button>
 					</FormControl>
                     
