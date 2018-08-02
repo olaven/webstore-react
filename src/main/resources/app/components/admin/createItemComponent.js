@@ -93,6 +93,7 @@ export default class CreateItemComponent extends React.PureComponent {
 							<CardMedia
                                 image={this.state.imageSource}
 								className="Item-Card-Media"
+								onClick={this.toggleUploadImageDialog.bind(this)}
 							/> 
 						</Card> : null}
                     
