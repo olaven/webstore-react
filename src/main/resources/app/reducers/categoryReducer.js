@@ -1,10 +1,13 @@
 import { fromJS } from 'immutable';
+import { cloneDeep } from 'lodash';
+
 import * as categoryActions from '../actions/categoryActions';
 import * as repoService from '../services/repoService';
 
 const initialState = fromJS({
 	categories: [],
 	deletedCategories: [],
+	backup: [],
 	edited: false
 });
 
@@ -36,6 +39,7 @@ function addCategories(oldState, action){
 		state = state.set('edited', true);
 	}
 	state = sortCategories(state);
+	state = state.set('backup', cloneDeep(state.get('categories')));
 	return state;
 }
 
@@ -98,19 +102,16 @@ function save(oldState, action){
 	});
 
 	state = state.set('edited', false);
+	state = state.set('backup', cloneDeep(state.get('categories')))
 	return state;
 }
 
 function cancelSave(oldState, action){
 	let state = oldState;
-	state = state.updateIn(['categories'], function(categories) {
-		return fromJS(action.categories);
-	});
-	state = state.updateIn(['deletedCategories'], function() {
-		return fromJS([]);
-	});
-	state = state.set('edited', false);  
-	state = sortCategories(state);
+
+	state = state.set('categories', cloneDeep(state.get('backup')))
+	state = state.set('deletedCategories', fromJS([]))
+	state = state.set('edited', false); 
 	return state;
 }
 

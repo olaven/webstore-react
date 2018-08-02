@@ -42,11 +42,11 @@ class AdminPage extends React.PureComponent {
 
   
 	getImage = id =>{
-		return this.props.images.filter(image => image.id == id).get(0)
+		return this.props.images.find(image => image.id == id)
 	}
 	
 	getCategory = id => {
-		return this.props.categories.filter(category => (category.id == id)).get(0);
+		return this.props.categories.find(category => category.id == id)
 	}
 
 	itemSubmitClick = data => {
@@ -61,7 +61,6 @@ class AdminPage extends React.PureComponent {
 		data.category = this.getCategory(data.category)
 		this.props.editItem(data)
 	}
-
 
 	categorySubmitClick = data => {
 		this.setState({ dialogOpen: false }); 

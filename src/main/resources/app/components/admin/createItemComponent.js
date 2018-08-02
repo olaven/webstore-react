@@ -25,7 +25,6 @@ export default class CreateItemComponent extends React.PureComponent {
 	constructor(arg){
 		super(arg);
 		const {itemToBeEdited} = this.props;
-		console.log("props:", this.props)
 		this.state = {
 			uploadImageDialogVisible : false, 
 			name: itemToBeEdited ? itemToBeEdited.name : '',
@@ -37,7 +36,6 @@ export default class CreateItemComponent extends React.PureComponent {
 		};
 	}
 
-    
 	getImageItems() {
 		return this.props.images.map((image, index) => {
 			return <MenuItem key={index} value={image.id}>{image.name}</MenuItem>;

@@ -11,7 +11,6 @@ export default class Updatable {
      * @param {object} data 
      */
 	update(data) {
-		console.log(data)
 		for (let key of Object.keys(data)) {
 			if (this.hasOwnProperty(key)) {
 				this[key] = data[key];
