@@ -25,7 +25,6 @@ export default class CreateItemComponent extends React.PureComponent {
 	constructor(arg){
 		super(arg);
 		const {itemToBeEdited} = this.props;
-		console.log("props:", this.props)
 		this.state = {
 			uploadImageDialogVisible : false, 
 			name: itemToBeEdited ? itemToBeEdited.name : '',
@@ -36,7 +35,6 @@ export default class CreateItemComponent extends React.PureComponent {
             id: itemToBeEdited ? itemToBeEdited.id : null,
 		};
 	}
-
     
 	getImageItems() {
 		return this.props.images.map((image, index) => {
@@ -137,7 +135,7 @@ export default class CreateItemComponent extends React.PureComponent {
 								{this.getCategoryItems()}
 							</Select>
 						</FormControl>
-						<div>
+						<div className="Image-Input-Section">
 							<FormControl>
 								<InputLabel>Image</InputLabel>
 								<Select
@@ -151,7 +149,7 @@ export default class CreateItemComponent extends React.PureComponent {
 									{this.getImageItems()}
 								</Select>
 							</FormControl>
-							 or
+							or 
 							<Button onClick={this.toggleUploadImageDialog.bind(this)}>
 								Upload image
 							</Button>
@@ -164,7 +162,7 @@ export default class CreateItemComponent extends React.PureComponent {
 						Cancel
 					</Button>
 					<Button onClick={this.validateAndSubmit.bind(this)} color="primary">
-                    	Submit
+						{this.props.message === 'creating' ? "Create" : "Update"}
 					</Button>
 				</DialogActions>
 				{/*Displayed when user wants to upload image*/}

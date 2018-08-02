@@ -160,6 +160,7 @@
             addImage={this.props.addImage} 
             images={this.props.images}
             itemToBeEdited={this.props.toBeEdited}
+            message={this.props.message}
             
             />
         case "CATEGORY":
@@ -167,6 +168,7 @@
             submit={this.props.submit} 
             onClose={this.props.onClose}
             categoryToBeEdited={this.props.toBeEdited}
+            message={this.props.message}
             />
                 default:
                     return null;

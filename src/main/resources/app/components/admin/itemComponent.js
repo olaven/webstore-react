@@ -56,7 +56,6 @@ export default class ItemComponent extends React.PureComponent {
 				itemToBeEdited: null,
 				itemToBeRemoved: null
 			 });
-			 console.log(this.state)
 		}
 	}
 
@@ -135,7 +134,7 @@ export default class ItemComponent extends React.PureComponent {
 				</Typography>
 				<SearchComponent value={this.state.searchValue} onChange={this.searchItemOnChange.bind(this)} helperText="Filer items"/>
 				<Button 
-					onClick={()=> this.toggleDialog('ITEM')}
+					onClick={()=> this.toggleDialog('ITEM', 'creating')}
 					color="primary"
 				>
                     

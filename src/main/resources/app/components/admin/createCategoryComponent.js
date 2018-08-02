@@ -69,7 +69,7 @@ export default class CreateItemComponent extends React.PureComponent {
                         Cancel
                     </Button>
                     <Button onClick={this.validateAndSubmit.bind(this)} color="primary">
-                        Submit
+                        {this.props.message === 'creating' ? 'Create' : 'Update'}
                     </Button>
                 </DialogActions>
 
