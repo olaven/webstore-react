@@ -84,11 +84,36 @@ export default class CreateItemComponent extends React.PureComponent {
 		});
 	}
 
+	renderButtons(){
+		return this.props.itemToBeEdited ? 
+		<DialogActions>
+			<Button onClick={() => this.props.onClose()} className="Greyed-Button">
+				Cancel
+			</Button>
+			<Button onClick={this.validateAndSubmit.bind(this)} color="primary">
+				Update
+			</Button>
+		</DialogActions>
+		
+		:
+
+		<DialogActions>
+			<Button onClick={() => this.props.onClose()} className="Greyed-Button">
+				Cancel
+			</Button>
+			<Button onClick={this.validateAndSubmit.bind(this)} color="primary">
+				Create
+			</Button>
+		</DialogActions>
+
+	}
+
 	render(){
 		return (
 			<div className="CreateItemComponent">
 				<form>
 					{this.state.image !='none'? 
+
 						<Card className="Item-Card-Edit">
 							<CardMedia
                                 image={this.state.imageSource}
@@ -151,14 +176,7 @@ export default class CreateItemComponent extends React.PureComponent {
 					</FormControl>
                     
 				</form>
-				<DialogActions>
-					<Button onClick={() => this.props.onClose()} className="Greyed-Button">
-						Cancel
-					</Button>
-					<Button onClick={this.validateAndSubmit.bind(this)} color="primary">
-                    	Submit
-					</Button>
-				</DialogActions>
+				{this.renderButtons()}
 				{/*Displayed when user wants to upload image*/}
 				<UploadImageDialog
 					open={this.state.uploadImageDialogVisible}
