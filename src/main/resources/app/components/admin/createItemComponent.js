@@ -108,6 +108,7 @@ export default class CreateItemComponent extends React.PureComponent {
 							margin="normal"
 							onChange={this.handleChange.bind(this)}
 							required
+							fullWidth
 							error={this.state.name === ''}
 						/>
 
@@ -120,6 +121,7 @@ export default class CreateItemComponent extends React.PureComponent {
 							required
 							error={this.state.info === ''}
 							multiline
+							fullWidth
 							width="100%"
 						/>
 						<FormControl>
@@ -135,21 +137,25 @@ export default class CreateItemComponent extends React.PureComponent {
 								{this.getCategoryItems()}
 							</Select>
 						</FormControl>
-						<FormControl>
-							<InputLabel>Image</InputLabel>
-							<Select
-								value={this.state.image}
-								name="image"
-								onChange={this.handleImageChange.bind(this)}
-								autoWidth>
-								<MenuItem value="" disabled>
-									<em>None</em>
-								</MenuItem>
-								{this.getImageItems()}
-							</Select>
-						</FormControl>  
-
-						<Button onClick={this.toggleUploadImageDialog.bind(this)}>Custom Image</Button>
+						<div>
+							<FormControl>
+								<InputLabel>Image</InputLabel>
+								<Select
+									value={this.state.image}
+									name="image"
+									onChange={this.handleImageChange.bind(this)}
+									autoWidth>
+									<MenuItem value="" disabled>
+										<em>None</em>
+									</MenuItem>
+									{this.getImageItems()}
+								</Select>
+							</FormControl>
+							 or
+							<Button onClick={this.toggleUploadImageDialog.bind(this)}>
+								Upload image
+							</Button>
+						</div>
 					</FormControl>
                     
 				</form>
