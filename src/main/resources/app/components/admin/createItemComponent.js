@@ -162,7 +162,7 @@ export default class CreateItemComponent extends React.PureComponent {
 						Cancel
 					</Button>
 					<Button onClick={this.validateAndSubmit.bind(this)} color="primary">
-						{this.props.message === 'creating' ? "Create" : "Update"}
+						{this.props.itemToBeEdited ? "Update" : "Create"}
 					</Button>
 				</DialogActions>
 				{/*Displayed when user wants to upload image*/}
