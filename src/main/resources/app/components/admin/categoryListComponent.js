@@ -40,7 +40,10 @@ export default class CategoryListComponent extends React.PureComponent {
 			<TableCell>
 				<Checkbox
 					checked={this.props.category.visible ? true : false}
-					onChange={this.toggleVisible.bind(this)} />
+					onClick={(event) => {
+						event.stopPropagation();
+						this.toggleVisible();
+					}} />
 			</TableCell>
 			<TableCell>
 				<IconButton onClick={(event) => {

@@ -26,10 +26,10 @@ export default class SaveCancel extends React.PureComponent {
 			</Button>,
 			<Button 
 				key={2}
-				className="Greyed-Button"
 				onClick={() => {
 					this.props.cancelSave();
 				}} 
+				color="inherit"
 			>
                 cancel changes
 			</Button> ]
@@ -37,14 +37,12 @@ export default class SaveCancel extends React.PureComponent {
 				<Button 
 					disabled
 					key={1}
-					color="primary"
 				>
                 Save changes
 				</Button>,
 				<Button 
 					disabled
 					key={2}
-					className="Greyed-Button"
 				>
                 cancel changes
 				</Button> ];

@@ -22,6 +22,7 @@ import ToasterComponent from '../components/ToasterComponent';
 
 // Project URLS 
 import URLS from '../urls'; 
+import headless from '../../../../../build/resources/main/app/containers/headless';
 
 
 class TopBar extends React.PureComponent {
@@ -50,32 +51,34 @@ class TopBar extends React.PureComponent {
 
 	getCorrectIcons(page) {
 		// needed to differentiate between storefront and cart 
-		const cart = this.props.location.pathname.includes('cart'); 
+		const store = this.props.location.pathname.includes(URLS.storefront); 
+		const cart = this.props.location.pathname.includes(URLS.cart); 
+		const headless = this.props.location.pathname.includes(URLS.headless); 
 
 		const icons = (page === 'store' ? <div>
 			<Link to={URLS.storefront}>
 				<Tooltip title="To store">
 					<IconButton>
-						<StoreIcon color={!cart ? 'disabled' : 'inherit'} />
+						<StoreIcon color={store ? 'disabled' : 'inherit'} />
 					</IconButton>
 				</Tooltip>
 			</Link>
 			<Link to={URLS.cart}>
 				<Tooltip title="To Cart">
 					<IconButton>
-						{this.props.cartItems.size > 0 ? <Badge badgeContent={this.props.cartItems.size} color="secondary">
+						{this.props.cartItems.size > 0 ? 
+						<Badge badgeContent={this.props.cartItems.size} color="secondary">
 							<CartIcon color={cart ? 'disabled' : 'inherit'} />
-						</Badge> : <CartIcon color={cart ? 'disabled' : 'inherit'} />}
-						{/* <Badge badgeContent={this.props.cartItems.size} color="secondary">
-							<CartIcon color={cart ? 'disabled' : 'inherit'}/>
-						</Badge> */}
+						</Badge> 
+							: 
+						<CartIcon color={cart ? 'disabled' : 'inherit'} />}
 					</IconButton>
 				</Tooltip>
 			</Link> 
 			<Link to={URLS.headless}>
 				<Tooltip title="Headless">
 					<IconButton>
-						<CloudCircleIcon />
+						<CloudCircleIcon color={headless ? 'disabled' : 'inherit'}/>
 					</IconButton>
 				</Tooltip>
 			</Link> 

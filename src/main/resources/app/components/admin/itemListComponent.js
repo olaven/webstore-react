@@ -49,7 +49,7 @@ export default class ItemListComponent extends React.PureComponent {
 						// onChange={this.toggleVisible.bind(this)}
 						onClick={(event) => {
 							event.stopPropagation();
-							this.toggleVisible().bind(this);
+							this.toggleVisible();
 						}}
 					/>
 				</TableCell>
