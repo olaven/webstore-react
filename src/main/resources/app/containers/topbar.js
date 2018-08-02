@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography'; 
 import MenuIcon from '@material-ui/icons/Menu'; 
 import StoreIcon from '@material-ui/icons/Store'; 
+import CloudCircleIcon from '@material-ui/icons/CloudCircle'; 
 import CartIcon from '@material-ui/icons/ShoppingCart'; 
 import Badge from '@material-ui/core/Badge'; 
 import Tooltip from '@material-ui/core/Tooltip'; 
@@ -71,6 +72,13 @@ class TopBar extends React.PureComponent {
 					</IconButton>
 				</Tooltip>
 			</Link> 
+			<Link to={URLS.headless}>
+				<Tooltip title="Headless">
+					<IconButton>
+						<CloudCircleIcon />
+					</IconButton>
+				</Tooltip>
+			</Link> 
 		</div>: null); 
 
 		return icons; 
@@ -95,7 +103,7 @@ class TopBar extends React.PureComponent {
 
 	render() { 
 		const path = this.props.location.pathname; 
-		const page = (path.includes(URLS.storefront) || path.includes(URLS.cart)) ? 'store' : 'admin';
+		const page = path.includes(URLS.admin.items) ? 'admin' : 'store' ;
         
 		return (
 			<div className="TopBar-FlexGrow"> 
