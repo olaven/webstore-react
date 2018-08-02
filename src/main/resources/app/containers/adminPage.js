@@ -53,7 +53,7 @@ class AdminPage extends React.PureComponent {
 		this.setState({ dialogOpen: false }); 
 		data.image = this.getImage(data.image);
 		data.category = this.getCategory(data.category)
-		this.props.createItem(new Item({name: data.name, info: data.info, image: data.image, category: data.category}), true); 
+		this.props.createItem(new Item({name: data.name, info: data.info, image: data.image, category: data.category, edited : true}), true); 
 	}
 
 	itemEdit = data => {

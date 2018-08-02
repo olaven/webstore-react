@@ -31,7 +31,9 @@ export default class ItemListComponent extends React.PureComponent {
 				className={styleClass}
 				onClick={() => 
 					{this.props.edit(this.props.item)}
-				}>
+				}
+				style={{ cursor: "pointer" }}
+				>
 			<TableCell>{this.props.item.category.title}</TableCell>
 			<TableCell>
 				<Avatar alt="Thumbnail" src={this.props.item.image.source} />
