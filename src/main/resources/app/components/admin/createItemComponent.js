@@ -38,13 +38,13 @@ export default class CreateItemComponent extends React.PureComponent {
 
 	getImageItems() {
 		return this.props.images.map((image, index) => {
-			return <MenuItem key={index} value={image.id} className="admin-select-menu">{image.name}</MenuItem>;
+			return <MenuItem key={index} value={image.id} >{image.name}</MenuItem>;
 		}); 
 	}
 
 	getCategoryItems() {
 		return this.props.categories.map((category, index) => 
-            <MenuItem key={index} value={category.id} className="admin-select-menu">{category.title}</MenuItem>
+            <MenuItem key={index} value={category.id} >{category.title}</MenuItem>
 		);
 	}
 

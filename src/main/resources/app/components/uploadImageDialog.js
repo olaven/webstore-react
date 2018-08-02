@@ -110,7 +110,10 @@ export default class UploadImageDialog extends React.PureComponent {
 		return <Dialog
 			open={this.props.open}
 			onClose={this.props.handleClose}
-			aria-labelledby="form-dialog-title">
+			aria-labelledby="form-dialog-title"
+			className="UploadImageDialog"
+			>
+			
 			<DialogTitle id="form-dialog-title">Upload image</DialogTitle>
 			<DialogContent>
 				<TextField

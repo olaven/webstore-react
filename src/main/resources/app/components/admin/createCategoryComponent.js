@@ -36,11 +36,33 @@ export default class CreateItemComponent extends React.PureComponent {
         }
     }
 
+    renderButtons(){
+        return this.props.categoryToBeEdited ? 
+
+        <DialogActions>
+            <Button onClick={() =>this.props.onClose()} className="Greyed-Button">
+                Cancel
+            </Button>
+            <Button onClick={this.validateAndSubmit.bind(this)} color="primary">
+                Update
+            </Button>
+        </DialogActions>
+        :
+        <DialogActions>
+            <Button onClick={() =>this.props.onClose()} className="Greyed-Button">
+                Cancel
+            </Button>
+            <Button onClick={this.validateAndSubmit.bind(this)} color="primary">
+                Create
+            </Button>
+        </DialogActions>
+    }
+
     render() {
         return (
             <div className="CreateCategoryComponent">
                 <form>
-                    <FormControl >
+                    <FormControl   className="item-formcontrol" >
                         <TextField
                             label="Title"
                             id="title"
@@ -51,7 +73,7 @@ export default class CreateItemComponent extends React.PureComponent {
                             error={this.state.title === ""}
                         />
                     </FormControl>
-                    <FormControl > 
+                    <FormControl className="item-formcontrol"> 
                         <TextField
                             label="Filter"
                             id="filter"
@@ -62,16 +84,9 @@ export default class CreateItemComponent extends React.PureComponent {
                             error={this.state.filter === ""}
                         />
                     </FormControl>
-
+                    {this.renderButtons()}
                 </form>
-                <DialogActions>
-                    <Button onClick={() =>this.props.onClose()} className="Greyed-Button">
-                        Cancel
-                    </Button>
-                    <Button onClick={this.validateAndSubmit.bind(this)} color="primary">
-                        Submit
-                    </Button>
-                </DialogActions>
+                
 
 
             </div>
