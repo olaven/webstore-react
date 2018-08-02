@@ -55,6 +55,7 @@ class StorefrontPage extends React.PureComponent {
 
   renderItems() {
     return this.props.items.map((item, index) => {
+      console.log(item.category); 
       if(item.name.toUpperCase().includes(this.state.searchValue.toUpperCase()) ||
         item.category.filter.toUpperCase().includes(this.state.searchValue.toUpperCase())
         ){ 
