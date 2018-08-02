@@ -58,9 +58,6 @@ class App extends Component {
 
 
 	render () {
-
-		fetch("http://localhost:8080/portal/master/headless/_/service/com.enonic.app.webstore.react/graphql").then(response => console.log(response)); 
-
 		return (
 			<div className="App">
 				<MuiThemeProvider theme={Theme}>

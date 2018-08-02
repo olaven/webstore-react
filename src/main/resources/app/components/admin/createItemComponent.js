@@ -38,13 +38,13 @@ export default class CreateItemComponent extends React.PureComponent {
 
 	getImageItems() {
 		return this.props.images.map((image, index) => {
-			return <MenuItem key={index} value={image.id}>{image.name}</MenuItem>;
+			return <MenuItem key={index} value={image.id} className="admin-select-menu">{image.name}</MenuItem>;
 		}); 
 	}
 
 	getCategoryItems() {
 		return this.props.categories.map((category, index) => 
-            <MenuItem key={index} value={category.id}>{category.title}</MenuItem>
+            <MenuItem key={index} value={category.id} className="admin-select-menu">{category.title}</MenuItem>
 		);
 	}
 
@@ -89,15 +89,17 @@ export default class CreateItemComponent extends React.PureComponent {
 			<div className="CreateItemComponent">
 				<form>
 					{this.state.image !='none'? 
+
 						<Card className="Item-Card-Edit">
 							<CardMedia
                                 image={this.state.imageSource}
 								className="Item-Card-Media"
+								onClick={this.toggleUploadImageDialog.bind(this)}
 							/> 
 						</Card> : null}
                     
 
-					<FormControl >
+					<FormControl className="item-formcontrol">
 
 						<TextField
 							label="Name"
@@ -165,6 +167,7 @@ export default class CreateItemComponent extends React.PureComponent {
 						{this.props.itemToBeEdited ? "Update" : "Create"}
 					</Button>
 				</DialogActions>
+
 				{/*Displayed when user wants to upload image*/}
 				<UploadImageDialog
 					open={this.state.uploadImageDialogVisible}
