@@ -72,16 +72,16 @@
         {
             "name": "Sushi",
             "info": "Sushi for sale! Made by exclusive chefs around the world only to end it's journey on your tastebuds",
-            "image": 3,
+            "image": 4,
             "visible": true,
-            "category": 2,
+            "category": 1,
             "id" : 4,
             "edited" : false
         },
         {
             "name": "Train",
             "info": "YES! This train is for sale! Made by craftmen in the late 1960's and is now up for sale!",
-            "image": 4,
+            "image": 5,
             "visible": true,
             "category": 3,
             "id" : 5,
@@ -110,7 +110,7 @@
         {
             "title": "Vehicle",
             "filter": "vehicle",
-            "id": 3,
+            "id": 4,
             "edited" : false
         }
     ],

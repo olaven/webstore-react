@@ -5,6 +5,7 @@ import React from 'react';
 import CategoryListComponent from './categoryListComponent';
 import SearchComponent from '../searchComponent';
 import DialogComponent from '../dialogComponent';
+import SaveCancel from './saveCancelButtonComponent';
 
 // Material UI
 import Paper from '@material-ui/core/Paper'; 
@@ -60,45 +61,7 @@ export default class CategoryComponent extends React.PureComponent {
 		this.toggleDialog('CATEGORY');
 	}
 
-	getButtons(){
-		return this.props.edited ? [
-        
-			<Button 
-				key={1}
-				color="primary"
-				onClick={() => {
-					this.props.save();
-					this.forceUpdate();
-				}} 
-			>
-                Save changes
-			</Button>,
-			<Button 
-				key={2}
-				className="Greyed-Button"
-				onClick={() => {
-					this.props.cancelSave();
-					this.forceUpdate();
-				}} 
-			>
-                cancel changes
-			</Button> ]
-			: [
-				<Button 
-					key={1}
-					color="primary"
-				>
-                Save changes
-				</Button>,
-				<Button 
-					key={2}
-					color="secondary"
-					className="Greyed-Button"
-				>
-                cancel changes
-				</Button> ];
 
-	}
 
 
 	render(){ 
@@ -124,14 +87,25 @@ export default class CategoryComponent extends React.PureComponent {
                     Categories
 				</Typography>
 
-				<SearchComponent value={this.state.searchValue} onChange={this.searchCategoryOnChange.bind(this)} helperText="Filter categories"/>
-				<Button 
-					onClick={() => this.toggleDialog('CATEGORY')}
-					color="primary"
-					>
-                    add Category
-				</Button>
-				{this.getButtons()}
+				<SearchComponent value={this.state.searchValue} onChange={this.searchCategoryOnChange.bind(this)}/>
+				<div className="admin-button-container">
+					<div className="admin-button-left">
+						<Button 
+							onClick={() => this.toggleDialog('CATEGORY')}
+							color="primary"
+							>
+							ADD NEW CATEGORY
+						</Button>
+						
+					</div>
+                    <div className="admin-button-right">
+						< SaveCancel 
+							edited={this.props.edited}
+							save={this.props.save}
+							cancelSave={this.props.cancelSave}
+						/>
+					</div>
+				</div>
                 
 
 				<Paper>

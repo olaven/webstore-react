@@ -49,10 +49,9 @@ function saveAction(){
 	};
 }
   
-function cancelSaveAction(categories){
+function cancelSaveAction(){
 	return {
-		type: actions.cancelSave,
-		categories: categories
+		type: actions.cancelSave
 	};
 }
   
@@ -66,11 +65,8 @@ export function addCategoriesAction(categories){
 
 
 export function cancelSave(dispatch){
-	repoService.getCategories().then(response =>
-		response = response.map(data => new Category(data))
-	).then(categories =>
-		dispatch(cancelSaveAction(categories))
-	);
+	dispatch(cancelSaveAction())
+
 }
 
 

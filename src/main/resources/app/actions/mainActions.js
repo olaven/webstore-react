@@ -96,10 +96,9 @@ function saveAction(){
 	};
 }
 
-function cancelSaveAction(items){
+function cancelSaveAction(){
 	return {
-		type: actions.cancelSave,
-		items: items
+		type: actions.cancelSave
 	};
 }
 
@@ -320,11 +319,8 @@ export function onLoad(dispatch){
 
 
 export function cancelSave(dispatch){
-	repoService.getItems().then(response =>
-		response = response.map(data => new Item(data))
-	).then(items =>
-		dispatch(cancelSaveAction(items))
-	);
+	dispatch(cancelSaveAction())
+
 }
 
 export function save(dispatch){

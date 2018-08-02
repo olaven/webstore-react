@@ -1,10 +1,13 @@
 import { fromJS } from 'immutable';
+import { cloneDeep } from 'lodash';
+
 import * as mainActions from '../actions/mainActions';
 import * as repoService from '../services/repoService';
 
 
 const initialState = fromJS({
 	allItems: [],
+	backup: [],
 	cartItems: [],
 	deletedItems: [],
 	searchValue: '',
@@ -39,6 +42,7 @@ function addItems(oldState, action){
 		return items;
 	});
 	state = sortItems(state);
+	state = state.set('backup', cloneDeep(state.get('allItems')))
 	return state;
 }
 
@@ -114,6 +118,7 @@ function checkout(oldState, action){
 
 function save(oldState, action){
 	let state = oldState;
+	
 	state = state.updateIn(['allItems'], function(items) {
 		items.forEach(item => {
 			if(item.edited){
@@ -129,21 +134,16 @@ function save(oldState, action){
 		});
 		return fromJS([]);
 	});
-
+	state = state.set('backup', cloneDeep(state.get('allItems')))
 	state = state.set('edited', false);
 	return state;
 }
 
 function cancelSave(oldState, action){
 	let state = oldState;
-	state = state.updateIn(['allItems'], function(items) {
-		return fromJS(action.items);
-	});
-	state = state.updateIn(['deletedItems'], function() {
-		return fromJS([]);
-	});
+	state = state.set('allItems', cloneDeep(state.get('backup')))
+	state = state.set('deletedItems', fromJS([]))
 	state = state.set('edited', false);  
-	state = sortItems(state);
 	return state;
 }
 

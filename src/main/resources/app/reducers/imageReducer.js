@@ -1,10 +1,13 @@
 import { fromJS } from 'immutable';
+import { cloneDeep } from 'lodash';
+
 import * as imageActions from '../actions/imageActions';
 import * as repoService from '../services/repoService';
 
 const initialState = fromJS({
 	images: [],
 	deletedImages: [],
+	backup: [],
 	edited: false
 });
 
@@ -26,6 +29,7 @@ function addImages(oldState, action) {
 		images = images.concat(action.data);
 		return images;
 	});
+	state = state.set('backup', cloneDeep(state.get('images')))
 	return state;
 }
 
@@ -48,7 +52,6 @@ function editImage(oldState, action) {
 	state = state.updateIn(['images'], function(images) {
 		let image = images.find(image => image.id == action.data.id);
 		let oldImage = image;
-		image.update(action.data);
 		images = images.splice(images.indexOf(oldImage), 1, image);
 		return images;
 	});
@@ -73,21 +76,16 @@ function save(oldState, action) {
 		});
 		return fromJS([]);
 	});
-
+	state = state.set('backup', cloneDeep(state.get('images'))) 
 	state = state.set('edited', false);
 	return state;
 }
 
 function cancelSave(oldState, action) {
 	let state = oldState;
-	state = state.updateIn(['images'], function(images) {
-		return fromJS(action.images);
-	});
-	state = state.updateIn(['deletedImages'], function() {
-		return fromJS([]);
-	});
-	state = state.set('edited', false);
-	state = sortimages(state);
+	state = state.set('images', cloneDeep(state.get('backup')))
+	state = state.set('deletedImages', fromJS([]))
+	state = state.set('edited', false);  
 	return state;
 }
 

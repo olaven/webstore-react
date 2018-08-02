@@ -5,6 +5,7 @@ import React from 'react';
 import ItemListComponent from './itemListComponent';
 import SearchComponent from '../searchComponent';
 import DialogComponent from '../dialogComponent';
+import SaveCancel from './saveCancelButtonComponent';
 
 // Material UI
 import Paper from '@material-ui/core/Paper'; 
@@ -64,45 +65,6 @@ export default class ItemComponent extends React.PureComponent {
 		this.toggleDialog('ITEM');
 	}
 
-	getButtons(){
-		return this.props.edited ? [
-        
-			<Button 
-				key={1}
-				color="primary"
-				onClick={() => {
-					this.props.save();
-					this.forceUpdate();
-				}} 
-			>
-                Save changes
-			</Button>,
-			<Button 
-				key={2}
-				className="Greyed-Button"
-				onClick={() => {
-					this.props.cancelSave();
-					this.forceUpdate();
-				}} 
-			>
-                cancel changes
-			</Button> ]
-			: [
-				<Button 
-					key={1}
-					color="primary"
-				>
-                Save changes
-				</Button>,
-				<Button 
-					key={2}
-					className="Greyed-Button"
-				>
-                cancel changes
-				</Button> ];
-
-	}
-
 
 	render(){ 
 		return (
@@ -132,15 +94,25 @@ export default class ItemComponent extends React.PureComponent {
 				<Typography variant="display3" gutterBottom>
                     Items
 				</Typography>
-				<SearchComponent value={this.state.searchValue} onChange={this.searchItemOnChange.bind(this)} helperText="Filer items"/>
-				<Button 
-					onClick={()=> this.toggleDialog('ITEM', 'creating')}
-					color="primary"
-				>
-                    
-                    Add new item
-				</Button>
-				{this.getButtons()}
+
+				<SearchComponent value={this.state.searchValue} onChange={this.searchItemOnChange.bind(this)}/>
+				<div className="admin-button-container">
+					<div className="admin-button-left">
+						<Button 
+							onClick={()=> this.toggleDialog('ITEM')}
+							color="primary"
+							>
+								Add new item
+							</Button>
+					</div>
+                    <div className="admin-button-right">
+						< SaveCancel 
+							edited={this.props.edited}
+							save={this.props.save}
+							cancelSave={this.props.cancelSave}
+						/>
+					</div>
+				</div>
                 
 				<Paper>
 					<Table>

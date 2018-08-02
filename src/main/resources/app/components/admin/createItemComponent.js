@@ -35,7 +35,7 @@ export default class CreateItemComponent extends React.PureComponent {
             id: itemToBeEdited ? itemToBeEdited.id : null,
 		};
 	}
-    
+
 	getImageItems() {
 		return this.props.images.map((image, index) => {
 			return <MenuItem key={index} value={image.id}>{image.name}</MenuItem>;

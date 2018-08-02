@@ -154,21 +154,20 @@
             switch (this.props.type) {
         case "ITEM":
             return <CreateItemComponent 
-            submit={this.props.submit} 
-            onClose={this.props.onClose} 
-            categories={this.props.categories}
-            addImage={this.props.addImage} 
-            images={this.props.images}
-            itemToBeEdited={this.props.toBeEdited}
-            message={this.props.message}
-            
+                submit={this.props.submit} 
+                onClose={this.props.onClose} 
+                categories={this.props.categories}
+                addImage={this.props.addImage} 
+                images={this.props.images}
+                itemToBeEdited={this.props.toBeEdited}
+                message={this.props.message}
             />
         case "CATEGORY":
             return <CreateCategoryComponent 
-            submit={this.props.submit} 
-            onClose={this.props.onClose}
-            categoryToBeEdited={this.props.toBeEdited}
-            message={this.props.message}
+                submit={this.props.submit} 
+                onClose={this.props.onClose}
+                categoryToBeEdited={this.props.toBeEdited}
+                message={this.props.message}
             />
                 default:
                     return null;
