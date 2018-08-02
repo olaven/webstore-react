@@ -26,6 +26,7 @@ export default class ImageListComponent extends React.PureComponent {
 		return <TableRow 
 				className={styleClass} 
 				onClick={() => this.props.edit(this.props.image)}
+				style={{ cursor: "pointer" }}
 			>
 			<TableCell component="th" scope="row">
 				{this.props.image.name}

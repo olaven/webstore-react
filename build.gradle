@@ -30,6 +30,8 @@ dependencies {
     include "com.enonic.xp:lib-mustache:${xpVersion}"
     include "com.enonic.xp:lib-value:${xpVersion}"
     include "com.enonic.lib:lib-router:1.0.1"
+    include "com.enonic.lib:lib-guillotine:1.0.1"
+    include "com.enonic.lib:graphql:0.5.2"
 }
 
 repositories {

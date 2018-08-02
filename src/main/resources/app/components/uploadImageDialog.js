@@ -7,7 +7,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Typography from '@material-ui/core/Typography'; 
 import CardMedia from '@material-ui/core/CardMedia';
 
 // Interfaces 
@@ -99,61 +98,64 @@ export default class UploadImageDialog extends React.PureComponent {
 
 	renderMedia(){
 		if (this.state.source != ''){
-			return <CardMedia
-				image={this.state.source}
-				className="Item-Card-Media"
-			/>; 
+			return <label htmlFor="raised-button-file">
+				<CardMedia
+					image={this.state.source}
+					className="Item-Card-Media"
+				/>
+				</label> 
 		}
 	}
 
 	render() {
 		return <Dialog
-			open={this.props.open}
-			onClose={this.props.handleClose}
-			aria-labelledby="form-dialog-title"
-			className="UploadImageDialog"
-			>
-			
-			<DialogTitle id="form-dialog-title">Upload image</DialogTitle>
-			<DialogContent>
-				<TextField
-					required
-					autoFocus
-					margin="dense"
-					id="name"
-					label="Image Name"
-					type="text"
-					value={this.state.name}
-					onChange={this.handleNameChange.bind(this)}
-					fullWidth
-				/>
-				<input
-					accept="image/*"
-					id="raised-button-file"
-					type="file"
-					onInput={this.handleFileChange.bind(this)}
-					className="UploadImageDialog-FileInput"
-					required
-				/>
-				{this.renderMedia()}
-				<label htmlFor="raised-button-file">
-					<Button
-						color={this.state.validationFailed ? 'secondary' : 'primary'}
-						component="span"
-					>
-                        Select Image 
-					</Button>
-				</label>
-			</DialogContent>
-			<DialogActions>
-				<Button 
-					onClick={this.props.onClose} 
-					className="Greyed-Button"
+					open={this.props.open}
+					onClose={this.props.handleClose}
+					aria-labelledby="form-dialog-title"
 				>
-                    Cancel
-				</Button>
-				{this.renderButton()}
-			</DialogActions>
-		</Dialog>;
+				<div className="UploadImageDialog">
+				
+				<DialogTitle id="form-dialog-title">Upload image</DialogTitle>
+				<DialogContent>
+					<TextField
+						required
+						autoFocus
+						margin="dense"
+						id="name"
+						label="Image Name"
+						type="text"
+						value={this.state.name}
+						onChange={this.handleNameChange.bind(this)}
+						fullWidth
+					/>
+					<input
+						accept="image/*"
+						id="raised-button-file"
+						type="file"
+						onInput={this.handleFileChange.bind(this)}
+						className="UploadImageDialog-FileInput"
+						required
+					/>
+					{this.renderMedia()}
+					<label htmlFor="raised-button-file">
+						<Button
+							color={this.state.validationFailed ? 'secondary' : 'primary'}
+							component="span"
+						>
+							Select Image 
+						</Button>
+					</label>
+				</DialogContent>
+				<DialogActions>
+					<Button 
+						onClick={this.props.onClose} 
+						className="Greyed-Button"
+					>
+						Cancel
+					</Button>
+					{this.renderButton()}
+				</DialogActions>
+				</div>
+			</Dialog>;
 	}
 }

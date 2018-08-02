@@ -94,6 +94,7 @@ export default class ItemComponent extends React.PureComponent {
 				<Typography variant="display3" gutterBottom>
                     Items
 				</Typography>
+
 				<SearchComponent value={this.state.searchValue} onChange={this.searchItemOnChange.bind(this)}/>
 				<div className="admin-button-container">
 					<div className="admin-button-left">

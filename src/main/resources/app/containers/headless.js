@@ -4,11 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as mainActions from '../actions/mainActions' 
 
-// Components 
-import StorefrontItemComponent from "../components/storefront/storefrontItemComponent"
-import SearchComponent from "../components/searchComponent"; 
-import DialogComponent from '../components/dialogComponent';
-
 // Material UI 
 import Grid from '@material-ui/core/Grid'; 
 
@@ -39,6 +34,15 @@ class HeadlessPage extends React.PureComponent {
  
 
   render() {
+    const query = '{ guillotine { query( query : \"type=\'com.enonic.app.webstore.react:product\'\" ) { displayName } }}'; 
+
+    fetch("http://localhost:8080/portal/master/headless/_/service/com.enonic.app.webstore.react/graphql",
+      {
+        method : "POST", 
+        body: JSON.stringify({ query: query })
+      }
+      ).then(response => console.log(response.json().then(r => console.log(r)))); 
+
     return (
       <div className="StorefrontPage">
         <Grid 

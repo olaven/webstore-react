@@ -36,28 +36,6 @@ export default class CreateItemComponent extends React.PureComponent {
         }
     }
 
-    renderButtons(){
-        return this.props.categoryToBeEdited ? 
-
-        <DialogActions>
-            <Button onClick={() =>this.props.onClose()} className="Greyed-Button">
-                Cancel
-            </Button>
-            <Button onClick={this.validateAndSubmit.bind(this)} color="primary">
-                Update
-            </Button>
-        </DialogActions>
-        :
-        <DialogActions>
-            <Button onClick={() =>this.props.onClose()} className="Greyed-Button">
-                Cancel
-            </Button>
-            <Button onClick={this.validateAndSubmit.bind(this)} color="primary">
-                Create
-            </Button>
-        </DialogActions>
-    }
-
     render() {
         return (
             <div className="CreateCategoryComponent">
@@ -84,10 +62,16 @@ export default class CreateItemComponent extends React.PureComponent {
                             error={this.state.filter === ""}
                         />
                     </FormControl>
-                    {this.renderButtons()}
                 </form>
-                
 
+                <DialogActions>
+                    <Button onClick={() =>this.props.onClose()} className="Greyed-Button">
+                        Cancel
+                    </Button>
+                    <Button onClick={this.validateAndSubmit.bind(this)} color="primary">
+                        {this.props.categoryToBeEdited ? 'Create' : 'Update'}
+                    </Button>
+                </DialogActions>
 
             </div>
 

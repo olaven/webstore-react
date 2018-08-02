@@ -160,7 +160,6 @@
                 addImage={this.props.addImage} 
                 images={this.props.images}
                 itemToBeEdited={this.props.toBeEdited}
-            
             />
         case "CATEGORY":
             return <CreateCategoryComponent 

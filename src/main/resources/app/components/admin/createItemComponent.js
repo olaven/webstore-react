@@ -84,30 +84,6 @@ export default class CreateItemComponent extends React.PureComponent {
 		});
 	}
 
-	renderButtons(){
-		return this.props.itemToBeEdited ? 
-		<DialogActions>
-			<Button onClick={() => this.props.onClose()} className="Greyed-Button">
-				Cancel
-			</Button>
-			<Button onClick={this.validateAndSubmit.bind(this)} color="primary">
-				Update
-			</Button>
-		</DialogActions>
-		
-		:
-
-		<DialogActions>
-			<Button onClick={() => this.props.onClose()} className="Greyed-Button">
-				Cancel
-			</Button>
-			<Button onClick={this.validateAndSubmit.bind(this)} color="primary">
-				Create
-			</Button>
-		</DialogActions>
-
-	}
-
 	render(){
 		return (
 			<div className="CreateItemComponent">
@@ -132,6 +108,7 @@ export default class CreateItemComponent extends React.PureComponent {
 							margin="normal"
 							onChange={this.handleChange.bind(this)}
 							required
+							fullWidth
 							error={this.state.name === ''}
 						/>
 
@@ -144,6 +121,7 @@ export default class CreateItemComponent extends React.PureComponent {
 							required
 							error={this.state.info === ''}
 							multiline
+							fullWidth
 							width="100%"
 						/>
 						<FormControl>
@@ -159,6 +137,7 @@ export default class CreateItemComponent extends React.PureComponent {
 								{this.getCategoryItems()}
 							</Select>
 						</FormControl>
+						
 						<FormControl>
 							<InputLabel>Image</InputLabel>
 							<Select
@@ -171,12 +150,24 @@ export default class CreateItemComponent extends React.PureComponent {
 								</MenuItem>
 								{this.getImageItems()}
 							</Select>
-						</FormControl>  
-						<Button onClick={this.toggleUploadImageDialog.bind(this)}>Custom Image</Button>
+						</FormControl>
+						
+						<Button onClick={this.toggleUploadImageDialog.bind(this)}>
+							Upload image
+						</Button>
+						
 					</FormControl>
                     
 				</form>
-				{this.renderButtons()}
+				<DialogActions>
+					<Button onClick={() => this.props.onClose()} className="Greyed-Button">
+						Cancel
+					</Button>
+					<Button onClick={this.validateAndSubmit.bind(this)} color="primary">
+						{this.props.itemToBeEdited ? "Update" : "Create"}
+					</Button>
+				</DialogActions>
+
 				{/*Displayed when user wants to upload image*/}
 				<UploadImageDialog
 					open={this.state.uploadImageDialogVisible}
