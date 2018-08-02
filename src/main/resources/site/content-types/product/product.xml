@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content-type>
+  <display-name>Product</display-name>
+  <super-type>base:structured</super-type>
+  <form>
+    <input type="ImageSelector" name="photos">
+      <label>Photos</label>
+      <occurrences minimum="0" maximum="0"/>
+    </input>
+    <input type="TextArea" name="bio">
+      <label>Description</label>
+       <occurrences minimum="1" maximum="1"/>
+    </input>
+  </form>
+</content-type>
