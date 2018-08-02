@@ -141,6 +141,7 @@ export function editImage(image){
 	formdata.append('name', image.name);
 	formdata.append('id', image.id);
 	formdata.append('type', image.type);
+	formdata.append('source', image.source)
 
 	image.file ? formdata.append('file', image.file)
 		:   formdata.append('source', image.name);

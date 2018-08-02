@@ -142,7 +142,6 @@ export default class UploadImageDialog extends React.PureComponent {
 					</Button>
 				</label>
 			</DialogContent>
-			<Typography>{this.state.source}</Typography>
 			<DialogActions>
 				<Button 
 					onClick={this.props.onClose} 

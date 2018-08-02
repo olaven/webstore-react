@@ -121,7 +121,13 @@ class TopBar extends React.PureComponent {
 
 							{/* {this.getTitle.bind(this)(page)} */}
 
-							<Link className="TopBar-AdminLink" to={page === 'store' ? URLS.admin.items : URLS.storefront}>
+							<Typography 
+								className="Topbar-Headline" 
+								variant="headline">
+								{page === 'admin' ? "Enonic Webstore Admin Console" : "Enonic Webstore"}
+							</Typography>
+
+							<Link to={page === 'store' ? URLS.admin.items : URLS.storefront}>
 								<Tooltip title={page === 'store' ? "Admin page" : "Back to store"}>
 									<Typography variant="button">{page === 'store' ? "ADMIN" : "BACK TO STORE"}</Typography>
 								</Tooltip>

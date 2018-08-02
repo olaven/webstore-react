@@ -120,6 +120,7 @@ exports.put = function(req) {
 		type: portalLib.getMultipartText('type'),
 		source: portalLib.getMultipartText('source'),
 		file: portalLib.getMultipartItem('file')
+
 	};
 
     
@@ -139,12 +140,6 @@ exports.put = function(req) {
 		var wasSuccessful = servicesLib.createNode(body).success; 
     
 		if(wasSuccessful) {
-			if(body.file){
-				// log.info("Added image ");
-                
-			} else {
-				// log.info("Added image:" + JSON.stringify(body, null, 4)); 
-			}
 			return { 
 				status: 200, 
 				message: '' 
@@ -163,6 +158,8 @@ exports.put = function(req) {
 		} else {
 			node.data.source = body.source;
 		}
+
+
 		return node; 
 	};
 

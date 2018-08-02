@@ -58,7 +58,7 @@ export default class SearchComponent extends Component {
 							</InputAdornment>
 						),
 					}}
-					helperText="Search in store"
+					helperText={this.props.helperText}
 					onChange={this.onChange.bind(this)}
 					onKeyDown={this.handleKeyDown.bind(this)}
 					autoFocus
