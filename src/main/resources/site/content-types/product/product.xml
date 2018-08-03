@@ -4,10 +4,13 @@
   <super-type>base:structured</super-type>
   <form>
     <input type="ImageSelector" name="photos">
+      <config>
+        <allowPath>${site}/</allowPath>
+      </config>
       <label>Photos</label>
       <occurrences minimum="0" maximum="0"/>
     </input>
-    <input type="TextArea" name="bio">
+    <input type="TextArea" name="description">
       <label>Description</label>
        <occurrences minimum="1" maximum="1"/>
     </input>
