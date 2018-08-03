@@ -51,8 +51,9 @@ function editImage(oldState, action) {
 	let state = oldState;
 	state = state.updateIn(['images'], function(images) {
 		let image = images.find(image => image.id == action.data.id);
-		let oldImage = image;
-		images = images.splice(images.indexOf(oldImage), 1, image);
+		let oldImage = image
+		image.update(action.data)
+		images = images.splice(images.indexOf(image), 1, image);
 		return images;
 	});
 	state = state.set('edited', true);

@@ -38,13 +38,13 @@ export default class CreateItemComponent extends React.PureComponent {
 
 	getImageItems() {
 		return this.props.images.map((image, index) => {
-			return <MenuItem key={index} value={image.id} className="admin-select-menu">{image.name}</MenuItem>;
+			return <MenuItem key={index} value={image.id} >{image.name}</MenuItem>;
 		}); 
 	}
 
 	getCategoryItems() {
 		return this.props.categories.map((category, index) => 
-            <MenuItem key={index} value={category.id} className="admin-select-menu">{category.title}</MenuItem>
+            <MenuItem key={index} value={category.id} >{category.title}</MenuItem>
 		);
 	}
 
@@ -137,25 +137,25 @@ export default class CreateItemComponent extends React.PureComponent {
 								{this.getCategoryItems()}
 							</Select>
 						</FormControl>
-						<div className="Image-Input-Section">
-							<FormControl>
-								<InputLabel>Image</InputLabel>
-								<Select
-									value={this.state.image}
-									name="image"
-									onChange={this.handleImageChange.bind(this)}
-									autoWidth>
-									<MenuItem value="" disabled>
-										<em>None</em>
-									</MenuItem>
-									{this.getImageItems()}
-								</Select>
-							</FormControl>
-							or 
-							<Button onClick={this.toggleUploadImageDialog.bind(this)}>
-								Upload image
-							</Button>
-						</div>
+						
+						<FormControl>
+							<InputLabel>Image</InputLabel>
+							<Select
+								value={this.state.image}
+								name="image"
+								onChange={this.handleImageChange.bind(this)}
+								autoWidth>
+								<MenuItem value="" disabled>
+									<em>None</em>
+								</MenuItem>
+								{this.getImageItems()}
+							</Select>
+						</FormControl>
+						
+						<Button onClick={this.toggleUploadImageDialog.bind(this)}>
+							Upload image
+						</Button>
+						
 					</FormControl>
                     
 				</form>

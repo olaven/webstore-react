@@ -20,7 +20,7 @@ export default class CartItem extends React.PureComponent {
 	render(){
 		return <ListItem>
 			<ListItemText>{this.props.item.name}</ListItemText>
-			<Avatar src={this.props.item.image} ></Avatar>
+			<Avatar src={this.props.item.image.source} ></Avatar>
 			<IconButton onClick={this.remove.bind(this)}>
 				<DeleteIcon/>
 			</IconButton>
