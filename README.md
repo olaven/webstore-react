@@ -1,6 +1,16 @@
 # webstore-react
 
-A webstore built with React on Enonic platform
+A webstore built with React and Redux using the Enonic platform with Repositories and Headless site.
+
+This React website is a demonstration and is not to be used in production.
+
+# This package contains:
+* service of html with a webpack bundle
+* React-Redux implementation
+* storage of objects and images on the Enonic built-in repository system-repo
+* storage of objects and images on the Enonic Headless cms site
+* (shallow)implementation of Material-ui 
+
 
 # Setting up headless
 The headless demo (/headless) enables getting data from XP content studio.
