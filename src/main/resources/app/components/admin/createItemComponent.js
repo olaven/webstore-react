@@ -110,6 +110,7 @@ export default class CreateItemComponent extends React.PureComponent {
 							required
 							fullWidth
 							error={this.state.name === ''}
+							
 						/>
 
 						<TextField
@@ -124,7 +125,7 @@ export default class CreateItemComponent extends React.PureComponent {
 							fullWidth
 							width="100%"
 						/>
-						<FormControl>
+						<FormControl className="item-formcontrol">
 							<InputLabel>Category</InputLabel>
 							<Select
 								value={this.state.category}
@@ -138,13 +139,14 @@ export default class CreateItemComponent extends React.PureComponent {
 							</Select>
 						</FormControl>
 						
-						<FormControl>
+						<FormControl className="item-formcontrol">
 							<InputLabel>Image</InputLabel>
 							<Select
 								value={this.state.image}
 								name="image"
 								onChange={this.handleImageChange.bind(this)}
-								autoWidth>
+								autoWidth
+							>
 								<MenuItem value="" disabled>
 									<em>None</em>
 								</MenuItem>
