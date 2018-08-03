@@ -24,10 +24,10 @@ export default class ImageListComponent extends React.PureComponent {
 	render(){ 
 		let styleClass = this.props.image.edited ? 'adminListComponent-edit' : 'adminListComponent';
 		return <TableRow 
-				className={styleClass} 
-				onClick={() => this.props.edit(this.props.image)}
-				style={{ cursor: "pointer" }}
-			>
+			className={styleClass} 
+			onClick={() => this.props.edit(this.props.image)}
+			style={{ cursor: 'pointer' }}
+		>
 			<TableCell component="th" scope="row">
 				{this.props.image.name}
 			</TableCell>

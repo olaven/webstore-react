@@ -65,7 +65,7 @@ export function addCategoriesAction(categories){
 
 
 export function cancelSave(dispatch){
-	dispatch(cancelSaveAction())
+	dispatch(cancelSaveAction());
 
 }
 

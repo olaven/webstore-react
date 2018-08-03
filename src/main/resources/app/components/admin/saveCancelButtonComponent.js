@@ -10,10 +10,10 @@ export default class SaveCancel extends React.PureComponent {
 	constructor(arg){
 		super(arg);
         
-    }
+	}
     
-    render(){
-        return this.props.edited ? [
+	render(){
+		return this.props.edited ? [
         
 			<Button 
 				key={1}
@@ -47,6 +47,6 @@ export default class SaveCancel extends React.PureComponent {
                 cancel changes
 				</Button> ];
 
-    }
+	}
 
 }

@@ -96,12 +96,12 @@ export default class CategoryComponent extends React.PureComponent {
 						<Button 
 							onClick={() => this.toggleDialog('CATEGORY')}
 							color="primary"
-							>
+						>
 							ADD NEW CATEGORY
 						</Button>
 						
 					</div>
-                    <div className="admin-button-right">
+					<div className="admin-button-right">
 						< SaveCancel 
 							edited={this.props.edited}
 							save={this.props.save}

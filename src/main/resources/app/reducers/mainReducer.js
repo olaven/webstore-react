@@ -19,11 +19,11 @@ function sortItems(state){
 		return items.sort((a,b) => 
 		
 			a.category.title < b.category.title ? -1 :
-			b.category.title < a.category.title ? 1 :
-				a.name.toUpperCase() < b.name.toUpperCase() ? -1 :
-				b.name.toUpperCase() < a.name.toUpperCase() ? 1 :
-					a.id < b.id ? -1 :
-					b.id < a.id ? 1 : 0
+				b.category.title < a.category.title ? 1 :
+					a.name.toUpperCase() < b.name.toUpperCase() ? -1 :
+						b.name.toUpperCase() < a.name.toUpperCase() ? 1 :
+							a.id < b.id ? -1 :
+								b.id < a.id ? 1 : 0
 		);
 	});
 	return state;
@@ -50,7 +50,7 @@ function addItems(oldState, action){
 		return items;
 	});
 	state = sortItems(state);
-	state = state.set('backup', cloneDeep(state.get('allItems')))
+	state = state.set('backup', cloneDeep(state.get('allItems')));
 	return state;
 }
 
@@ -142,15 +142,15 @@ function save(oldState, action){
 		});
 		return fromJS([]);
 	});
-	state = state.set('backup', cloneDeep(state.get('allItems')))
+	state = state.set('backup', cloneDeep(state.get('allItems')));
 	state = state.set('edited', false);
 	return state;
 }
 
 function cancelSave(oldState, action){
 	let state = oldState;
-	state = state.set('allItems', cloneDeep(state.get('backup')))
-	state = state.set('deletedItems', fromJS([]))
+	state = state.set('allItems', cloneDeep(state.get('backup')));
+	state = state.set('deletedItems', fromJS([]));
 	state = state.set('edited', false);  
 	return state;
 }

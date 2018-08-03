@@ -104,11 +104,11 @@ export default class ItemComponent extends React.PureComponent {
 						<Button 
 							onClick={()=> this.toggleDialog('ITEM')}
 							color="primary"
-							>
+						>
 								Add new item
-							</Button>
+						</Button>
 					</div>
-                    <div className="admin-button-right">
+					<div className="admin-button-right">
 						< SaveCancel 
 							edited={this.props.edited}
 							save={this.props.save}

@@ -109,7 +109,7 @@ export default class ImageComponent extends React.PureComponent {
 							ADD NEW IMAGE
 						</Button>
 					</div>
-                    <div className="admin-button-right">
+					<div className="admin-button-right">
 						< SaveCancel 
 							edited={this.props.edited}
 							save={this.props.save}
