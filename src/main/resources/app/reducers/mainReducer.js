@@ -16,17 +16,14 @@ const initialState = fromJS({
 
 function sortItems(state){
 	state = state.updateIn(['allItems'], function (items) {
-		return items.sort((a,b) => {
-
-
-			return a.category.title < b.category.title ? -1 :
+		return items.sort((a,b) => 
+		
+			a.category.title < b.category.title ? -1 :
 			b.category.title < a.category.title ? 1 :
 				a.name.toUpperCase() < b.name.toUpperCase() ? -1 :
 				b.name.toUpperCase() < a.name.toUpperCase() ? 1 :
 					a.id < b.id ? -1 :
 					b.id < a.id ? 1 : 0
-		}
-
 		);
 	});
 	return state;

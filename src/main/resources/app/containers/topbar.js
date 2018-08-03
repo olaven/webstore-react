@@ -121,8 +121,8 @@ class TopBar extends React.PureComponent {
 						color={page === 'store' ? 'primary' : 'secondary'}>
 						<Toolbar>
 							<Tooltip title="Open menu">
-								<IconButton>
-									<MenuIcon onClick={this.props.onToggleMenu} /> 
+								<IconButton onClick={this.props.onToggleMenu} >
+									<MenuIcon /> 
 								</IconButton>
 							</Tooltip>
 
