@@ -30,9 +30,9 @@ export default class CreateItemComponent extends React.PureComponent {
 			name: itemToBeEdited ? itemToBeEdited.name : '',
 			info: itemToBeEdited ? itemToBeEdited.info : '',
 			image: itemToBeEdited ? itemToBeEdited.image.id : 'none',
-            imageSource: itemToBeEdited ? itemToBeEdited.image.source : null,
+			imageSource: itemToBeEdited ? itemToBeEdited.image.source : null,
 			category: itemToBeEdited ? itemToBeEdited.category.id : 'none',
-            id: itemToBeEdited ? itemToBeEdited.id : null,
+			id: itemToBeEdited ? itemToBeEdited.id : null,
 		};
 	}
 
@@ -44,7 +44,7 @@ export default class CreateItemComponent extends React.PureComponent {
 
 	getCategoryItems() {
 		return this.props.categories.map((category, index) => 
-            <MenuItem key={index} value={category.id} >{category.title}</MenuItem>
+			<MenuItem key={index} value={category.id} >{category.title}</MenuItem>
 		);
 	}
 
@@ -54,15 +54,15 @@ export default class CreateItemComponent extends React.PureComponent {
 
 	handleImageChange(event) {
 		this.setState({
-            image : event.target.value,
-            imageSource: this.props.images.filter(image => image.id == event.target.value).get(0).source
+			image : event.target.value,
+			imageSource: this.props.images.filter(image => image.id == event.target.value).get(0).source
 		}); 
 	}
 
 	handleImageUpload(image) {
 		this.setState({
-            image : image.id,
-            imageSource : image.source
+			image : image.id,
+			imageSource : image.source
 		}); 
 		this.props.addImage(image); 
 	}
@@ -92,7 +92,7 @@ export default class CreateItemComponent extends React.PureComponent {
 
 						<Card className="Item-Card-Edit">
 							<CardMedia
-                                image={this.state.imageSource}
+								image={this.state.imageSource}
 								className="Item-Card-Media"
 								onClick={this.toggleUploadImageDialog.bind(this)}
 							/> 
@@ -166,7 +166,7 @@ export default class CreateItemComponent extends React.PureComponent {
 						Cancel
 					</Button>
 					<Button onClick={this.validateAndSubmit.bind(this)} color="primary">
-						{this.props.itemToBeEdited ? "Update" : "Create"}
+						{this.props.itemToBeEdited ? 'Update' : 'Create'}
 					</Button>
 				</DialogActions>
 

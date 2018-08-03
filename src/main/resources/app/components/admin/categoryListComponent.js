@@ -29,8 +29,8 @@ export default class CategoryListComponent extends React.PureComponent {
 		return <TableRow 
 			className={styleClass} 
 			onClick={() => this.props.edit(this.props.category)} 
-			style={{cursor: "pointer"}}
-			>
+			style={{cursor: 'pointer'}}
+		>
 			<TableCell component="th" scope="row">
 				{this.props.category.title}
 			</TableCell>
@@ -48,7 +48,7 @@ export default class CategoryListComponent extends React.PureComponent {
 			<TableCell>
 				<IconButton onClick={(event) => {
 					event.stopPropagation(); 
-					this.props.toggleDialog('DELETE', this.props.category.title, this.props.category)
+					this.props.toggleDialog('DELETE', this.props.category.title, this.props.category);
 				}}>
 					<DeleteIcon />
 				</IconButton>

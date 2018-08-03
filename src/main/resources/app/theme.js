@@ -14,7 +14,7 @@ export default createMuiTheme({
 			main: green[500],
 		},
 		secondary: {
-			main: "#90A4AE", //red[500]
+			main: '#90A4AE', //red[500]
 		}
 	}
 }); 

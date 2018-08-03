@@ -8,7 +8,7 @@ import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close'; 
 import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -85,7 +85,7 @@ class SideBar extends React.PureComponent {
 					
 					<div className="Sidebar-Headers">
 						<Typography variant="display1">
-							{this.props.location.pathname.includes('admin') ? "Admin Console" : "Enonic Webstore"}
+							{this.props.location.pathname.includes('admin') ? 'Admin Console' : 'Enonic Webstore'}
 						</Typography>
 
 						<Typography variant="caption" className="Sidebar-Subheading">
@@ -104,7 +104,7 @@ class SideBar extends React.PureComponent {
 						<Link to={URLS.cart} className="Sidebar-Link">
 							<Button>Shopping Cart</Button>
 						</Link>
-						<Link to={""} className="Sidebar-Link">
+						<Link to={''} className="Sidebar-Link">
 							<Button>Profile</Button>
 						</Link>
 					</div>

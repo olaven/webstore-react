@@ -13,9 +13,9 @@ import Avatar from '@material-ui/core/Avatar';
 export default class ItemListComponent extends React.PureComponent {
 	constructor(arg){
 		super(arg);
-        this.state = {
+		this.state = {
 			uploadImageVisible : false 
-		}
+		};
 	}
 
 	
@@ -31,50 +31,50 @@ export default class ItemListComponent extends React.PureComponent {
 	render(){ 
 		let styleClass = this.props.item.edited ? 'adminListComponent-edit' : 'adminListComponent';
 		return <TableRow
-				className={styleClass}
-				onClick={() => { this.props.edit(this.props.item) }
-				}
-				style={{ cursor: "pointer" }}
-				>
-				<TableCell>{this.props.item.category.title}</TableCell>
-				<TableCell>
-					<Avatar
-						alt="Thumbnail" src={this.props.item.image.source}/>
-				</TableCell>
-				<TableCell>{this.props.item.name}</TableCell>
-				<TableCell style={wrapping}>{this.props.item.info}</TableCell>
-				<TableCell>
-					<Checkbox
-						checked={this.props.item.visible ? true : false}
-						// onChange={this.toggleVisible.bind(this)}
-						onClick={(event) => {
-							event.stopPropagation();
-							this.toggleVisible();
-						}}
-					/>
-				</TableCell>
-
-
-				<TableCell>
-					<IconButton onClick={(event) => {
+			className={styleClass}
+			onClick={() => { this.props.edit(this.props.item); }
+			}
+			style={{ cursor: 'pointer' }}
+		>
+			<TableCell>{this.props.item.category.title}</TableCell>
+			<TableCell>
+				<Avatar
+					alt="Thumbnail" src={this.props.item.image.source}/>
+			</TableCell>
+			<TableCell>{this.props.item.name}</TableCell>
+			<TableCell style={wrapping}>{this.props.item.info}</TableCell>
+			<TableCell>
+				<Checkbox
+					checked={this.props.item.visible ? true : false}
+					// onChange={this.toggleVisible.bind(this)}
+					onClick={(event) => {
 						event.stopPropagation();
-						this.props.toggleDialog('DELETE', this.props.item.name, this.props.item);
-					}}>
-						<DeleteIcon />
-					</IconButton>
-				</TableCell>
-				{/* <TableCell>
+						this.toggleVisible();
+					}}
+				/>
+			</TableCell>
+
+
+			<TableCell>
+				<IconButton onClick={(event) => {
+					event.stopPropagation();
+					this.props.toggleDialog('DELETE', this.props.item.name, this.props.item);
+				}}>
+					<DeleteIcon />
+				</IconButton>
+			</TableCell>
+			{/* <TableCell>
 				<IconButton onClick={() => this.props.edit(this.props.item)}>
 					<EditIcon />
 				</IconButton>
 			</TableCell> */}
 
-			</TableRow>
+		</TableRow>
 		; 
 	}
 }
 
 const wrapping = {
-	maxWidth: "50px", 
-	wordWrap: "break-word"
-}
+	maxWidth: '50px', 
+	wordWrap: 'break-word'
+};

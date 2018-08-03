@@ -63,7 +63,7 @@ class CartPage extends React.PureComponent {
       
 		}
 
-		return <Typography variant="caption" align="center" style={{padding: "50px"}}>Your cart is empty</Typography>;
+		return <Typography variant="caption" align="center" style={{padding: '50px'}}>Your cart is empty</Typography>;
 	}
 
 	onDialogClose() {

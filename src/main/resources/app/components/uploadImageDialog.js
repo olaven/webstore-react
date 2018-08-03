@@ -103,17 +103,17 @@ export default class UploadImageDialog extends React.PureComponent {
 					image={this.state.source}
 					className="Item-Card-Media"
 				/>
-				</label> 
+			</label>; 
 		}
 	}
 
 	render() {
 		return <Dialog
-					open={this.props.open}
-					onClose={this.props.handleClose}
-					aria-labelledby="form-dialog-title"
-				>
-				<div className="UploadImageDialog">
+			open={this.props.open}
+			onClose={this.props.handleClose}
+			aria-labelledby="form-dialog-title"
+		>
+			<div className="UploadImageDialog">
 				
 				<DialogTitle id="form-dialog-title">Upload image</DialogTitle>
 				<DialogContent>
@@ -155,7 +155,7 @@ export default class UploadImageDialog extends React.PureComponent {
 					</Button>
 					{this.renderButton()}
 				</DialogActions>
-				</div>
-			</Dialog>;
+			</div>
+		</Dialog>;
 	}
 }

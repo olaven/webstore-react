@@ -102,15 +102,15 @@ function save(oldState, action){
 	});
 
 	state = state.set('edited', false);
-	state = state.set('backup', cloneDeep(state.get('categories')))
+	state = state.set('backup', cloneDeep(state.get('categories')));
 	return state;
 }
 
 function cancelSave(oldState, action){
 	let state = oldState;
 
-	state = state.set('categories', cloneDeep(state.get('backup')))
-	state = state.set('deletedCategories', fromJS([]))
+	state = state.set('categories', cloneDeep(state.get('backup')));
+	state = state.set('deletedCategories', fromJS([]));
 	state = state.set('edited', false); 
 	return state;
 }

@@ -15,7 +15,7 @@ export default class Image extends Updatable{
 		this.file = data.file || null;
 		
 		if(!data.file && !data.source) {
-			this.source = "https://bayareawindowpros.com/themes/bawp/assets/img/styles/doors/archtop-inswing.png"; 
+			this.source = 'https://bayareawindowpros.com/themes/bawp/assets/img/styles/doors/archtop-inswing.png'; 
 		} else {
 			this.source = (data.file ? URL.createObjectURL(data.file) : data.source);
 		}

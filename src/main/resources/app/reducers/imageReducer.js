@@ -29,7 +29,7 @@ function addImages(oldState, action) {
 		images = images.concat(action.data);
 		return images;
 	});
-	state = state.set('backup', cloneDeep(state.get('images')))
+	state = state.set('backup', cloneDeep(state.get('images')));
 	return state;
 }
 
@@ -51,8 +51,8 @@ function editImage(oldState, action) {
 	let state = oldState;
 	state = state.updateIn(['images'], function(images) {
 		let image = images.find(image => image.id == action.data.id);
-		let oldImage = image
-		image.update(action.data)
+		let oldImage = image;
+		image.update(action.data);
 		images = images.splice(images.indexOf(image), 1, image);
 		return images;
 	});
@@ -77,15 +77,15 @@ function save(oldState, action) {
 		});
 		return fromJS([]);
 	});
-	state = state.set('backup', cloneDeep(state.get('images'))) 
+	state = state.set('backup', cloneDeep(state.get('images'))); 
 	state = state.set('edited', false);
 	return state;
 }
 
 function cancelSave(oldState, action) {
 	let state = oldState;
-	state = state.set('images', cloneDeep(state.get('backup')))
-	state = state.set('deletedImages', fromJS([]))
+	state = state.set('images', cloneDeep(state.get('backup')));
+	state = state.set('deletedImages', fromJS([]));
 	state = state.set('edited', false);  
 	return state;
 }

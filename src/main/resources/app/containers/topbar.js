@@ -67,11 +67,11 @@ class TopBar extends React.PureComponent {
 				<Tooltip title="To Cart">
 					<IconButton>
 						{this.props.cartItems.size > 0 ? 
-						<Badge badgeContent={this.props.cartItems.size} color="secondary">
-							<CartIcon color={cart ? 'disabled' : 'inherit'} />
-						</Badge> 
+							<Badge badgeContent={this.props.cartItems.size} color="secondary">
+								<CartIcon color={cart ? 'disabled' : 'inherit'} />
+							</Badge> 
 							: 
-						<CartIcon color={cart ? 'disabled' : 'inherit'} />}
+							<CartIcon color={cart ? 'disabled' : 'inherit'} />}
 					</IconButton>
 				</Tooltip>
 			</Link> 
@@ -100,8 +100,8 @@ class TopBar extends React.PureComponent {
 		return <Typography
 			className="Topbar-Headline"
 			variant="headline">
-			{page === 'admin' ? "Enonic Webstore Admin Console" : "Enonic Webstore"}
-		</Typography>
+			{page === 'admin' ? 'Enonic Webstore Admin Console' : 'Enonic Webstore'}
+		</Typography>;
 	}
 
 	render() { 
@@ -133,8 +133,8 @@ class TopBar extends React.PureComponent {
 							
 
 							<Link to={page === 'store' ? URLS.admin.items : URLS.storefront}>
-								<Tooltip title={page === 'store' ? "Admin page" : "Back to store"}>
-									<Typography variant="button">{page === 'store' ? "ADMIN" : "BACK TO STORE"}</Typography>
+								<Tooltip title={page === 'store' ? 'Admin page' : 'Back to store'}>
+									<Typography variant="button">{page === 'store' ? 'ADMIN' : 'BACK TO STORE'}</Typography>
 								</Tooltip>
 							</Link>
 						</Toolbar>                        
