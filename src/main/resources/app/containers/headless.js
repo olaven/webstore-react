@@ -28,12 +28,12 @@ class HeadlessPage extends React.PureComponent {
     }
 	}
 
-	componentWillMount() {
+	componentDidMount() {
     this.props.history.push(URLS.headless);
-
     this.getItems().then(result => {
+
       this.setState({
-        items : this.state.push(result.data.guillotine.query)
+        items : this.state.items.concat(result.data.guillotine.query)
       }); 
     }); 
 	}
