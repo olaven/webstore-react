@@ -33,7 +33,7 @@ class HeadlessPage extends React.PureComponent {
 
     this.getItems().then(result => {
       this.setState({
-        items : result.data.guillotine.query
+        items : this.state.push(result.data.guillotine.query)
       }); 
     }); 
 	}
