@@ -32,7 +32,6 @@ class HeadlessPage extends React.PureComponent {
     this.props.history.push(URLS.headless);
     this.getItems()
     .then(result => {
-      console.log(result)
       this.setState({
         items : this.state.items.concat(result.data.guillotine.query)
       }); 
@@ -99,11 +98,15 @@ class HeadlessPage extends React.PureComponent {
         lg={4} 
         xl={3}
         >
-        <StoreFrontItem item={new Item({
-          name : item.displayName, 
-          info : item.data.description, 
-          image: new Image({source : source})
-        })}/> 
+        <StoreFrontItem 
+          item={new Item({
+            name : item.displayName, 
+            info : item.data.description, 
+            image: new Image({source : source})
+          })}
+          add={(item) => {this.props.addItemToCart(item)}}
+          onClick={(item) => {console.log("an item was clicked", item)}}
+          /> 
       </Grid>  
     }); 
   }
@@ -131,12 +134,14 @@ HeadlessPage.defaultProps = {
 
 function mapStateToProps(state){
 	return {
-		items: state.get('app').get('allItems')
+   
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
+    addItemToCart: (arg) => { mainActions.addItemToCart(dispatch, arg) },
+    searchCategory: (arg) => { mainActions.searchCategory(dispatch, arg) }
 	};
 }
 
