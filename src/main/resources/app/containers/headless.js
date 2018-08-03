@@ -6,6 +6,7 @@ import * as mainActions from '../actions/mainActions';
 
 // Components 
 import StoreFrontItem from '../components/storefront/storefrontItemComponent'; 
+import DialogComponent from '../components/dialogComponent'; 
 
 // Material UI 
 import Grid from '@material-ui/core/Grid'; 
@@ -105,22 +106,33 @@ class HeadlessPage extends React.PureComponent {
             image: new Image({source : source})
           })}
           add={(item) => {this.props.addItemToCart(item)}}
-          onClick={(item) => {console.log("an item was clicked", item)}}
+          onClick={(item) => {
+            this.setState({ displayedItem: item, dialogOpen: true, dialogType: "ITEM_VIEW" })
+          }}
           /> 
-      </Grid>  
+      </Grid> 
     }); 
   }
 
 
 	render() {
-    return <Grid 
-      container
-      item
-      spacing={24}
-      alignContent="center" 
-      className="Headless"> 
-      {this.renderItems()}
-    </Grid>
+    return <div className="Headless-Container">
+      <Grid
+        container
+        item
+        spacing={24}
+        alignContent="center"
+        className="Headless">
+        {this.renderItems()}
+      </Grid>
+      <DialogComponent
+        type={this.state.dialogType}
+        onClose={() => this.setState({ dialogType: "", dialogOpen: false })}
+        addToCart={(item) => this.props.addItemToCart(item)}
+        open={this.state.dialogOpen}
+        item={this.state.displayedItem}
+      />
+    </div>
 	}
 }
 
@@ -142,7 +154,7 @@ function mapDispatchToProps(dispatch) {
 	return {
     addItemToCart: (arg) => { mainActions.addItemToCart(dispatch, arg) },
     searchCategory: (arg) => { mainActions.searchCategory(dispatch, arg) }
-	};
+  };
 }
 
 
