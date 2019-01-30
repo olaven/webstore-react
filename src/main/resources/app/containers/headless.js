@@ -34,7 +34,9 @@ class HeadlessPage extends React.PureComponent {
 		this.getItems()
 			.then(result => {
 				this.setState(previousState => {
-					items: previousState.items.concat(result.data.guillotine.query); 
+					return {
+						items: previousState.items.concat(result.data.guillotine.query)
+					}
 				}); 
 			})
 			.catch(e => console.error('Headless site is not configured correctly', e)); 
